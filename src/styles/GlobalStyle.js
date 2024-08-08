@@ -3,15 +3,48 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 :root {
   /* Indigo */
-  --color-brand-50: #eef2ff;
-  --color-brand-100: #e0e7ff;
-  --color-brand-200: #c7d2fe;
-  --color-brand-500: #6366f1;
-  --color-brand-600: #4f46e5;
-  --color-brand-700: #4338ca;
-  --color-brand-800: #3730a3;
-  --color-brand-900: #312e81;
+  --color-brand-5: #eef2ff;
+  --color-brand-10: #e0e7ff;
+  --color-brand-20: #c7d2fe;
+  --color-brand-50: #6366f1;
+  --color-brand-60: #4f46e5;
+  --color-brand-70: #4338ca;
+  --color-brand-80: #3730a3;
+  --color-brand-90: #312e81;
 
+  /* Primary */
+  --color-brand-100: #E6E2F8;
+  --color-brand-200: #CEC4F6;
+  --color-brand-300: #B2A2F9;
+  --color-brand-400: #9178FA;
+  --color-brand-500: #7152F3;
+  --color-brand-600: #5D3DE7;
+  --color-brand-700: #4F31D0;
+  --color-brand-800: #3517B4;
+  --color-brand-900: #250C92;
+
+  /* Secondary */
+  --color-brand-100: #E1F1BC;
+  --color-brand-200: #CEE993;
+  --color-brand-300: #BCDE6B;
+  --color-brand-400: #AFD751;
+  --color-brand-500: #A3D139;
+  --color-brand-600: #97BD33;
+  --color-brand-700: #88A52A;
+  --color-brand-800: #798D21;
+  --color-brand-900: #626615;
+
+  /* Tertiary */
+  --color-brand-100: #F0B0D9;
+  --color-brand-200: #E67BC2;
+  --color-brand-300: #D846AB;
+  --color-brand-400: #CD0D9B;
+  --color-brand-500: #B21589;
+  --color-brand-600: #AF0A87;
+  --color-brand-700: #9B0982;
+  --color-brand-800: #8A087C;
+  --color-brand-900: #6C0772;
+  
   /* Grey */
   --color-grey-0: #fff;
   --color-grey-50: #f9fafb;
@@ -19,6 +52,7 @@ const GlobalStyle = createGlobalStyle`
   --color-grey-200: #e5e7eb;
   --color-grey-300: #d1d5db;
   --color-grey-400: #9ca3af;
+  --color-grey-450: #A2A1A8;
   --color-grey-500: #6b7280;
   --color-grey-600: #4b5563;
   --color-grey-700: #374151;
@@ -39,6 +73,11 @@ const GlobalStyle = createGlobalStyle`
   --color-red-100: #fee2e2;
   --color-red-700: #b91c1c;
   --color-red-800: #991b1b;
+
+  /* Gradient */
+  --color-red-1: #fee2e2;
+  --color-red-2: #b91c1c;
+  --color-red-3: #991b1b;
 
   --backdrop-color: rgba(255, 255, 255, 0.1);
 
@@ -74,11 +113,13 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   color: var(--color-grey-700);
+  background-color: var(--color-grey-50);
 
   transition: color 0.3s, background-color 0.3s;
   min-height: 100vh;
   line-height: 1.5;
   font-size: 1.6rem;
+  padding: 0.8rem;
 }
 
 input,
