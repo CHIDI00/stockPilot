@@ -13,37 +13,37 @@ const GlobalStyle = createGlobalStyle`
   --color-brand-90: #312e81;
 
   /* Primary */
-  --color-brand-100: #E6E2F8;
-  --color-brand-200: #CEC4F6;
-  --color-brand-300: #B2A2F9;
-  --color-brand-400: #9178FA;
-  --color-brand-500: #7152F3;
-  --color-brand-600: #5D3DE7;
-  --color-brand-700: #4F31D0;
-  --color-brand-800: #3517B4;
-  --color-brand-900: #250C92;
+  --color-primary-100: #E6E2F8;
+  --color-primary-200: #CEC4F6;
+  --color-primary-300: #B2A2F9;
+  --color-primary-400: #9178FA;
+  --color-primary-500: #7152F3;
+  --color-primary-600: #5D3DE7;
+  --color-primary-700: #4F31D0;
+  --color-primary-800: #3517B4;
+  --color-primary-900: #250C92;
 
   /* Secondary */
-  --color-brand-100: #E1F1BC;
-  --color-brand-200: #CEE993;
-  --color-brand-300: #BCDE6B;
-  --color-brand-400: #AFD751;
-  --color-brand-500: #A3D139;
-  --color-brand-600: #97BD33;
-  --color-brand-700: #88A52A;
-  --color-brand-800: #798D21;
-  --color-brand-900: #626615;
+  --color-secondary-100: #E1F1BC;
+  --color-secondary-200: #CEE993;
+  --color-secondary-300: #BCDE6B;
+  --color-secondary-400: #AFD751;
+  --color-secondary-500: #A3D139;
+  --color-secondary-600: #97BD33;
+  --color-secondary-700: #88A52A;
+  --color-secondary-800: #798D21;
+  --color-secondary-900: #626615;
 
   /* Tertiary */
-  --color-brand-100: #F0B0D9;
-  --color-brand-200: #E67BC2;
-  --color-brand-300: #D846AB;
-  --color-brand-400: #CD0D9B;
-  --color-brand-500: #B21589;
-  --color-brand-600: #AF0A87;
-  --color-brand-700: #9B0982;
-  --color-brand-800: #8A087C;
-  --color-brand-900: #6C0772;
+  --color-tertiary-100: #F0B0D9;
+  --color-tertiary-200: #E67BC2;
+  --color-tertiary-300: #D846AB;
+  --color-tertiary-400: #CD0D9B;
+  --color-tertiary-500: #B21589;
+  --color-tertiary-600: #AF0A87;
+  --color-tertiary-700: #9B0982;
+  --color-tertiary-800: #8A087C;
+  --color-tertiary-900: #6C0772;
   
   /* Grey */
   --color-grey-0: #fff;
@@ -113,13 +113,13 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   color: var(--color-grey-700);
-  background-color: var(--color-grey-50);
+  background-color: var(--color-grey-0);
 
   transition: color 0.3s, background-color 0.3s;
   min-height: 100vh;
   line-height: 1.5;
   font-size: 1.6rem;
-  padding: 0.8rem;
+  padding: 1rem;
 }
 
 input,
