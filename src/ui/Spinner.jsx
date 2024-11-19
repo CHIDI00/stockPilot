@@ -1,22 +1,38 @@
 import styled, { keyframes } from "styled-components";
 
-const rotate = keyframes`
-  to {
-    transform: rotate(1turn)
-  }
+const firstRotate = keyframes`
+    /* 0%    {transform:scaleY(1)  rotate(0deg)}
+    49.99%{transform:scaleY(1)  rotate(135deg)}
+    50%   {transform:scaleY(-1) rotate(0deg)}
+    100%  {transform:scaleY(-1) rotate(-135deg)} */
+
+
+    to{transform: rotate(.5turn)}
+
 `;
 
 const Spinner = styled.div`
-  margin: 4.8rem auto;
+	margin: 4.8rem auto;
 
-  width: 6.4rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(farthest-side, var(--color-brand-600) 94%, #0000)
-      top/10px 10px no-repeat,
-    conic-gradient(#0000 30%, var(--color-brand-600));
-  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 10px), #000 0);
-  animation: ${rotate} 1.5s infinite linear;
+	width: 6.4rem;
+	/* width: 50px; */
+	--b: 8px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--color-primary-700);
+	-webkit-mask: repeating-conic-gradient(
+			#0000 0deg,
+			#000 1deg 70deg,
+			#0000 71deg 90deg
+		),
+		radial-gradient(
+			farthest-side,
+			#0000 calc(100% - var(--b) - 1px),
+			#000 calc(100% - var(--b))
+		);
+	-webkit-mask-composite: destination-in;
+	mask-composite: intersect;
+	animation: ${firstRotate} 1s infinite;
 `;
 
 export default Spinner;

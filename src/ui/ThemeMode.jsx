@@ -7,8 +7,8 @@ const ThemeContainer = styled.div`
 	grid-template-columns: 1fr 1fr;
 	justify-content: center;
 	align-items: center;
-	width: auto;
-	height: 4.5rem;
+	width: 17rem;
+	height: 4rem;
 	/* border: 1px solid #000; */
 	border-radius: 8px;
 	background-color: var(--color-grey-0);

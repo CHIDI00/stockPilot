@@ -20,32 +20,38 @@ const StyledNavLink = styled(NavLink)`
 	&:visited {
 		display: flex;
 		align-items: center;
-		gap: 1.2rem;
+		gap: 1rem;
 
 		color: var(--color-grey-600);
-		font-size: 1.6rem;
+		font-size: 1.2rem;
 		font-weight: 500;
-		padding: 1.2rem 2.4rem;
+		padding: 1rem 2rem;
 		transition: all 0.3s;
 	}
 
 	/* This works because react-router places the active class on the active NavLink */
 	&:hover {
 		color: var(--color-primary-800);
+		background-color: var(--color-grey-100);
 	}
 	&:active,
 	&.active:link,
 	&.active:visited {
 		/* color: var(--color-grey-800); */
 		background-color: var(--color-grey-0);
-		border-left: 4px solid var(--color-primary-600);
+		/* border-left: 4px solid var(--color-primary-600); */
+		/* border: 1px solid var(--color-primary-600); */
+
+		box-shadow: var(--color-primary-600) 0px 4px 0px;
+
 		color: var(--color-primary-800);
-		border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+		border-radius: 6px;
+		/* border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0; */
 	}
 
 	& svg {
-		width: 2.4rem;
-		height: 2.4rem;
+		width: 2rem;
+		height: 2rem;
 		color: var(--color-grey-400);
 		transition: all 0.3s;
 	}

@@ -2,11 +2,11 @@ import React from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import { Outlet } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledAppLayout = styled.div`
 	display: grid;
-	grid-template-columns: 26rem 1fr;
+	grid-template-columns: 24rem 1fr;
 	grid-template-rows: auto 1fr;
 	height: 100vh;
 
@@ -18,6 +18,11 @@ const Main = styled.main`
 	background-color: var(--color-grey-0);
 
 	border-radius: 15px;
+
+	overflow-y: scroll;
+
+	scrollbar-width: 2px;
+	scrollbar-width: none;
 `;
 
 const Container = styled.div`

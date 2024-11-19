@@ -2,39 +2,29 @@ import styled from "styled-components";
 import SupplierTable from "../supply/SupplierTable";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
-import { useEffect } from "react";
-import { getSupplier } from "../services/apiSupplier";
-import { useState } from "react";
-import CreateSupplierForm from "../supply/CreateSupplierForm";
+import AddSupplier from "../supply/AddSupplier";
+// import CreateSupplierForm from "../supply/CreateSupplierForm";
 
 const AddProduct = styled.div`
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	gap: 2rem;
 	margin: 1rem;
 `;
 
 function Suppliers() {
-	const [showForm, setShowForm] = useState(false);
-
-	useEffect(function () {
-		getSupplier().then((data) => console.log(data));
-	}, []);
-
 	return (
 		<>
 			<Row type="horizontal">
 				<Heading as="h1">Suppliers</Heading>
 				<AddProduct>
-					<button onClick={() => setShowForm((show) => !show)}>
-						Add Product
-					</button>
-					<p>Filter</p>
+					<AddSupplier />
 				</AddProduct>
 			</Row>
 
 			<Row>
 				<SupplierTable />
-				{showForm && <CreateSupplierForm />}
 			</Row>
 		</>
 	);

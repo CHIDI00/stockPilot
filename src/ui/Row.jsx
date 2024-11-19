@@ -15,7 +15,14 @@ const Row = styled.div`
 		css`
 			flex-direction: column;
 			gap: 1.6rem;
-		`}
+		`} /* ${(props) =>
+		props.type === "scroll_vertical" &&
+		css`
+			overflow-y: scroll;
+			height: 40rem;
+			flex-direction: column;
+			gap: 1.6rem;
+		`} */
 `;
 
 Row.defaultProps = {

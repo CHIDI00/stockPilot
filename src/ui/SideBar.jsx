@@ -14,7 +14,7 @@ const StyledSidebar = styled.aside`
 	display: grid;
 	grid-template-rows: auto 1fr auto;
 	flex-direction: column;
-	gap: 3rem;
+	gap: 2rem;
 `;
 
 const SideBar = () => {
