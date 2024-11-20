@@ -5,7 +5,14 @@ import Filter from "../../ui/Filter";
 const SupplierTableOperations = () => {
 	return (
 		<TableOperations>
-			<Filter />
+			<Filter
+			// filterField="return_type"
+			// options={[
+			// 	{ value: "all", label: "All" },
+			// 	{ value: "taking-return", label: "Taking Return" },
+			// 	{ value: "not-taking-return", label: "Not Taking Return" },
+			// ]}
+			/>
 		</TableOperations>
 	);
 };

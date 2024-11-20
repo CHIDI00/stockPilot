@@ -44,14 +44,14 @@ const SupplierTable = () => {
 		queryFn: getSupplier,
 	});
 
+	// Display loading spinner while fetching data
 	if (isLoading) return <Spinner />;
 
 	const filterValue = searchParams.get("return_type") || "all";
-	console.log(filterValue);
 
 	let filtereSupplier = Suppliers;
 
-	if (filterValue === "all");
+	if (filterValue === "all") filtereSupplier = Suppliers;
 
 	if (filterValue === "taking-return")
 		filtereSupplier = Suppliers.filter(

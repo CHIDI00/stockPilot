@@ -52,8 +52,9 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { HiFilter } from "react-icons/hi";
 import Modal from "./Modal";
+import SortBy from "./SortBy";
 
-const Filter = () => {
+const Filter = ({ filterField, options }) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	function handleClick(value) {
@@ -64,6 +65,12 @@ const Filter = () => {
 	return (
 		<StyledFilter>
 			<p>FIlter by: </p>
+			{/* {options.map((option) => (
+				<FilterButton onClick={() => handleClick(option.value)}>
+					{option.label}
+				</FilterButton>
+			))} */}
+
 			<FilterButton onClick={() => handleClick("all")}>All</FilterButton>
 			<FilterButton onClick={() => handleClick("taking-return")}>
 				Taking Return
@@ -71,6 +78,16 @@ const Filter = () => {
 			<FilterButton onClick={() => handleClick("not-taking-return")}>
 				Not Taking Return
 			</FilterButton>
+
+			<SortBy
+				options={[
+					{ value: "name-asc", label: "Sort by name (A-Z)" },
+					{ value: "name-desc", label: "Sort by name (Z-A)" },
+					{ value: "product-asc", label: "Sort by product" },
+					{ value: "quantity-asc", label: "Sort by quantity (low first)" },
+					{ value: "quantity-desc", label: "Sort by quantity (high first)" },
+				]}
+			/>
 		</StyledFilter>
 	);
 };
