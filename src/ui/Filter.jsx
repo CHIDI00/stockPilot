@@ -53,11 +53,17 @@ import { useSearchParams } from "react-router-dom";
 import { HiFilter } from "react-icons/hi";
 import Modal from "./Modal";
 import SortBy from "./SortBy";
+import FilterBy from "./FilterBy";
+import Select from "./Select";
 
 const Filter = ({ filterField, options }) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	function handleClick(value) {
+		searchParams.set("return_type", value);
+		setSearchParams(searchParams);
+	}
+	function handleChange(value) {
 		searchParams.set("return_type", value);
 		setSearchParams(searchParams);
 	}
@@ -71,6 +77,12 @@ const Filter = ({ filterField, options }) => {
 				</FilterButton>
 			))} */}
 
+			{/* <Select onChange={() => handleChange(options.value)}>
+				{options.map((option) => (
+					<option value={option.value}>{option.label}</option>
+				))}
+			</Select> */}
+
 			<FilterButton onClick={() => handleClick("all")}>All</FilterButton>
 			<FilterButton onClick={() => handleClick("taking-return")}>
 				Taking Return
@@ -81,8 +93,8 @@ const Filter = ({ filterField, options }) => {
 
 			<SortBy
 				options={[
-					{ value: "name-asc", label: "Sort by name (A-Z)" },
-					{ value: "name-desc", label: "Sort by name (Z-A)" },
+					{ value: "supplierName-asc", label: "Sort by name (A-Z)" },
+					{ value: "supplierName-desc", label: "Sort by name (Z-A)" },
 					{ value: "product-asc", label: "Sort by product" },
 					{ value: "quantity-asc", label: "Sort by quantity (low first)" },
 					{ value: "quantity-desc", label: "Sort by quantity (high first)" },

@@ -16,11 +16,18 @@ const StyledSelect = styled.select`
 
 import React from "react";
 
-const Select = ({ options, value }) => {
+const Select = ({ options, value, onChange, ...props }) => {
 	return (
-		<StyledSelect value={value} key={options.value}>
+		<StyledSelect
+			value={value}
+			onChange={onChange}
+			key={options.value}
+			{...props}
+		>
 			{options.map((option) => (
-				<option value={option.value}>{option.label}</option>
+				<option value={option.value} key={options.value}>
+					{option.label}
+				</option>
 			))}
 		</StyledSelect>
 	);

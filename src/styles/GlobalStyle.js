@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
+// import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&family=Roboto:wght@400;500;700;900&display=swap');
+
 const GlobalStyle = createGlobalStyle`
 :root {
   /* Indigo */
@@ -111,7 +113,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Parkinsans", sans-serif;
   color: var(--color-grey-700);
   background-color: var(--color-grey-0);
 

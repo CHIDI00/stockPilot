@@ -5,6 +5,7 @@ import Spinner from "../ui/Spinner";
 import SupplierRow from "./SupplyRow";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
+import Pagination from "../ui/Pagination";
 
 const Table = styled.div`
 	border: 1px solid var(--color-grey-200);
@@ -13,8 +14,6 @@ const Table = styled.div`
 	background-color: var(--color-grey-0);
 	border-radius: 7px;
 	overflow: hidden;
-
-	/* box-shadow: rgba(0, 0, 0, 0.15) 0 2.4px 3.2px; */
 `;
 
 const TableHeader = styled.header`
@@ -47,6 +46,7 @@ const SupplierTable = () => {
 	// Display loading spinner while fetching data
 	if (isLoading) return <Spinner />;
 
+	// Fillter Suppliers by the return type
 	const filterValue = searchParams.get("return_type") || "all";
 
 	let filtereSupplier = Suppliers;
@@ -63,6 +63,14 @@ const SupplierTable = () => {
 			(supplier) => supplier.return_type === "Not Taking Return"
 		);
 
+	// Sort supplier
+	const sortBy = searchParams.get("sortBy") || "startDate-asc";
+	const [field, direction] = sortBy.split("-");
+	const modifier = direction === "asc" ? 1 : -1;
+	const sortedSuppliers = filtereSupplier.sort(
+		(a, b) => (a[field] - b[field]) * modifier
+	);
+
 	return (
 		<Table role="table">
 			<TableHeader role="row">
@@ -74,13 +82,16 @@ const SupplierTable = () => {
 				<div>Type</div>
 				<div>Quantity</div>
 			</TableHeader>
-			{filtereSupplier.map((supplier) => (
+
+			{sortedSuppliers.map((supplier) => (
 				<SupplierRow
 					supplier={supplier}
 					key={supplier.id}
 					// data={filtereSupplier}
 				/>
 			))}
+
+			<Pagination count={17} />
 		</Table>
 	);
 };

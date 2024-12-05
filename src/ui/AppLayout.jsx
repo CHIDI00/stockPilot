@@ -8,7 +8,7 @@ const StyledAppLayout = styled.div`
 	display: grid;
 	grid-template-columns: 24rem 1fr;
 	grid-template-rows: auto 1fr;
-	height: 100vh;
+	height: 97.5vh;
 
 	gap: 0.8rem;
 `;
@@ -16,19 +16,15 @@ const StyledAppLayout = styled.div`
 const Main = styled.main`
 	padding: 4rem 4.8rem 6.4rem;
 	background-color: var(--color-grey-0);
-
 	border-radius: 15px;
-
 	overflow-y: scroll;
 
-	scrollbar-width: 2px;
 	scrollbar-width: none;
 `;
 
 const Container = styled.div`
 	max-width: 120rem;
 	margin: 0 auto;
-
 	display: flex;
 	flex-direction: column;
 	gap: 3rem;

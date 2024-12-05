@@ -1,17 +1,15 @@
 import styled, { css } from "styled-components";
-import Button from "../ui/Button";
+// import Button from "../ui/Button";
 
-import { HiMiniPencilSquare, HiTrash } from "react-icons/hi2";
 import { useState } from "react";
-import CreateSupplierForm from "./CreateSupplierForm";
-import { useDeleteSupplier } from "./useDeleteSupplier";
-import user_icon3 from "/user_icon3.png";
-import Modal from "../ui/Modal";
-import ConfirmDelete from "../ui/ConfirmDelete";
+// import CreateSupplierForm from "./CreateSupplierForm";
+// import { useDeleteSupplier } from "./useDeleteSupplier";
+// import Modal from "../ui/Modal";
+// import ConfirmDelete from "../ui/ConfirmDelete";
 
 const TableRow = styled.div`
 	display: grid;
-	grid-template-columns: 0.4fr 1.4fr 1.4fr 1.3fr 2.6fr 1.4fr 0.7fr 0.7fr;
+	grid-template-columns: 0.4fr 1.7fr 1.8fr 1.9fr 1.9fr 1.9fr 1.4fr;
 	column-gap: 1.5rem;
 	align-items: center;
 	padding: 1.2rem 2rem;
@@ -64,12 +62,10 @@ const Type = styled.div`
 	font-family: "Poppins", sans-serif;
 	color: red;
 	background-color: var(--color-red-100);
-	padding: 5px;
+	padding: 1px;
 	border-radius: 5px;
-	/* text-align: center; */
+	text-align: center;
 	font-size: 1.3rem;
-	width: fit-content;
-	/* padding: 0.4rem 1.2rem; */
 
 	${(prop) =>
 		prop.type === "Taking Return" &&
@@ -79,11 +75,22 @@ const Type = styled.div`
 		`}
 `;
 
-const Quantity = styled.div`
+const DeliveryDate = styled.div`
 	font-family: "Poppins", sans-serif;
 	font-size: 1.3rem;
 	padding-left: 1.3rem;
 	/* text-align: center; */
+`;
+
+const Status = styled.div`
+	font-family: "Poppins", sans-serif;
+	font-size: 1.3rem;
+	padding: 0.4rem 1.2rem;
+	background-color: #78777789;
+	width: fit-content;
+	text-transform: uppercase;
+	color: white;
+	border-radius: 50px;
 `;
 
 const EditDelete = styled.div`
@@ -103,51 +110,45 @@ const ImageContainer = styled.div`
 	}
 `;
 
-const SupplierRow = ({ supplier }) => {
+const OrderRow = ({ order }) => {
 	const [showModal, setShowModal] = useState(false);
 	const [confirmDelete, setConfirmDelete] = useState(false);
 
 	const {
-		id: supplierId,
-		supplierName,
+		id: orderId,
 		product,
-		contact,
-		email,
-		return_type,
+		order_value,
 		quantity,
-		image,
-	} = supplier;
+		order_id,
+		delivery_date,
+		status,
+	} = order;
 
-	const { isDeleting, deleteSupplier } = useDeleteSupplier();
+	// const { isDeleting, deleteSupplier } = useDeleteSupplier();
 
 	return (
 		<>
 			<TableRow role="row">
-				{/* <ImageContainer> */}
-				<Image
-					className="img"
-					src={!image ? user_icon3 : image}
-					alt="profile"
-				/>
 				{/* </ImageContainer> */}
-				<SupplierName>{supplierName}</SupplierName>
+				<SupplierName>{orderId}</SupplierName>
 				<Product>{product}</Product>
-				<Contact>{contact}</Contact>
-				<Email>{email}</Email>
-				<Type type={return_type}>{return_type}</Type>
-				<Quantity>{quantity}</Quantity>
-				<EditDelete>
-					{/* <Modal> */}
-					<Button
+				<Contact>{`$${order_value}.00`}</Contact>
+				<Email>{quantity}</Email>
+				<Email>{order_id}</Email>
+				<DeliveryDate>{delivery_date}</DeliveryDate>
+				<Status>{status}</Status>
+				{/* <EditDelete> */}
+				{/* <Modal> */}
+				{/* <Button
 						onClick={() => setShowModal((show) => !show)}
 						variation="transparent"
 						size="transparent"
 					>
 						<HiMiniPencilSquare />
-					</Button>
-					{/* </Modal> */}
+					</Button> */}
+				{/* </Modal> */}
 
-					<Button
+				{/* <Button
 						variation="transparent"
 						size="transparent"
 						onClick={() => setConfirmDelete((show) => !show)}
@@ -155,18 +156,18 @@ const SupplierRow = ({ supplier }) => {
 					>
 						<HiTrash style={{ color: "var(--color-red-2)" }} />
 					</Button>
-				</EditDelete>
+				</EditDelete> */}
 			</TableRow>
-			{showModal && (
+			{/* {showModal && (
 				<Modal onClose={() => setShowModal(false)}>
 					<CreateSupplierForm
 						onCloseModal={() => setShowModal(false)}
 						supplierToEdit={supplier}
 					/>
 				</Modal>
-			)}
+			)} */}
 
-			{confirmDelete && (
+			{/* {confirmDelete && (
 				<Modal onClose={() => setConfirmDelete(false)}>
 					<ConfirmDelete
 						resourceName="supplier"
@@ -175,9 +176,9 @@ const SupplierRow = ({ supplier }) => {
 						onClose={() => setConfirmDelete(false)}
 					/>
 				</Modal>
-			)}
+			)} */}
 		</>
 	);
 };
 
-export default SupplierRow;
+export default OrderRow;
