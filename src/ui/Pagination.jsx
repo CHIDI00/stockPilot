@@ -88,23 +88,27 @@ const Pagination = ({ count }) => {
 	console.log(count);
 
 	return (
-		<StyledPagination>
-			<Buttons>
-				<PaginationButton onClick={prevPage} disabled={currentPage === 1}>
-					<HiChevronLeft /> <span>Previous</span>
-				</PaginationButton>
-			</Buttons>
+		<>
+			{/* {pageCount === 1 && ( */}
+			<StyledPagination>
+				<Buttons>
+					<PaginationButton onClick={prevPage} disabled={currentPage === 1}>
+						<HiChevronLeft /> <span>Previous</span>
+					</PaginationButton>
+				</Buttons>
 
-			<p>
-				Page <span>{currentPage}</span> of <span>{count}</span>
-			</p>
+				<p>
+					Page <span>{currentPage}</span> of <span>{count}</span>
+				</p>
 
-			<Buttons>
-				<PaginationButton onClick={nextPage} disabled={currentPage === count}>
-					<span>Next</span> <HiChevronRight />
-				</PaginationButton>
-			</Buttons>
-		</StyledPagination>
+				<Buttons>
+					<PaginationButton onClick={nextPage} disabled={currentPage === count}>
+						<span>Next</span> <HiChevronRight />
+					</PaginationButton>
+				</Buttons>
+			</StyledPagination>
+			{/* )} */}
+		</>
 	);
 };
 

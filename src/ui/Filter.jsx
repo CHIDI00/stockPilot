@@ -55,6 +55,7 @@ import Modal from "./Modal";
 import SortBy from "./SortBy";
 import FilterBy from "./FilterBy";
 import Select from "./Select";
+import SupplierTableOperations from "../supply/SupplierTableOperations";
 
 const Filter = ({ filterField, options }) => {
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -69,38 +70,30 @@ const Filter = ({ filterField, options }) => {
 	}
 
 	return (
-		<StyledFilter>
-			<p>FIlter by: </p>
-			{/* {options.map((option) => (
-				<FilterButton onClick={() => handleClick(option.value)}>
-					{option.label}
+		<>
+			<StyledFilter>
+				<p>FIlter by: </p>
+				<FilterButton onClick={() => handleClick("all")}>All</FilterButton>
+				<FilterButton onClick={() => handleClick("taking-return")}>
+					Taking Return
 				</FilterButton>
-			))} */}
+				<FilterButton onClick={() => handleClick("not-taking-return")}>
+					Not Taking Return
+				</FilterButton>
 
-			{/* <Select onChange={() => handleChange(options.value)}>
-				{options.map((option) => (
-					<option value={option.value}>{option.label}</option>
-				))}
-			</Select> */}
-
-			<FilterButton onClick={() => handleClick("all")}>All</FilterButton>
-			<FilterButton onClick={() => handleClick("taking-return")}>
-				Taking Return
-			</FilterButton>
-			<FilterButton onClick={() => handleClick("not-taking-return")}>
-				Not Taking Return
-			</FilterButton>
-
-			<SortBy
+				{/* <SortBy
 				options={[
 					{ value: "supplierName-asc", label: "Sort by name (A-Z)" },
 					{ value: "supplierName-desc", label: "Sort by name (Z-A)" },
 					{ value: "product-asc", label: "Sort by product" },
 					{ value: "quantity-asc", label: "Sort by quantity (low first)" },
 					{ value: "quantity-desc", label: "Sort by quantity (high first)" },
-				]}
-			/>
-		</StyledFilter>
+					]}
+					/> */}
+			</StyledFilter>
+
+			<SupplierTableOperations />
+		</>
 	);
 };
 

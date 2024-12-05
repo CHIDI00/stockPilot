@@ -1,6 +1,6 @@
 import React from "react";
 import TableOperations from "../ui/TableOperations";
-import Filter from "../../ui/Filter";
+import Filter from "../ui/Filter";
 import SortBy from "../ui/SortBy";
 
 const SupplierTableOperations = () => {
@@ -15,9 +15,15 @@ const SupplierTableOperations = () => {
 			// ]}
 			/>
 
-			{/* <SortBy
-				
-			/> */}
+			<SortBy
+				options={[
+					{ value: "supplierName-asc", label: "Sort by name (A-Z)" },
+					{ value: "supplierName-desc", label: "Sort by name (Z-A)" },
+					{ value: "product-asc", label: "Sort by product" },
+					{ value: "quantity-asc", label: "Sort by quantity (low first)" },
+					{ value: "quantity-desc", label: "Sort by quantity (high first)" },
+				]}
+			/>
 		</TableOperations>
 	);
 };

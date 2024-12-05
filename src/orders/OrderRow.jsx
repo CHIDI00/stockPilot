@@ -133,7 +133,7 @@ const OrderRow = ({ order }) => {
 				<SupplierName>{orderId}</SupplierName>
 				<Product>{product}</Product>
 				<Contact>{`$${order_value}.00`}</Contact>
-				<Email>{quantity}</Email>
+				<Email>{quantity > 1 ? `${quantity} Packs` : `${quantity} Pack`}</Email>
 				<Email>{order_id}</Email>
 				<DeliveryDate>{delivery_date}</DeliveryDate>
 				<Status>{status}</Status>

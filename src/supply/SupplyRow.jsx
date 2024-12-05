@@ -64,12 +64,12 @@ const Type = styled.div`
 	font-family: "Poppins", sans-serif;
 	color: red;
 	background-color: var(--color-red-100);
-	padding: 5px;
+	/* padding: 5px; */
 	border-radius: 5px;
 	/* text-align: center; */
 	font-size: 1.3rem;
 	width: fit-content;
-	/* padding: 0.4rem 1.2rem; */
+	padding: 0.4rem 1.2rem;
 
 	${(prop) =>
 		prop.type === "Taking Return" &&

@@ -4,6 +4,7 @@ import Modal from "../ui/Modal";
 import Row from "../ui/Row";
 import Filter from "../ui/Filter";
 import CreateOrderForm from "./CreateOrderForm";
+import OrderTableOperation from "./OrderTableOperation";
 
 const AddOrder = () => {
 	const [isOpenModal, setIsOpenModal] = useState(false);
@@ -14,7 +15,7 @@ const AddOrder = () => {
 				<Button onClick={() => setIsOpenModal((show) => !show)}>
 					Add Order
 				</Button>
-				<Filter />
+				<OrderTableOperation />
 			</Row>
 
 			{isOpenModal && (
