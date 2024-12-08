@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import Button from "../ui/Button";
 import Modal from "../ui/Modal";
 import Row from "../ui/Row";
-import Filter from "../ui/Filter";
 import CreateOrderForm from "./CreateOrderForm";
 import OrderTableOperation from "./OrderTableOperation";
+import styled from "styled-components";
+
+const Span = styled.span`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	margin: 0 1rem;
+`;
 
 const AddOrder = () => {
 	const [isOpenModal, setIsOpenModal] = useState(false);
@@ -15,7 +23,10 @@ const AddOrder = () => {
 				<Button onClick={() => setIsOpenModal((show) => !show)}>
 					Add Order
 				</Button>
-				<OrderTableOperation />
+				<Span>
+					Filter by:
+					<OrderTableOperation />
+				</Span>
 			</Row>
 
 			{isOpenModal && (

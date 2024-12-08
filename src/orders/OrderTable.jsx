@@ -1,10 +1,11 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
-import { getOrders } from "../services/apiOrders";
 import Spinner from "../ui/Spinner";
 import OrderRow from "./OrderRow";
-import { useQuery } from "@tanstack/react-query";
+import Pagination from "../ui/Pagination";
+import useOrder from "./useOrder";
+
+import { useSearchParams } from "react-router-dom";
 
 const Table = styled.div`
 	border: 1px solid var(--color-grey-200);
@@ -32,16 +33,7 @@ const TableHeader = styled.header`
 
 const OrderTable = () => {
 	const [searchParams] = useSearchParams();
-
-	const {
-		isLoading,
-		data: orders,
-		error,
-	} = useQuery({
-		queryKey: ["orders"],
-		queryFn: getOrders,
-	});
-	console.log(orders);
+	const { orders, isLoading, count } = useOrder();
 
 	if (isLoading) return <Spinner />;
 
@@ -57,9 +49,11 @@ const OrderTable = () => {
 				<div>Status</div>
 			</TableHeader>
 
-			{orders.map((order) => (
+			{orders?.map((order) => (
 				<OrderRow order={order} key={order.id} />
 			))}
+
+			<Pagination count={count} />
 		</Table>
 	);
 };

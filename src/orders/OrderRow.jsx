@@ -1,11 +1,9 @@
 import styled, { css } from "styled-components";
-// import Button from "../ui/Button";
 
 import { useState } from "react";
-// import CreateSupplierForm from "./CreateSupplierForm";
-// import { useDeleteSupplier } from "./useDeleteSupplier";
-// import Modal from "../ui/Modal";
-// import ConfirmDelete from "../ui/ConfirmDelete";
+import Modal from "../ui/Modal";
+import CreateOrderForm from "./CreateOrderForm";
+import { formatCurrency } from "../utils/helpers";
 
 const TableRow = styled.div`
 	display: grid;
@@ -112,7 +110,6 @@ const ImageContainer = styled.div`
 
 const OrderRow = ({ order }) => {
 	const [showModal, setShowModal] = useState(false);
-	const [confirmDelete, setConfirmDelete] = useState(false);
 
 	const {
 		id: orderId,
@@ -124,59 +121,23 @@ const OrderRow = ({ order }) => {
 		status,
 	} = order;
 
-	// const { isDeleting, deleteSupplier } = useDeleteSupplier();
-
 	return (
 		<>
 			<TableRow role="row">
-				{/* </ImageContainer> */}
 				<SupplierName>{orderId}</SupplierName>
 				<Product>{product}</Product>
-				<Contact>{`$${order_value}.00`}</Contact>
+				<Contact>{formatCurrency(order_value)}</Contact>
 				<Email>{quantity > 1 ? `${quantity} Packs` : `${quantity} Pack`}</Email>
 				<Email>{order_id}</Email>
 				<DeliveryDate>{delivery_date}</DeliveryDate>
 				<Status>{status}</Status>
-				{/* <EditDelete> */}
-				{/* <Modal> */}
-				{/* <Button
-						onClick={() => setShowModal((show) => !show)}
-						variation="transparent"
-						size="transparent"
-					>
-						<HiMiniPencilSquare />
-					</Button> */}
-				{/* </Modal> */}
-
-				{/* <Button
-						variation="transparent"
-						size="transparent"
-						onClick={() => setConfirmDelete((show) => !show)}
-						disabled={isDeleting}
-					>
-						<HiTrash style={{ color: "var(--color-red-2)" }} />
-					</Button>
-				</EditDelete> */}
 			</TableRow>
-			{/* {showModal && (
-				<Modal onClose={() => setShowModal(false)}>
-					<CreateSupplierForm
-						onCloseModal={() => setShowModal(false)}
-						supplierToEdit={supplier}
-					/>
-				</Modal>
-			)} */}
 
-			{/* {confirmDelete && (
-				<Modal onClose={() => setConfirmDelete(false)}>
-					<ConfirmDelete
-						resourceName="supplier"
-						disabled={isDeleting}
-						onConfirm={() => deleteSupplier(supplierId)}
-						onClose={() => setConfirmDelete(false)}
-					/>
+			{showModal && (
+				<Modal onClose={() => setShowModal(false)}>
+					<CreateOrderForm onCloseModal={() => setShowModal(false)} />
 				</Modal>
-			)} */}
+			)}
 		</>
 	);
 };

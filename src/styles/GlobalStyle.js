@@ -122,6 +122,11 @@ body {
   line-height: 1.5;
   font-size: 1.6rem;
   padding: 1rem;
+
+}
+
+::-webkit-scrollbar{
+  display: none;
 }
 
 input,

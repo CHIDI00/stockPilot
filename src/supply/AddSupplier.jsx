@@ -3,7 +3,7 @@ import CreateSupplierForm from "./CreateSupplierForm";
 import Button from "../ui/Button";
 import Modal from "../ui/Modal";
 import Row from "../ui/Row";
-import Filter from "../ui/Filter";
+import SupplierTableOperations from "./SupplierTableOperations";
 
 const AddSupplier = () => {
 	const [isOpenModal, setIsOpenModal] = useState(false);
@@ -14,7 +14,7 @@ const AddSupplier = () => {
 				<Button onClick={() => setIsOpenModal((show) => !show)}>
 					Add Supplier
 				</Button>
-				<Filter />
+				<SupplierTableOperations />
 			</Row>
 
 			{isOpenModal && (

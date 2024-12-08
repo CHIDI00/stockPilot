@@ -55,45 +55,48 @@ import Modal from "./Modal";
 import SortBy from "./SortBy";
 import FilterBy from "./FilterBy";
 import Select from "./Select";
-import SupplierTableOperations from "../supply/SupplierTableOperations";
 
 const Filter = ({ filterField, options }) => {
 	const [searchParams, setSearchParams] = useSearchParams();
+	const currentFilter = searchParams.get(filterField) || options?.at(0)?.value;
 
 	function handleClick(value) {
-		searchParams.set("return_type", value);
-		setSearchParams(searchParams);
-	}
-	function handleChange(value) {
-		searchParams.set("return_type", value);
+		searchParams.set(filterField, value);
 		setSearchParams(searchParams);
 	}
 
 	return (
-		<>
-			<StyledFilter>
-				<p>FIlter by: </p>
-				<FilterButton onClick={() => handleClick("all")}>All</FilterButton>
-				<FilterButton onClick={() => handleClick("taking-return")}>
-					Taking Return
-				</FilterButton>
-				<FilterButton onClick={() => handleClick("not-taking-return")}>
-					Not Taking Return
-				</FilterButton>
+		<StyledFilter>
+			<p>FIlter by: </p>
+			{/* <FilterButton onClick={() => handleClick("all")}>All</FilterButton>
+			<FilterButton onClick={() => handleClick("taking-return")}>
+				Taking Return
+			</FilterButton>
+			<FilterButton onClick={() => handleClick("not-taking-return")}>
+				Not Taking Return
+			</FilterButton> */}
 
-				{/* <SortBy
+			{options?.map((options) => (
+				<FilterButton
+					onClick={() => handleClick(options.value)}
+					key={options.value}
+					active={options.value === currentFilter}
+					disabled={options.value === currentFilter}
+				>
+					{options.label}
+				</FilterButton>
+			))}
+
+			{/* <SortBy
 				options={[
 					{ value: "supplierName-asc", label: "Sort by name (A-Z)" },
 					{ value: "supplierName-desc", label: "Sort by name (Z-A)" },
 					{ value: "product-asc", label: "Sort by product" },
 					{ value: "quantity-asc", label: "Sort by quantity (low first)" },
 					{ value: "quantity-desc", label: "Sort by quantity (high first)" },
-					]}
-					/> */}
-			</StyledFilter>
-
-			<SupplierTableOperations />
-		</>
+				]}
+			/> */}
+		</StyledFilter>
 	);
 };
 

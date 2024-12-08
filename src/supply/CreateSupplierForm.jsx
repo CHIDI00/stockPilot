@@ -95,22 +95,6 @@ function CreateSupplierForm({ supplierToEdit = {}, onCloseModal }) {
 		<Form onSubmit={handleSubmit(onSubmit, onError)}>
 			<Heading as="h3">New Supplier</Heading>
 
-			{/* <FormImage>
-				<InputContainer>
-					<FileInput
-						id="image"
-						accept="image/*"
-						// {...register("image", {
-						// 	required: "This field is required",
-						// })}
-					/>
-					<HiMiniCamera style={{ zIndex: "1000", background: "red" }} />
-					Good
-				</InputContainer>
-				{/* <Error>{errors}</Error> */}
-			{/* <label htmlFor="image">Photo</label> */}
-			{/* </FormImage> */}
-
 			<FormRow label="Supplier Name" error={errors?.supplierName?.message}>
 				{/* <InputErrorContianer> */}
 				<Input
@@ -212,9 +196,8 @@ function CreateSupplierForm({ supplierToEdit = {}, onCloseModal }) {
 				>
 					Discard
 				</Button>
-				<Button disabled={isWorking && <SmallSpinner />}>
+				<Button disabled={isWorking}>
 					{isEditSession ? "Edit supplier" : "Add new supplier"}
-					{/* {(isWorking &&  (<SmallSpinner />))} */}
 				</Button>
 			</FormButton>
 		</Form>

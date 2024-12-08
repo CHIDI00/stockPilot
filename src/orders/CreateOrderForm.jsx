@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 import Input from "../ui/Input";
 import Form from "../ui/Form";
 import Button from "../ui/Button";
@@ -7,17 +5,26 @@ import Heading from "../ui/Heading";
 import FormRow from "../ui/FormRow";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-// import { createSupplier } from "../services/apiSupplier";
 
 import toast from "react-hot-toast";
 import { createOrder } from "../services/apiOrders";
 import { useState } from "react";
+import styled from "styled-components";
 
-function CreateOrderForm() {
+const FormButton = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100%;
+	gap: 1rem;
+	padding-top: 1rem;
+`;
+
+function CreateOrderForm({ onCloseModal }) {
 	// GENERATE ORDER ID
 	const generateOrderId = () => {
 		const prefix = "SP";
-		const randomNumber = Math.floor(1000 + Math.random() * 9000);
+		const randomNumber = Math.floor(10000 + Math.random() * 90000);
 		return prefix + randomNumber;
 	};
 
@@ -28,7 +35,9 @@ function CreateOrderForm() {
 	};
 
 	// CEATE ORDER
-	const { register, handleSubmit, reset, formState } = useForm();
+	const { register, handleSubmit, reset, formState } = useForm({
+		defaultValues: isAddSession ? addValue : {},
+	});
 	const { errors } = formState;
 
 	const queryClient = useQueryClient();
@@ -39,6 +48,7 @@ function CreateOrderForm() {
 			toast.success("New order have been added"),
 				queryClient.invalidateQueries({ queryKey: ["orders"] }),
 				reset();
+			onCloseModal?.();
 		},
 		onError: (err) => toast.error(err.message),
 	});
@@ -47,15 +57,11 @@ function CreateOrderForm() {
 		mutate(data);
 	}
 
-	function onError(error) {
-		// console.log(error);
-	}
-
 	return (
-		<Form onSubmit={handleSubmit(onSubmit, onError)}>
+		<Form onSubmit={handleSubmit(onSubmit)}>
 			<Heading as="h3">New Order</Heading>
 
-			<FormRow label="Product Name" error={errors?.supplierName?.message}>
+			<FormRow label="Product Name" error={errors?.product?.message}>
 				<Input
 					type="text"
 					id="product"
@@ -66,18 +72,19 @@ function CreateOrderForm() {
 				/>
 			</FormRow>
 
-			<FormRow label="Order value" error={errors?.contact?.message}>
+			<FormRow label="Order value" error={errors?.order_value?.message}>
 				<Input
 					type="number"
 					id="order_value"
 					disabled={isCreating}
 					{...register("order_value", {
 						required: "This field is required",
+						// validate: (value) => value < 1 && "Enter a valid amount",
 					})}
 				/>
 			</FormRow>
 
-			<FormRow label="Quantity" error={errors?.email?.message}>
+			<FormRow label="Quantity" error={errors?.quantity?.message}>
 				<Input
 					type="text"
 					id="quantity"
@@ -88,19 +95,19 @@ function CreateOrderForm() {
 				/>
 			</FormRow>
 
-			<FormRow label="Order Id" error={errors?.email?.message}>
+			<FormRow label="Order Id" error={errors?.order_id?.message}>
 				<Input
 					type="text"
 					id="order_id"
 					value={randomOrderId}
-					disabled={true}
+					disabled={isCreating}
 					{...register("order_id", {
 						required: "This field is required",
 					})}
 				/>
 			</FormRow>
 
-			<FormRow label="Delivery Date" error={errors?.email?.message}>
+			<FormRow label="Delivery Date" error={errors?.delivery_date?.message}>
 				<Input
 					type="date"
 					id="delivery_date"
@@ -111,7 +118,7 @@ function CreateOrderForm() {
 				/>
 			</FormRow>
 
-			<FormRow label="Status" error={errors?.email?.message}>
+			<FormRow label="Status" error={errors?.status?.message}>
 				<Input
 					type="text"
 					id="status"
@@ -122,13 +129,13 @@ function CreateOrderForm() {
 				/>
 			</FormRow>
 
-			<FormRow>
+			<FormButton>
 				{/* type is an HTML attribute! */}
 				<Button variation="secondary" type="reset">
 					Discard
 				</Button>
-				<Button disabled={isCreating}>Add Supplier</Button>
-			</FormRow>
+				<Button disabled={isCreating}>Add Order</Button>
+			</FormButton>
 		</Form>
 	);
 }

@@ -3,6 +3,8 @@ import OrderTable from "../orders/OrderTable";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
 import AddOrder from "../orders/AddOrder";
+import useOrder from "../orders/useOrder";
+import { formatCurrency } from "../utils/helpers";
 
 const AddOrderStyle = styled.div`
 	display: flex;
@@ -82,6 +84,33 @@ const DivContainer = styled.div`
 `;
 
 const Orders = () => {
+	const { orders } = useOrder();
+	console.log(orders);
+
+	const confirmed = orders?.filter(
+		(item) => item?.status.toLowerCase() === "confirmed"
+	).length;
+
+	const returned = orders?.filter(
+		(item) => item?.status.toLowerCase() === "returned"
+	).length;
+
+	const pending = orders?.filter(
+		(item) => item?.status.toLowerCase() === "pending"
+	).length;
+
+	const totalConfirmedOrderValue = orders
+		?.filter((order) => order.status === "Confirmed")
+		.reduce((total, order) => total + order.order_value, 0);
+
+	const totalReturnedOrderValue = orders
+		?.filter((order) => order.status === "Returned")
+		.reduce((total, order) => total + order.order_value, 0);
+
+	const totalPendingOrderValue = orders
+		?.filter((order) => order.status === "Pending")
+		.reduce((total, order) => total + order.order_value, 0);
+
 	return (
 		<>
 			<Row type="horizontal">
@@ -90,18 +119,18 @@ const Orders = () => {
 					<OverallContent>
 						<TotalStyledContainer>
 							<Total type="blue">Total Order</Total>
-							<p>37</p>
+							<p>{orders?.length}</p>
 							<p>Last 7 days</p>
 						</TotalStyledContainer>
 						<TotalStyledContainer>
 							<Total type="orange">Total Receive</Total>
 							<DivContainer>
 								<div>
-									<p>37</p>
+									<p>{confirmed}</p>
 									<p>Last 7 days</p>
 								</div>
 								<div>
-									<p>$25000</p>
+									<p>{formatCurrency(totalConfirmedOrderValue)}</p>
 
 									<p>Revenue</p>
 								</div>
@@ -111,11 +140,11 @@ const Orders = () => {
 							<Total type="purple">Total Returned</Total>
 							<DivContainer>
 								<div>
-									<p>37</p>
+									<p>{returned}</p>
 									<p>Last 7 days</p>
 								</div>
 								<div>
-									<p>$25000</p>
+									<p>{formatCurrency(totalReturnedOrderValue)}</p>
 
 									<p>Cost</p>
 								</div>
@@ -125,11 +154,11 @@ const Orders = () => {
 							<Total type="red">On the way</Total>
 							<DivContainer>
 								<div>
-									<p>37</p>
+									<p>{pending}</p>
 									<p>Last 7 days</p>
 								</div>
 								<div>
-									<p>$25000</p>
+									<p>{formatCurrency(totalPendingOrderValue)}</p>
 									<p>Cost</p>
 								</div>
 							</DivContainer>
