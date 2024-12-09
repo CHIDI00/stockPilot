@@ -30,7 +30,7 @@ const Image = styled.img`
 	border-radius: 50%;
 `;
 
-const SupplierName = styled.div`
+const OrderId = styled.div`
 	font-size: 1.3rem;
 	font-weight: 400;
 	color: var(--color-grey-600);
@@ -82,13 +82,32 @@ const DeliveryDate = styled.div`
 
 const Status = styled.div`
 	font-family: "Poppins", sans-serif;
-	font-size: 1.3rem;
-	padding: 0.4rem 1.2rem;
+	font-size: 1rem;
+	padding: 0.4rem 1rem;
 	background-color: #78777789;
 	width: fit-content;
 	text-transform: uppercase;
-	color: white;
+	color: #000;
 	border-radius: 50px;
+
+	${(prop) =>
+		prop.type === "Confirmed" &&
+		css`
+			background-color: #9bfa9b;
+			color: #035c03;
+		`}
+	${(prop) =>
+		prop.type === "Returned" &&
+		css`
+			background-color: #f79090;
+			color: #940101;
+		`}
+	${(prop) =>
+		prop.type === "Pending" &&
+		css`
+			background-color: #facc76;
+			color: #6b4704;
+		`}
 `;
 
 const EditDelete = styled.div`
@@ -124,13 +143,13 @@ const OrderRow = ({ order }) => {
 	return (
 		<>
 			<TableRow role="row">
-				<SupplierName>{orderId}</SupplierName>
+				<OrderId>{orderId}</OrderId>
 				<Product>{product}</Product>
 				<Contact>{formatCurrency(order_value)}</Contact>
 				<Email>{quantity > 1 ? `${quantity} Packs` : `${quantity} Pack`}</Email>
 				<Email>{order_id}</Email>
 				<DeliveryDate>{delivery_date}</DeliveryDate>
-				<Status>{status}</Status>
+				<Status type={status}>{status}</Status>
 			</TableRow>
 
 			{showModal && (

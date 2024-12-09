@@ -35,14 +35,12 @@ function CreateOrderForm({ onCloseModal }) {
 	};
 
 	// CEATE ORDER
-	const { register, handleSubmit, reset, formState } = useForm({
-		defaultValues: isAddSession ? addValue : {},
-	});
+	const { register, handleSubmit, reset, formState } = useForm();
 	const { errors } = formState;
 
 	const queryClient = useQueryClient();
 
-	const { mutate, isLoadding: isCreating } = useMutation({
+	const { mutate, isLoading: isCreating } = useMutation({
 		mutationFn: createOrder,
 		onSuccess: () => {
 			toast.success("New order have been added"),
@@ -122,6 +120,7 @@ function CreateOrderForm({ onCloseModal }) {
 				<Input
 					type="text"
 					id="status"
+					value="Pending"
 					disabled={isCreating}
 					{...register("status", {
 						required: "This field is required",

@@ -22,9 +22,9 @@ export const getToday = function (options = {}) {
 };
 
 export const formatCurrency = (value, currency = "NGN") => {
-	const userLocal = "en-NG" || navigator.language;
+	const userLocale = "en-NG" || navigator.language;
 
-	return new Intl.NumberFormat(userLocal, {
+	return new Intl.NumberFormat(userLocale, {
 		style: "currency",
 		currency: currency,
 	}).format(value);
