@@ -1,14 +1,24 @@
+import { PAGE_SIZE } from "../utils/constants";
 import supabase, { supabaseUrl } from "./supabase";
 
-export async function getSupplier() {
-	const { data, error } = await supabase.from("suppliers").select("*");
+export async function getSupplier({ page }) {
+	let query = supabase.from("suppliers").select("*", { count: "exact" });
+
+	if (page) {
+		const from = (page - 1) * (PAGE_SIZE - 1);
+		const to = from + (PAGE_SIZE - 1);
+
+		query = query.range(from, to);
+	}
+
+	const { data, error, count } = await query;
 
 	if (error) {
 		console.error(error);
 		throw new Error("Supplier could not be Loaded");
 	}
 
-	return data;
+	return { data, count };
 }
 
 export async function createEditSupplier(newSupplier, id) {

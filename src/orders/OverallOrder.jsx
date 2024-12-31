@@ -105,19 +105,19 @@ export const OverallOrder = () => {
 			<OverallContent>
 				<TotalStyledContainer>
 					<Total type="blue">Total Order</Total>
-					<p>{orders?.length}</p>
+					<p>{isLoading ? "--" : orders?.length}</p>
 					<p>Last 7 days</p>
 				</TotalStyledContainer>
 				<TotalStyledContainer>
 					<Total type="green">Total Confirmed</Total>
 					<DivContainer>
 						<div>
-							<p>{confirmed}</p>
+							<p>{isLoading ? "--" : confirmed}</p>
 							<p>Last 7 days</p>
 						</div>
 						<div>
 							<p>
-								{formatCurrency(isLoading ? "--:--" : totalConfirmedOrderValue)}
+								{isLoading ? "--.--" : formatCurrency(totalConfirmedOrderValue)}
 							</p>
 
 							<p>Revenue</p>
@@ -128,11 +128,13 @@ export const OverallOrder = () => {
 					<Total type="red">Total Returned</Total>
 					<DivContainer>
 						<div>
-							<p>{returned}</p>
+							<p>{isLoading ? "--" : returned}</p>
 							<p>Last 7 days</p>
 						</div>
 						<div>
-							<p>{formatCurrency(totalReturnedOrderValue)}</p>
+							<p>
+								{isLoading ? "--.--" : formatCurrency(totalReturnedOrderValue)}
+							</p>
 
 							<p>Cost</p>
 						</div>
@@ -142,11 +144,13 @@ export const OverallOrder = () => {
 					<Total type="orange">On the way</Total>
 					<DivContainer>
 						<div>
-							<p>{pending}</p>
+							<p>{isLoading ? "--" : pending}</p>
 							<p>Last 7 days</p>
 						</div>
 						<div>
-							<p>{formatCurrency(totalPendingOrderValue)}</p>
+							<p>
+								{isLoading ? "--.--" : formatCurrency(totalPendingOrderValue)}
+							</p>
 							<p>Cost</p>
 						</div>
 					</DivContainer>

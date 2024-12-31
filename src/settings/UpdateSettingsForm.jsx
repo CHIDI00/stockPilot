@@ -34,7 +34,7 @@ const H1 = styled.h1`
 `;
 
 const H1Detail = styled.p`
-	font-size: 1rem;
+	font-size: 1.4rem;
 	color: var(--color-grey-400);
 `;
 

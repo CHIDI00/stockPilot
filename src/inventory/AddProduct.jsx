@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Button from "../ui/Button";
 import Modal from "../ui/Modal";
 import Row from "../ui/Row";
-import CreateOrderForm from "./CreateOrderForm";
-import OrderTableOperation from "./OrderTableOperation";
+import CreateOrderForm from "../orders/CreateOrderForm";
+import OrderTableOperation from "../orders/OrderTableOperation";
 import styled from "styled-components";
 import { HiMagnifyingGlass } from "react-icons/hi2";
-import useOrder from "./useOrder";
+import useOrder from "../orders/useOrder";
+import AddProductForm from "./AddProductForm";
 
 const Span = styled.span`
 	display: flex;
@@ -32,7 +33,7 @@ const SearchBar = styled.div`
 	}
 `;
 
-const AddOrder = () => {
+const AddProduct = () => {
 	const { orders } = useOrder();
 	const [isOpenModal, setIsOpenModal] = useState(false);
 	const [query, setQuery] = useState("");
@@ -57,12 +58,12 @@ const AddOrder = () => {
 						type="text"
 						value={query}
 						onChange={handleSearch}
-						placeholder="Search by order id"
+						placeholder="Search by product id"
 					/>
 				</SearchBar>
 
 				<Button onClick={() => setIsOpenModal((show) => !show)}>
-					Add Order
+					Add Product
 				</Button>
 
 				<Span>
@@ -74,7 +75,7 @@ const AddOrder = () => {
 			<div className="animate__fadeIn">
 				{isOpenModal && (
 					<Modal onClose={() => setIsOpenModal(false)}>
-						<CreateOrderForm onCloseModal={() => setIsOpenModal(false)} />
+						<AddProductForm onCloseModal={() => setIsOpenModal(false)} />
 					</Modal>
 				)}
 			</div>
@@ -82,4 +83,4 @@ const AddOrder = () => {
 	);
 };
 
-export default AddOrder;
+export default AddProduct;

@@ -33,14 +33,15 @@ const TableHeader = styled.header`
 
 const SupplierTable = () => {
 	const [searchParams] = useSearchParams();
+	const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
 	const {
 		isLoading,
-		data: Suppliers,
+		data: { data: Suppliers, count } = {},
 		error,
 	} = useQuery({
-		queryKey: ["supplier"],
-		queryFn: getSupplier,
+		queryKey: ["supplier", page],
+		queryFn: () => getSupplier({ page }),
 	});
 
 	// Display loading spinner while fetching data
@@ -91,7 +92,7 @@ const SupplierTable = () => {
 				/>
 			))}
 
-			<Pagination count={17} />
+			<Pagination count={count} />
 		</Table>
 	);
 };

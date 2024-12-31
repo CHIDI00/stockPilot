@@ -1,6 +1,7 @@
 import SortBy from "../ui/SortBy";
 import TableOperations from "../ui/TableOperations";
 import Filter from "../ui/Filter";
+import FilterOrderBy from "../ui/FilterOrderBy";
 
 function OrderTableOperation() {
 	return (
@@ -14,7 +15,8 @@ function OrderTableOperation() {
 				]}
 			/> */}
 
-			<SortBy
+			<FilterOrderBy
+				filterField="status"
 				options={[
 					{ value: "all", label: "All" },
 					{ value: "confirmed", label: "Confirmed" },
@@ -22,7 +24,7 @@ function OrderTableOperation() {
 						value: "returned",
 						label: "Returned",
 					},
-					{ value: "delayed", label: "Delayed" },
+					{ value: "pending", label: "Pending" },
 				]}
 			/>
 		</TableOperations>

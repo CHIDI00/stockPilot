@@ -18,19 +18,9 @@ const StyledModal = styled.div`
 	.slide-fwd-center {
 		-webkit-animation: slide-fwd-center 0.45s
 			cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-		animation: slide-fwd-center 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+		animation: slide-fwd-center 0.95s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 	}
 
-	@-webkit-keyframes slide-fwd-center {
-		0% {
-			-webkit-transform: translateZ(0);
-			transform: translateZ(0);
-		}
-		100% {
-			-webkit-transform: translateZ(160px);
-			transform: translateZ(160px);
-		}
-	}
 	@keyframes slide-fwd-center {
 		0% {
 			-webkit-transform: translateZ(0);
@@ -100,7 +90,7 @@ const Modal = ({ children, onClose }) => {
 
 	return (
 		<Overlay>
-			<StyledModal className="slide-fwd-center" ref={ref}>
+			<StyledModal className="animate__fadeIn" ref={ref}>
 				<Button onClick={onClose}>
 					<HiXMark />
 				</Button>

@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Spinner from "../ui/Spinner";
-import OrderRow from "./OrderRow";
 import Pagination from "../ui/Pagination";
-import useOrder from "./useOrder";
-
-import { useSearchParams } from "react-router-dom";
+import InventoryRow from "./InventoryRow";
+import useInventory from "./useInventory";
 
 const Table = styled.div`
 	border: 1px solid var(--color-grey-200);
@@ -18,7 +16,7 @@ const Table = styled.div`
 
 const TableHeader = styled.header`
 	display: grid;
-	grid-template-columns: 0.3fr 1.7fr 1.8fr 1.9fr 1.9fr 1.9fr 1.4fr;
+	grid-template-columns: 1.9fr 2fr 2fr 2fr 2fr 0.2fr;
 	column-gap: 2.4rem;
 	align-items: center;
 
@@ -31,30 +29,28 @@ const TableHeader = styled.header`
 	padding: 1.6rem 2.4rem;
 `;
 
-const OrderTable = () => {
-	const { orders, isLoading, count } = useOrder();
+const InventoryTable = () => {
+	const { inventories, isLoading, count } = useInventory();
 
 	if (isLoading) return <Spinner />;
 
 	return (
 		<Table role="table">
 			<TableHeader role="row">
-				<div></div>
 				<div>Product</div>
-				<div>Order Value</div>
-				<div>Quantity</div>
-				<div>Order ID</div>
-				<div>Expected Delivery</div>
-				<div>Status</div>
+				<div>Buying Price</div>
+				<div>Threshold Value</div>
+				<div>Stock In Date</div>
+				<div>Availbility</div>
 			</TableHeader>
 
-			{orders?.map((order) => (
-				<OrderRow order={order} key={order.id} />
+			{inventories?.map((inventory) => (
+				<InventoryRow inventory={inventory} key={inventory.id} />
 			))}
 
-			<Pagination count={count} />
+			{count > 10 && <Pagination count={count} />}
 		</Table>
 	);
 };
 
-export default OrderTable;
+export default InventoryTable;

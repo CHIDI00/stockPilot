@@ -6,13 +6,20 @@ const useOrder = () => {
 	const [searchParams] = useSearchParams();
 	const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
+	//FILTER
+	const filterValue = searchParams.get("status");
+	const filter =
+		!filterValue || filterValue === "all"
+			? null
+			: { field: "status", value: filterValue };
+
 	const {
 		isLoading,
 		data: { data: orders, count } = {},
 		error,
 	} = useQuery({
-		queryKey: ["orders", page],
-		queryFn: () => getOrders({ page }),
+		queryKey: ["orders", filter, page],
+		queryFn: () => getOrders({ filter, page }),
 	});
 
 	return { orders, isLoading, count };

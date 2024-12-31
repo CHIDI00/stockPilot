@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import InventoryTable from "./InventoryTable";
 
 const InventoryProductContainer = styled.div`
 	display: flex;
@@ -16,6 +17,7 @@ const InventoryProduct = () => {
 	return (
 		<InventoryProductContainer>
 			<div>InventoryProduct</div>
+			<InventoryTable />
 		</InventoryProductContainer>
 	);
 };
