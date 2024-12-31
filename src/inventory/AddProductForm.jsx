@@ -22,17 +22,13 @@ const FormButton = styled.div`
 
 function AddProductForm({ onCloseModal }) {
 	// GENERATE ORDER ID
-	// const generateOrderId = () => {
-	// 	const prefix = "SP";
-	// 	const randomNumber = Math.floor(10000 + Math.random() * 90000);
-	// 	return prefix + randomNumber;
-	// };
+	const generateOrderId = () => {
+		const prefix = "P";
+		const randomNumber = Math.floor(10000 + Math.random() * 90000);
+		return prefix + randomNumber;
+	};
 
-	// const [randomOrderId, setRandomOrderId] = useState(generateOrderId());
-
-	// const handleGenerateNewCode = () => {
-	// 	setRandomOrderId(generateOrderId());
-	// };
+	const [randomOrderId, setRandomOrderId] = useState(generateOrderId());
 
 	// CEATE ORDER
 	const { register, handleSubmit, reset, formState } = useForm();
@@ -70,16 +66,17 @@ function AddProductForm({ onCloseModal }) {
 				/>
 			</FormRow>
 
-			{/* <FormRow label="Product Name" error={errors?.product?.message}>
+			<FormRow label="Product ID" error={errors?.product?.message}>
 				<Input
 					type="text"
-					id="product"
+					id="productID"
+					value={randomOrderId}
 					disabled={isCreating}
-					{...register("product", {
+					{...register("productID", {
 						required: "This field is required",
 					})}
 				/>
-			</FormRow> */}
+			</FormRow>
 
 			<FormRow label="Buying Price" error={errors?.order_value?.message}>
 				<Input
@@ -87,6 +84,18 @@ function AddProductForm({ onCloseModal }) {
 					id="buyingPrice"
 					disabled={isCreating}
 					{...register("buyingPrice", {
+						required: "This field is required",
+						// validate: (value) => value < 1 && "Enter a valid amount",
+					})}
+				/>
+			</FormRow>
+
+			<FormRow label="Quantity" error={errors?.order_value?.message}>
+				<Input
+					type="number"
+					id="quantity"
+					disabled={isCreating}
+					{...register("quantity", {
 						required: "This field is required",
 						// validate: (value) => value < 1 && "Enter a valid amount",
 					})}

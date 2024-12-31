@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const ProductContainerStyle = styled.div`
 	background-color: var(--color-grey-50);
-	padding: 1rem;
+	padding: 3rem;
 	border-radius: 8px;
 `;
 const Product = () => {

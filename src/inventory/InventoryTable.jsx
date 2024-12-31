@@ -16,7 +16,7 @@ const Table = styled.div`
 
 const TableHeader = styled.header`
 	display: grid;
-	grid-template-columns: 1.9fr 2fr 2fr 2fr 2fr 0.2fr;
+	grid-template-columns: 1.9fr 2fr 2fr 2fr 2fr 2fr 0.2fr;
 	column-gap: 2.4rem;
 	align-items: center;
 
@@ -39,6 +39,7 @@ const InventoryTable = () => {
 			<TableHeader role="row">
 				<div>Product</div>
 				<div>Buying Price</div>
+				<div>Quantity</div>
 				<div>Threshold Value</div>
 				<div>Stock In Date</div>
 				<div>Availbility</div>

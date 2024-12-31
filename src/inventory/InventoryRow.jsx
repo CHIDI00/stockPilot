@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const TableRow = styled.div`
 	display: grid;
-	grid-template-columns: 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr 0.2fr;
+	grid-template-columns: 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr 0.2fr;
 	column-gap: 1.5rem;
 	align-items: center;
 	padding: 1.2rem 2rem;
@@ -127,6 +127,7 @@ const InventoryRow = ({ inventory }) => {
 		id: productId,
 		products,
 		buyingPrice,
+		quantity,
 		thresholdValue,
 		stockDate,
 		availability,
@@ -137,6 +138,7 @@ const InventoryRow = ({ inventory }) => {
 			<TableRow role="row">
 				<Product>{products}</Product>
 				<Contact>{formatCurrency(buyingPrice)}</Contact>
+				<Contact>{quantity}</Contact>
 				<Email>
 					{thresholdValue > 1
 						? `${thresholdValue} Packs`

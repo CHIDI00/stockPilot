@@ -16,7 +16,7 @@ const InventoryProductContainer = styled.div`
 const InventoryProduct = () => {
 	return (
 		<InventoryProductContainer>
-			<div>InventoryProduct</div>
+			<div>Products</div>
 			<InventoryTable />
 		</InventoryProductContainer>
 	);

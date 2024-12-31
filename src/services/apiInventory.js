@@ -33,3 +33,16 @@ export async function createProduct(newProduct) {
 
 	return data;
 }
+
+export async function getProduct(id) {
+	let query = supabase.from("inventories").select("*").eq("id", id).single();
+
+	const { data, error } = await query;
+
+	if (error) {
+		console.error(error);
+		throw new Error("Product Not Found");
+	}
+
+	return data;
+}
