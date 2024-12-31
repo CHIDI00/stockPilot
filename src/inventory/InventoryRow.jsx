@@ -91,31 +91,27 @@ const DetailIcon = styled.div`
 
 const Status = styled.div`
 	font-family: "Poppins", sans-serif;
-	font-size: 1rem;
+	font-size: 1.4rem;
 	padding: 0.4rem 1rem;
-	background-color: #78777789;
 	width: fit-content;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	color: #000;
 	border-radius: 50px;
 
 	${(prop) =>
-		prop.type === "Confirmed" &&
+		prop.type > 10 &&
 		css`
-			background-color: #9bfa9b;
-			color: #035c03;
+			color: #0ce30c;
 		`}
 	${(prop) =>
-		prop.type === "Returned" &&
+		prop.type === 0 &&
 		css`
-			background-color: #f79090;
-			color: #940101;
+			color: #fe0707;
 		`}
 	${(prop) =>
-		prop.type === "Pending" &&
+		prop.type <= 10 &&
 		css`
-			background-color: #facc76;
-			color: #6b4704;
+			color: #ffa601;
 		`}
 `;
 
@@ -133,6 +129,18 @@ const InventoryRow = ({ inventory }) => {
 		availability,
 	} = inventory;
 
+	let availabilityVar = availability;
+
+	const availabilityCheck = () => {
+		if (quantity <= 10) {
+			availabilityVar = "Low stock";
+		} else if (quantity === 0) {
+			availabilityVar = "Out of stock";
+		} else {
+			availabilityVar = "In stock";
+		}
+	};
+
 	return (
 		<>
 			<TableRow role="row">
@@ -145,7 +153,7 @@ const InventoryRow = ({ inventory }) => {
 						: `${thresholdValue} Pack`}
 				</Email>
 				<DeliveryDate>{stockDate}</DeliveryDate>
-				<Status type={availability}>{availability}</Status>
+				<Status type={quantity}>{availability}</Status>
 				<DetailIcon onClick={() => navigate(`/inventory/${productId}`)}>
 					<HiEye />
 				</DetailIcon>

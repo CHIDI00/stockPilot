@@ -124,7 +124,7 @@ function AddProductForm({ onCloseModal }) {
 				/>
 			</FormRow>
 
-			<FormRow label="Availability" error={errors?.delivery_date?.message}>
+			{/* <FormRow label="Availability" error={errors?.delivery_date?.message}>
 				<Input
 					type="text"
 					id="availability"
@@ -133,7 +133,7 @@ function AddProductForm({ onCloseModal }) {
 						required: "This field is required",
 					})}
 				/>
-			</FormRow>
+			</FormRow> */}
 
 			{/* <FormRow label="Status" error={errors?.status?.message}>
 				<Input

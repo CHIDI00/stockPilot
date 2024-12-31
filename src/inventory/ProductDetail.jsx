@@ -51,6 +51,7 @@ const ProductDetail = () => {
 		id: productId,
 		productID,
 		products,
+		quantity,
 		buyingPrice,
 		thresholdValue,
 		stockDate,
@@ -84,6 +85,9 @@ const ProductDetail = () => {
 							<p>Buying Price </p>
 						</Detail>
 						<Detail>
+							<p>Quantity </p>
+						</Detail>
+						<Detail>
 							<p>Threshold Value </p>
 						</Detail>
 						<Detail>
@@ -103,6 +107,9 @@ const ProductDetail = () => {
 
 						<Detail>
 							<p>{formatCurrency(buyingPrice)} </p>
+						</Detail>
+						<Detail>
+							<p>{quantity} </p>
 						</Detail>
 						<Detail>
 							<p>{thresholdValue} </p>

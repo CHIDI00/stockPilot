@@ -2,6 +2,7 @@ import React from "react";
 import useOrder from "../orders/useOrder";
 import { formatCurrency } from "../utils/helpers";
 import styled, { css } from "styled-components";
+import useInventory from "./useInventory";
 
 const OverallStyled = styled.div`
 	width: 100%;
@@ -73,43 +74,43 @@ const DivContainer = styled.div`
 `;
 
 const OverallInventory = () => {
-	const { orders, isLoading } = useOrder();
+	const { inventories, isLoading } = useInventory();
 
-	const confirmed = orders?.filter(
-		(item) => item?.status.toLowerCase() === "confirmed"
+	const confirmed = inventories?.filter(
+		(item) => item?.availability.toLowerCase() === "in stock"
 	).length;
 
-	const returned = orders?.filter(
-		(item) => item?.status.toLowerCase() === "returned"
+	const returned = inventories?.filter(
+		(item) => item?.availability.toLowerCase() === "low stock"
 	).length;
 
-	const pending = orders?.filter(
-		(item) => item?.status.toLowerCase() === "pending"
+	const pending = inventories?.filter(
+		(item) => item?.availability.toLowerCase() === "Out of stock"
 	).length;
 
-	const totalConfirmedOrderValue = orders
-		?.filter((order) => order.status === "Confirmed")
-		.reduce((total, order) => total + order.order_value, 0);
+	const totalConfirmedOrderValue = inventories
+		?.filter((inventory) => inventory.availability === "in stock")
+		.reduce((total, inventory) => total + inventory.buyingPrice, 0);
 
-	const totalReturnedOrderValue = orders
-		?.filter((order) => order.status === "Returned")
-		.reduce((total, order) => total + order.order_value, 0);
+	const totalReturnedOrderValue = inventories
+		?.filter((inventory) => inventory.availability === "Low stock")
+		.reduce((total, inventory) => total + inventory.buyingPrice, 0);
 
-	const totalPendingOrderValue = orders
-		?.filter((order) => order.status === "Pending")
-		.reduce((total, order) => total + order.order_value, 0);
+	const totalPendingOrderValue = inventories
+		?.filter((inventory) => inventory.availability === "Out of stock")
+		.reduce((total, inventory) => total + inventory.buyingPrice, 0);
 
 	return (
 		<OverallStyled>
-			<OverallText>Overall order</OverallText>
+			<OverallText>Overall Inventory</OverallText>
 			<OverallContent>
 				<TotalStyledContainer>
-					<Total type="blue">Total Order</Total>
-					<p>{isLoading ? "--" : orders?.length}</p>
+					<Total type="blue">Total Product</Total>
+					<p>{isLoading ? "--" : inventories?.length}</p>
 					<p>Last 7 days</p>
 				</TotalStyledContainer>
 				<TotalStyledContainer>
-					<Total type="green">Total Confirmed</Total>
+					<Total type="green">In Stock</Total>
 					<DivContainer>
 						<div>
 							<p>{isLoading ? "--" : confirmed}</p>
@@ -125,7 +126,7 @@ const OverallInventory = () => {
 					</DivContainer>
 				</TotalStyledContainer>
 				<TotalStyledContainer>
-					<Total type="red">Total Returned</Total>
+					<Total type="orange">Low stock</Total>
 					<DivContainer>
 						<div>
 							<p>{isLoading ? "--" : returned}</p>
@@ -141,7 +142,7 @@ const OverallInventory = () => {
 					</DivContainer>
 				</TotalStyledContainer>
 				<TotalStyledContainer>
-					<Total type="orange">On the way</Total>
+					<Total type="red">Out of stock</Total>
 					<DivContainer>
 						<div>
 							<p>{isLoading ? "--" : pending}</p>
