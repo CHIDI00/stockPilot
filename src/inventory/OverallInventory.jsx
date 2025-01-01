@@ -88,15 +88,15 @@ const OverallInventory = () => {
 		(item) => item?.availability.toLowerCase() === "Out of stock"
 	).length;
 
-	const totalConfirmedOrderValue = inventories
+	const totalInStockValue = inventories
 		?.filter((inventory) => inventory.availability === "in stock")
 		.reduce((total, inventory) => total + inventory.buyingPrice, 0);
 
-	const totalReturnedOrderValue = inventories
+	const totalLowStockValue = inventories
 		?.filter((inventory) => inventory.availability === "Low stock")
 		.reduce((total, inventory) => total + inventory.buyingPrice, 0);
 
-	const totalPendingOrderValue = inventories
+	const totalOutOfStockValue = inventories
 		?.filter((inventory) => inventory.availability === "Out of stock")
 		.reduce((total, inventory) => total + inventory.buyingPrice, 0);
 
@@ -117,9 +117,7 @@ const OverallInventory = () => {
 							<p>Last 7 days</p>
 						</div>
 						<div>
-							<p>
-								{isLoading ? "--.--" : formatCurrency(totalConfirmedOrderValue)}
-							</p>
+							<p>{isLoading ? "--.--" : formatCurrency(totalInStockValue)}</p>
 
 							<p>Revenue</p>
 						</div>
@@ -133,9 +131,7 @@ const OverallInventory = () => {
 							<p>Last 7 days</p>
 						</div>
 						<div>
-							<p>
-								{isLoading ? "--.--" : formatCurrency(totalReturnedOrderValue)}
-							</p>
+							<p>{isLoading ? "--.--" : formatCurrency(totalLowStockValue)}</p>
 
 							<p>Cost</p>
 						</div>
@@ -150,7 +146,7 @@ const OverallInventory = () => {
 						</div>
 						<div>
 							<p>
-								{isLoading ? "--.--" : formatCurrency(totalPendingOrderValue)}
+								{isLoading ? "--.--" : formatCurrency(totalOutOfStockValue)}
 							</p>
 							<p>Cost</p>
 						</div>

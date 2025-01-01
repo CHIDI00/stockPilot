@@ -154,7 +154,7 @@ const InventoryRow = ({ inventory }) => {
 				</Email>
 				<DeliveryDate>{stockDate}</DeliveryDate>
 				<Status type={quantity}>{availability}</Status>
-				<DetailIcon onClick={() => navigate(`/inventory/${productId}`)}>
+				<DetailIcon onClick={() => navigate(`/inventories/${productId}`)}>
 					<HiEye />
 				</DetailIcon>
 			</TableRow>
