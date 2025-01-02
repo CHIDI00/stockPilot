@@ -3,7 +3,6 @@ import supabase from "./supabase";
 
 export async function getOrders({ filter, page }) {
 	let query = supabase.from("orders").select("*", { count: "exact" });
-	// .eq("status", "Pending");
 
 	// FILTER
 	if (filter) query = query.eq(filter.field, filter.value);

@@ -75,7 +75,7 @@ const MainNav = () => {
 					</StyledNavLink>
 				</li>
 				<li>
-					<StyledNavLink to="/inventory">
+					<StyledNavLink to="/inventories">
 						<HiMiniQueueList />
 						<span>Inventory</span>
 					</StyledNavLink>

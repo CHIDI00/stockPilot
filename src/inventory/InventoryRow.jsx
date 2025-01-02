@@ -1,13 +1,10 @@
 import styled, { css } from "styled-components";
-
 import { useState } from "react";
-// import Modal from "../ui/Modal";
-// import CreateOrderForm from "./CreateOrderForm";
 import { formatCurrency } from "../utils/helpers";
-import AddProductForm from "./AddProductForm";
 import { HiEye } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-// import Inventory from "../pages/Inventory";
+
+import AddProductForm from "./AddProductForm";
 
 const TableRow = styled.div`
 	display: grid;
@@ -131,15 +128,13 @@ const InventoryRow = ({ inventory }) => {
 
 	let availabilityVar = availability;
 
-	const availabilityCheck = () => {
-		if (quantity <= 10) {
-			availabilityVar = "Low stock";
-		} else if (quantity === 0) {
-			availabilityVar = "Out of stock";
-		} else {
-			availabilityVar = "In stock";
-		}
-	};
+	if (quantity <= 10) {
+		availabilityVar = "Low stock";
+	} else if (quantity === 0) {
+		availabilityVar = "Out of stock";
+	} else {
+		availabilityVar = "In stock";
+	}
 
 	return (
 		<>
@@ -153,7 +148,10 @@ const InventoryRow = ({ inventory }) => {
 						: `${thresholdValue} Pack`}
 				</Email>
 				<DeliveryDate>{stockDate}</DeliveryDate>
-				<Status type={quantity}>{availability}</Status>
+				<Status type={quantity}>
+					{quantity > 10 ? "In stock" : "Low stock"}
+					{/* {availability} */}
+				</Status>
 				<DetailIcon onClick={() => navigate(`/inventories/${productId}`)}>
 					<HiEye />
 				</DetailIcon>

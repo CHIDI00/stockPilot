@@ -1,5 +1,4 @@
 import React from "react";
-import useOrder from "../orders/useOrder";
 import { formatCurrency } from "../utils/helpers";
 import styled, { css } from "styled-components";
 import useInventory from "./useInventory";
@@ -77,15 +76,15 @@ const OverallInventory = () => {
 	const { inventories, isLoading } = useInventory();
 
 	const confirmed = inventories?.filter(
-		(item) => item?.availability.toLowerCase() === "in stock"
+		(item) => item?.availability?.toLowerCase() === "in stock"
 	).length;
 
 	const returned = inventories?.filter(
-		(item) => item?.availability.toLowerCase() === "low stock"
+		(item) => item?.availability?.toLowerCase() === "low stock"
 	).length;
 
 	const pending = inventories?.filter(
-		(item) => item?.availability.toLowerCase() === "Out of stock"
+		(item) => item?.availability?.toLowerCase() === "Out of stock"
 	).length;
 
 	const totalInStockValue = inventories

@@ -5,8 +5,6 @@ import OrderRow from "./OrderRow";
 import Pagination from "../ui/Pagination";
 import useOrder from "./useOrder";
 
-import { useSearchParams } from "react-router-dom";
-
 const Table = styled.div`
 	border: 1px solid var(--color-grey-200);
 
@@ -52,7 +50,7 @@ const OrderTable = () => {
 				<OrderRow order={order} key={order.id} />
 			))}
 
-			<Pagination count={count} />
+			{count > 10 && <Pagination count={count} />}
 		</Table>
 	);
 };

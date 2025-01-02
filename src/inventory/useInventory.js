@@ -1,4 +1,3 @@
-import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { getInventory } from "../services/apiInventory";
 import { useQuery } from "@tanstack/react-query";
@@ -13,7 +12,8 @@ const useInventory = () => {
 		error,
 	} = useQuery({
 		queryKey: ["inventories", page],
-		queryFn: () => getInventory(page),
+		queryFn: () => getInventory({ page }),
+		retry: false,
 	});
 
 	return { inventories, isLoading, count };
