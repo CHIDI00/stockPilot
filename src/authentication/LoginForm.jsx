@@ -15,7 +15,6 @@ const Input = styled.input`
 const Form = styled.form`
 	display: flex;
 	flex-direction: column;
-	flex: stretch;
 	font-size: 1.4rem;
 	width: 100%;
 	border: none;
@@ -28,7 +27,7 @@ const Button = styled.button`
 	color: var(--color-grey-50);
 	background-color: var(--color-primary-600);
 	border: none;
-	border-radius: var(--border-radius-sm);
+	border-radius: 8px;
 	box-shadow: var(--shadow-sm);
 	width: 100%;
 	margin: 1rem 0;
@@ -36,6 +35,22 @@ const Button = styled.button`
 	&:hover {
 		background-color: var(--color-primary-700);
 	}
+`;
+
+const LoginSignupButtons = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+`;
+
+const ForgottenPassword = styled.p`
+	font-size: 1.2rem;
+	color: #5d5def;
+	width: 100%;
+	text-align: right;
+	cursor: pointer;
 `;
 
 function LoginForm() {
@@ -65,13 +80,14 @@ function LoginForm() {
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 			</FormRowVertical>
-			<FormRowVertical>
+
+			<ForgottenPassword>Forgotten your password?</ForgottenPassword>
+
+			<LoginSignupButtons>
 				<Button size="large">Login</Button>
-			</FormRowVertical>
-			<p>OR</p>
-			<FormRowVertical>
+				<p>OR</p>
 				<Button size="large">Sign up</Button>
-			</FormRowVertical>
+			</LoginSignupButtons>
 		</Form>
 	);
 }
