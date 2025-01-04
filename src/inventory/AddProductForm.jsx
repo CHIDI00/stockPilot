@@ -124,29 +124,6 @@ function AddProductForm({ onCloseModal }) {
 				/>
 			</FormRow>
 
-			{/* <FormRow label="Availability" error={errors?.delivery_date?.message}>
-				<Input
-					type="text"
-					id="availability"
-					disabled={isCreating}
-					{...register("availability", {
-						required: "This field is required",
-					})}
-				/>
-			</FormRow> */}
-
-			{/* <FormRow label="Status" error={errors?.status?.message}>
-				<Input
-					type="text"
-					id="status"
-					value="Pending"
-					disabled={isCreating}
-					{...register("status", {
-						required: "This field is required",
-					})}
-				/>
-			</FormRow> */}
-
 			<FormButton>
 				{/* type is an HTML attribute! */}
 				<Button variation="secondary" type="reset">
