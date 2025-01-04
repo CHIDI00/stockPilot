@@ -11,13 +11,14 @@ const LoginLayout = styled.main`
 
 const AppPreview = styled.div`
 	display: flex;
-	width: 70%;
+	width: 65%;
 	height: inherit;
-	background-color: var(--color-grey-100);
+	background-color: var(--color-grey-300);
 	background-image: url(${apppreview});
 	background-repeat: no-repeat;
 	background-position: right;
-	background-size: 85%;
+	background-size: 80%;
+	border-radius: 20px 20px 20px 20px;
 `;
 
 const LoginFormContainer = styled.div`
@@ -25,7 +26,7 @@ const LoginFormContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 30%;
+	width: 35%;
 	padding: 3rem 2rem 3rem 3rem;
 	gap: 2rem;
 `;

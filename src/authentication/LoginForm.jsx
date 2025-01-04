@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../ui/Button";
+// import Button from "../ui/Button";
 import FormRowVertical from "../ui/FormRowVertical";
 import styled, { css } from "styled-components";
 
@@ -13,9 +13,29 @@ const Input = styled.input`
 `;
 
 const Form = styled.form`
+	display: flex;
+	flex-direction: column;
+	flex: stretch;
 	font-size: 1.4rem;
 	width: 100%;
 	border: none;
+`;
+
+const Button = styled.button`
+	font-size: 1.4rem;
+	padding: 1.2rem 2.2rem;
+	font-weight: 500;
+	color: var(--color-grey-50);
+	background-color: var(--color-primary-600);
+	border: none;
+	border-radius: var(--border-radius-sm);
+	box-shadow: var(--shadow-sm);
+	width: 100%;
+	margin: 1rem 0;
+
+	&:hover {
+		background-color: var(--color-primary-700);
+	}
 `;
 
 function LoginForm() {
@@ -47,6 +67,10 @@ function LoginForm() {
 			</FormRowVertical>
 			<FormRowVertical>
 				<Button size="large">Login</Button>
+			</FormRowVertical>
+			<p>OR</p>
+			<FormRowVertical>
+				<Button size="large">Sign up</Button>
 			</FormRowVertical>
 		</Form>
 	);
