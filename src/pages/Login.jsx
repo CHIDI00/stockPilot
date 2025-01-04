@@ -6,32 +6,38 @@ import apppreview from "/apppreview.jpg";
 const LoginLayout = styled.main`
 	display: flex;
 
-	/* border: 1px solid #000; */
 	min-height: 97vh;
-	/*display: grid;
-	grid-template-columns: 48rem;
-	align-content: center;
-	justify-content: center;
-	gap: 3.2rem;
-	background-color: var(--color-grey-50); */
 `;
 
 const AppPreview = styled.div`
 	display: flex;
-	width: 60%;
+	width: 70%;
 	height: inherit;
 	background-color: var(--color-grey-100);
 	background-image: url(${apppreview});
 	background-repeat: no-repeat;
 	background-position: right;
-	background-size: 90%;
+	background-size: 85%;
+`;
+
+const LoginFormContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 30%;
+	padding: 3rem;
+
+	border: 1px solid var(--color-grey-300);
 `;
 
 function Login() {
 	return (
 		<LoginLayout>
 			<AppPreview></AppPreview>
-			<LoginForm />
+			<LoginFormContainer>
+				<LoginForm />
+			</LoginFormContainer>
 		</LoginLayout>
 	);
 }

@@ -1,8 +1,39 @@
 import { useState } from "react";
 import Button from "../ui/Button";
-import Form from "../ui/Form";
-import Input from "../ui/Input";
-// import FormRowVertical from "../ui/FormRowVertical";
+// import Form from "../ui/Form";
+// import Input from "../ui/Input";
+import FormRowVertical from "../ui/FormRowVertical";
+import styled, { css } from "styled-components";
+
+const Input = styled.input`
+	width: 100%;
+	height: 3.5rem;
+`;
+
+const Form = styled.form`
+	${(props) =>
+		props.type !== "modal" &&
+		css`
+			/* padding: 2.4rem 4rem; */
+
+			/* Box */
+			background-color: var(--color-grey-0);
+			/* border: 1px solid var(--color-grey-100); */
+			border-radius: var(--border-radius-md);
+		`}
+
+	${(props) =>
+		props.type === "modal" &&
+		css`
+			width: 80rem;
+		`}
+    
+  overflow: hidden;
+	font-size: 1.4rem;
+	width: 100%;
+
+	border: 1px solid var(--color-grey-300);
+`;
 
 function LoginForm() {
 	const [email, setEmail] = useState("");
@@ -12,8 +43,7 @@ function LoginForm() {
 
 	return (
 		<Form onSubmit={handleSubmit}>
-			<p>Login Form</p>
-			{/* <FormRowVertical label="Email address">
+			<FormRowVertical label="Email address">
 				<Input
 					type="email"
 					id="email"
@@ -34,7 +64,7 @@ function LoginForm() {
 			</FormRowVertical>
 			<FormRowVertical>
 				<Button size="large">Login</Button>
-			</FormRowVertical> */}
+			</FormRowVertical>
 		</Form>
 	);
 }
