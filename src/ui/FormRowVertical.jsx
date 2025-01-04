@@ -8,8 +8,6 @@ const StyledFormRow = styled.div`
 	align-items: flex-start;
 	gap: 0.8rem;
 
-	border: 1px solid var(--color-grey-300);
-
 	&:first-child {
 		padding-top: 0;
 	}
