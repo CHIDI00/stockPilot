@@ -10,6 +10,7 @@ const Logout = () => {
 
 	return (
 		<ButtonIcon disabled={isLoading} onClick={logout}>
+			Logout
 			{!isLoading ? <HiArrowRightEndOnRectangle /> : <SpinnerMini />}
 		</ButtonIcon>
 	);

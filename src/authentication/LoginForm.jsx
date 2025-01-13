@@ -2,10 +2,9 @@ import { useState } from "react";
 // import Button from "../ui/Button";
 import FormRowVertical from "../ui/FormRowVertical";
 import styled, { css } from "styled-components";
-import { login } from "../services/apiAuth";
 import { useLogin } from "./useLogin";
-import Spinner from "../ui/Spinner";
 import SpinnerMini from "../ui/SpinnerMini";
+import { useNavigate } from "react-router-dom";
 
 const Input = styled.input`
 	width: 100%;
@@ -58,8 +57,10 @@ const ForgottenPassword = styled.p`
 `;
 
 function LoginForm() {
-	const [email, setEmail] = useState("jonas@example.com");
+	const [email, setEmail] = useState("chidi@example.com");
 	const [password, setPassword] = useState("1122334455");
+
+	const navigate = useNavigate();
 
 	const { login, isLoading } = useLogin();
 
@@ -109,7 +110,9 @@ function LoginForm() {
 					{!isLoading ? "Log in" : <SpinnerMini />}
 				</Button>
 				<p>OR</p>
-				<Button size="large">Sign up</Button>
+				<Button size="large" onClick={() => navigate("/signup")}>
+					Register
+				</Button>
 			</LoginSignupButtons>
 		</Form>
 	);

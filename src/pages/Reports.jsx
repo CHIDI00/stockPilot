@@ -5,7 +5,6 @@ function Reports() {
 	return (
 		<Row type="horizontal">
 			<Heading as="h1">All Reports</Heading>
-			<p>TEST</p>
 		</Row>
 	);
 }

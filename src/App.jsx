@@ -19,6 +19,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import Product from "./pages/Product";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import Signup from "./pages/Signup";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -56,6 +57,7 @@ function App() {
 					</Route>
 
 					<Route path="login" element={<Login />} />
+					<Route path="signup" element={<Signup />} />
 					<Route path="*" element={<PageNotFound />} />
 				</Routes>
 			</BrowserRouter>

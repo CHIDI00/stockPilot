@@ -6,7 +6,7 @@ const ManageStore = () => {
 	return (
 		<Row type="horizontal">
 			<Heading as="h1">All ManageStore</Heading>
-			<p>TEST</p>
+			{/* <p>TEST</p> */}
 		</Row>
 	);
 };
