@@ -3,6 +3,7 @@ import LoginForm from "../authentication/LoginForm";
 import apppreview from "/apppreview.jpg";
 import Heading from "../ui/Heading";
 import Logo from "../ui/Logo";
+import SupplierTable from "../supply/SupplierTable";
 
 const LoginLayout = styled.main`
 	display: flex;
@@ -39,6 +40,7 @@ function Login() {
 				<Logo />
 				<Heading as="h3">Login your account</Heading>
 				<LoginForm />
+				<SupplierTable />
 			</LoginFormContainer>
 		</LoginLayout>
 	);

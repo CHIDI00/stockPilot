@@ -10,8 +10,8 @@ export function useSignup() {
 	const { mutate: signup, isLoading } = useMutation({
 		mutationFn: ({ email, password }) => signupApi({ email, password }),
 		onSuccess: (user) => {
-			queryClient.setQueryData(["user"], user.user);
-			navigate("/dashboard", { replace: true });
+			// queryClient.setQueryData(["user"], user.user);
+			// navigate("/dashboard", { replace: true });
 			toast.success("Account has been successfully created.");
 		},
 	});

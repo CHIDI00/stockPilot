@@ -54,6 +54,7 @@ function App() {
 						<Route path="user" element={<Users />} />
 						<Route path="account" element={<Account />} />
 						<Route path="settings" element={<Settings />} />
+						<Route path="account" element={<Account />} />
 					</Route>
 
 					<Route path="login" element={<Login />} />
