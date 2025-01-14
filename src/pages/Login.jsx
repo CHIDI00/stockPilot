@@ -40,7 +40,6 @@ function Login() {
 				<Logo />
 				<Heading as="h3">Login your account</Heading>
 				<LoginForm />
-				<SupplierTable />
 			</LoginFormContainer>
 		</LoginLayout>
 	);
