@@ -12,7 +12,6 @@ const TableRow = styled.div`
 	column-gap: 1.5rem;
 	align-items: center;
 	padding: 1.2rem 2rem;
-	/* text-align: center; */
 
 	&:not(:last-child) {
 		border-bottom: 1px solid var(--color-grey-100);
@@ -54,7 +53,6 @@ const Email = styled.div`
 	font-family: "Poppins", sans-serif;
 	font-weight: 400;
 	font-size: 1.4rem;
-	/* color: var(--color-green-700); */
 `;
 
 const Type = styled.div`

@@ -71,7 +71,7 @@ const SignupForm = () => {
 				password,
 			},
 			{
-				onSettled: reset,
+				onSettled: () => reset(),
 			}
 		);
 	}

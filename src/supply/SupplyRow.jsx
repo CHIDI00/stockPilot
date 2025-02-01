@@ -124,11 +124,7 @@ const SupplierRow = ({ supplier }) => {
 		<>
 			<TableRow role="row">
 				{/* <ImageContainer> */}
-				<Image
-					className="img"
-					src={!image ? user_icon3 : image}
-					alt="profile"
-				/>
+				<Image className="img" src={image || user_icon3} alt="profile" />
 				{/* </ImageContainer> */}
 				<SupplierName>{supplierName}</SupplierName>
 				<Product>{product}</Product>
