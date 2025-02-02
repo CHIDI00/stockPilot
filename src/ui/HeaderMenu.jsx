@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Logout from "../authentication/Logout";
-import ButtonIcon from "./ButtonIcon";
 
-import { useNavigate } from "react-router-dom";
-import { HiOutlineUser } from "react-icons/hi";
+import UserAvatar from "../authentication/UserAvatar";
 
 const StyleHeaderMenu = styled.ul`
 	display: flex;
@@ -12,15 +10,11 @@ const StyleHeaderMenu = styled.ul`
 `;
 
 const HeaderMenu = () => {
-	const navigate = useNavigate();
-
 	return (
 		<StyleHeaderMenu>
-			{/* <li>
-				<ButtonIcon onClick={() => navigate("/account")}>
-					<HiOutlineUser />
-				</ButtonIcon>
-			</li> */}
+			<li>
+				<UserAvatar />
+			</li>
 			<li>
 				<Logout />
 			</li>

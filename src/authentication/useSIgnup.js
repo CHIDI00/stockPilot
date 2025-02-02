@@ -8,10 +8,11 @@ export function useSignup() {
 	const navigate = useNavigate();
 
 	const { mutate: signup, isLoading } = useMutation({
-		mutationFn: ({ email, password }) => signupApi({ email, password }),
+		mutationFn: ({ email, password, fullName }) =>
+			signupApi({ email, password, fullName }),
 		onSuccess: (user) => {
-			// queryClient.setQueryData(["user"], user.user);
-			// navigate("/dashboard", { replace: true });
+			queryClient.setQueryData(["user"], user.user);
+			navigate("/dashboard", { replace: true });
 			toast.success("Account has been successfully created.");
 		},
 	});

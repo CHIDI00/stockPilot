@@ -26,7 +26,9 @@ const UserAvatar = () => {
 	const navigate = useNavigate();
 
 	const { user } = useUser();
+	console.log(user);
 	const { fullName, avatar } = user.user_metadata;
+	console.log(fullName);
 
 	return (
 		<StyledUserAvatar>
