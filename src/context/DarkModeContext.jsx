@@ -3,7 +3,7 @@ import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
 const DarkModeContext = createContext();
 
-function DarkModProvider({ children }) {
+function DarkModeProvider({ children }) {
 	const [isDarkMode, setIsDarkMode] = useLocalStorageState(false, "isDarkMode");
 
 	function toggleDarkMode() {
@@ -25,4 +25,4 @@ const useDarkMode = () => {
 	return context;
 };
 
-export { DarkModProvider, useDarkMode };
+export { DarkModeProvider, useDarkMode };
