@@ -1,6 +1,7 @@
 import React from "react";
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 import styled from "styled-components";
+import useDarkMode from "../context/DarkModeContext";
 
 const ThemeContainer = styled.div`
 	display: grid;
@@ -9,7 +10,6 @@ const ThemeContainer = styled.div`
 	align-items: center;
 	width: 17rem;
 	height: 4rem;
-	/* border: 1px solid #000; */
 	border-radius: 8px;
 	background-color: var(--color-grey-0);
 `;
@@ -40,6 +40,7 @@ const Light = styled.div`
 `;
 
 const ThemeMode = () => {
+	const { isDarkMode, toggleDarkMode } = useDarkMode();
 	return (
 		<ThemeContainer>
 			<Light>
