@@ -26,3 +26,4 @@ const useDarkMode = () => {
 };
 
 export { DarkModeProvider, useDarkMode };
+// export default  useDarkMode

@@ -1,6 +1,11 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 // import { ReactQueryDevTools } from "@tanstack/react-query-devtools";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
+import { DarkModeProvider } from "./context/DarkModeContext";
+
 import GlobalStyles from "./styles/GlobalStyle";
 import Dashboard from "./pages/Dashboard";
 import Inventory from "./pages/Inventory";
@@ -14,13 +19,9 @@ import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./ui/AppLayout";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Toaster } from "react-hot-toast";
 import Product from "./pages/Product";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import Signup from "./pages/Signup";
-import { DarkModeProvider } from "./context/DarkModeContext";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
