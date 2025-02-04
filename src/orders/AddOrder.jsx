@@ -29,6 +29,7 @@ const SearchBar = styled.div`
 
 	input {
 		border: none;
+		background-color: transparent;
 	}
 `;
 
