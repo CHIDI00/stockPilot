@@ -16,26 +16,67 @@ const DashboardContentContainer = styled.div`
 	gap: 2rem;
 `;
 
-const ContentContainer = styled.div`
+const LeftContentContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 60%;
 	padding: 1rem;
+	border-radius: 8px;
 	background-color: var(--color-grey-50);
 `;
-// const StyledDashboardLayout = styled.div`
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr 1fr;
-//   grid-template-rows: auto 34rem auto;
-//   gap: 2.4rem;
-// `;
+const RightContentContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+	padding: 1rem;
+	border-radius: 8px;
+	background-color: var(--color-grey-50);
+`;
+
+const DashboardDetailContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`;
 
 const DashboardLayout = () => {
 	return (
 		<StyledDashboardLayout>
 			<DashboardContentContainer>
-				<ContentContainer>
+				<LeftContentContainer>
 					<p>sales Overview</p>
+					<DashboardDetailContainer>
+						<div>
+							<GiTwoCoins />
+							<div>
+								<p>40,000</p> <p>Sales</p>
+							</div>
+						</div>
+
+						<div>
+							<GiTwoCoins />
+							<div>
+								<p>40,000</p> <p>Sales</p>
+							</div>
+						</div>
+
+						<div>
+							<GiTwoCoins />
+							<div>
+								<p>40,000</p> <p>Sales</p>
+							</div>
+						</div>
+
+						<div>
+							<GiTwoCoins />
+							<div>
+								<p>40,000</p> <p>Sales</p>
+							</div>
+						</div>
+					</DashboardDetailContainer>
+				</LeftContentContainer>
+				<RightContentContainer>
+					<p>Inventory Summary</p>
 					<div>
 						<div>
 							<GiTwoCoins />
@@ -50,23 +91,8 @@ const DashboardLayout = () => {
 								<p>40,000</p> <p>Sales</p>
 							</div>
 						</div>
-
-						<div>
-							<GiTwoCoins />
-							<div>
-								<p>40,000</p> <p>Sales</p>
-							</div>
-						</div>
-
-						<div>
-							<GiTwoCoins />
-							<div>
-								<p>40,000</p> <p>Sales</p>
-							</div>
-						</div>
 					</div>
-				</ContentContainer>
-				<div>Inventory Summary</div>
+				</RightContentContainer>
 			</DashboardContentContainer>
 			<DashboardContentContainer>
 				<div>sales Overview</div>
