@@ -15,6 +15,14 @@ const DashboardContentContainer = styled.div`
 	width: 100%;
 	gap: 2rem;
 `;
+
+const ContentContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	padding: 1rem;
+	background-color: var(--color-grey-50);
+`;
 // const StyledDashboardLayout = styled.div`
 //   display: grid;
 //   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -26,8 +34,8 @@ const DashboardLayout = () => {
 	return (
 		<StyledDashboardLayout>
 			<DashboardContentContainer>
-				<div>
-					sales Overview
+				<ContentContainer>
+					<p>sales Overview</p>
 					<div>
 						<div>
 							<GiTwoCoins />
@@ -57,7 +65,7 @@ const DashboardLayout = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</ContentContainer>
 				<div>Inventory Summary</div>
 			</DashboardContentContainer>
 			<DashboardContentContainer>
