@@ -1,3 +1,4 @@
+import { GiTwoCoins } from "react-icons/gi";
 import styled from "styled-components";
 
 const StyledDashboardLayout = styled.div`
@@ -25,7 +26,38 @@ const DashboardLayout = () => {
 	return (
 		<StyledDashboardLayout>
 			<DashboardContentContainer>
-				<div>sales Overview</div>
+				<div>
+					sales Overview
+					<div>
+						<div>
+							<GiTwoCoins />
+							<div>
+								<p>40,000</p> <p>Sales</p>
+							</div>
+						</div>
+
+						<div>
+							<GiTwoCoins />
+							<div>
+								<p>40,000</p> <p>Sales</p>
+							</div>
+						</div>
+
+						<div>
+							<GiTwoCoins />
+							<div>
+								<p>40,000</p> <p>Sales</p>
+							</div>
+						</div>
+
+						<div>
+							<GiTwoCoins />
+							<div>
+								<p>40,000</p> <p>Sales</p>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div>Inventory Summary</div>
 			</DashboardContentContainer>
 			<DashboardContentContainer>
