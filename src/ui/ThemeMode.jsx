@@ -12,7 +12,7 @@ const ThemeContainer = styled.div`
 	width: 17rem;
 	height: 4rem;
 	border-radius: 8px;
-	background-color: var(--color-grey-0);
+	/* background-color: var(--color-grey-0); */
 `;
 
 const Dark = styled.div`
@@ -27,8 +27,8 @@ const Dark = styled.div`
 	gap: 6px;
 `;
 
-const Light = styled(NavLink)`
-	background-color: var(--color-primary-300);
+const Light = styled.div`
+	background-color: var(--color-primary-700);
 	height: 100%;
 	color: #fff;
 	font-weight: 700;
@@ -38,6 +38,7 @@ const Light = styled(NavLink)`
 	align-items: center;
 	border-radius: 8px;
 	gap: 6px;
+	cursor: pointer;
 
 	&:active,
 	&.active:link,
@@ -55,15 +56,17 @@ const ThemeMode = () => {
 
 	return (
 		<ThemeContainer>
-			<Light onClick={toggleDarkMode}>
-				<HiOutlineSun />
-				Light
-			</Light>
-
-			<Light onClick={toggleDarkMode}>
-				<HiOutlineMoon />
-				Dark
-			</Light>
+			{isDarkMode ? (
+				<Light onClick={toggleDarkMode}>
+					<HiOutlineSun />
+					Light
+				</Light>
+			) : (
+				<Light onClick={toggleDarkMode}>
+					<HiOutlineMoon />
+					Dark
+				</Light>
+			)}
 		</ThemeContainer>
 	);
 };
