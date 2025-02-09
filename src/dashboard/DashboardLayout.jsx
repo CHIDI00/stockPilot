@@ -90,6 +90,23 @@ const DashboardDetailsRight = styled.div`
 	}
 `;
 
+const LastDayDataContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+
+	select {
+		background-color: transparent;
+		border-radius: 5px;
+		padding: 0.5rem 1rem;
+
+		option {
+			color: var(--color-grey-50);
+		}
+	}
+`;
+
 const DashboardLayout = () => {
 	return (
 		<StyledDashboardLayout>
@@ -146,6 +163,7 @@ const DashboardLayout = () => {
 					</DashboardDetailContainer2>
 				</RightContentContainer>
 			</DashboardContentContainer>
+			//////////////////////////
 			<DashboardContentContainer>
 				<LeftContentContainer>
 					<p>sales Overview</p>
@@ -200,13 +218,24 @@ const DashboardLayout = () => {
 				</RightContentContainer>
 			</DashboardContentContainer>
 			<DashboardContentContainer>
+				<LeftContentContainer>
+					<LastDayDataContainer>
+						<p>sales Overview</p>
+						<select name="" id="">
+							<option value="last7Days">Last 7 days</option>
+							<option value="last30Days">Last 30 days</option>
+							<option value="last90Days">Last 90 days</option>
+						</select>
+					</LastDayDataContainer>
+				</LeftContentContainer>
+				<RightContentContainer>
+					<div>Inventory Summary</div>
+				</RightContentContainer>
+			</DashboardContentContainer>
+			{/* <DashboardContentContainer>
 				<div>sales Overview</div>
 				<div>Inventory Summary</div>
-			</DashboardContentContainer>
-			<DashboardContentContainer>
-				<div>sales Overview</div>
-				<div>Inventory Summary</div>
-			</DashboardContentContainer>
+			</DashboardContentContainer> */}
 		</StyledDashboardLayout>
 	);
 };
