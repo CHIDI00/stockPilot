@@ -12,6 +12,7 @@ const Input = styled.input`
 	padding: 1rem 1.2rem;
 	border-radius: 8px;
 	margin-bottom: 1rem;
+	color: #000;
 	border: 1px solid var(--color-grey-300);
 `;
 
