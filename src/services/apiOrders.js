@@ -36,6 +36,7 @@ export async function createOrder(newOrder) {
 	return data;
 }
 
+// Return all ORDER that were created after the given date
 export async function getOrdersAfterDate(date) {
 	const { data, error } = await supabase
 		.from("orders")
