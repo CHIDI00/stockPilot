@@ -1,4 +1,5 @@
 import { PAGE_SIZE } from "../utils/constants";
+import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
 
 export async function getOrders({ filter, page }) {
@@ -26,6 +27,21 @@ export async function getOrders({ filter, page }) {
 
 export async function createOrder(newOrder) {
 	const { data, error } = await supabase.from("orders").insert([newOrder]);
+
+	if (error) {
+		console.error(error);
+		throw new Error("Order could not be created");
+	}
+
+	return data;
+}
+
+export async function getOrdersAfterDate(date) {
+	const { data, error } = await supabase
+		.from("orders")
+		.select("created_at", "order_value")
+		.gte("created_at", date)
+		.lte("created_at", getToday({ end: true }));
 
 	if (error) {
 		console.error(error);

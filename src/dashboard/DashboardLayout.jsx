@@ -1,5 +1,6 @@
 import { GiTwoCoins } from "react-icons/gi";
 import styled from "styled-components";
+import DashboardFilter from "./DashboardFilter";
 
 const StyledDashboardLayout = styled.div`
 	display: flex;
@@ -66,6 +67,10 @@ const DashboardDetails = styled.div`
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+
+		p {
+			font-size: 1.3rem;
+		}
 	}
 `;
 
@@ -74,7 +79,7 @@ const DashboardDetailsRight = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 1.5rem;
+	gap: 2rem;
 	padding: 1rem;
 
 	&:not(:last-child) {
@@ -87,6 +92,10 @@ const DashboardDetailsRight = styled.div`
 		justify-content: center;
 		align-items: center;
 		width: 100%;
+
+		p {
+			font-size: 1.3rem;
+		}
 	}
 `;
 
@@ -163,29 +172,15 @@ const DashboardLayout = () => {
 					</DashboardDetailContainer2>
 				</RightContentContainer>
 			</DashboardContentContainer>
-			//////////////////////////
+
 			<DashboardContentContainer>
 				<LeftContentContainer>
-					<p>sales Overview</p>
+					<p>Purchase Overview</p>
 					<DashboardDetailContainer>
 						<DashboardDetails>
 							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
 							<div>
-								<p>40,000</p> <p>Sales</p>
-							</div>
-						</DashboardDetails>
-
-						<DashboardDetails>
-							<GiTwoCoins />
-							<div>
-								<p>40,000</p> <p>Revenue</p>
-							</div>
-						</DashboardDetails>
-
-						<DashboardDetails>
-							<GiTwoCoins />
-							<div>
-								<p>40,000</p> <p>Profit</p>
+								<p>82</p> <p>Purchace</p>
 							</div>
 						</DashboardDetails>
 
@@ -195,23 +190,37 @@ const DashboardLayout = () => {
 								<p>40,000</p> <p>Cost</p>
 							</div>
 						</DashboardDetails>
+
+						<DashboardDetails>
+							<GiTwoCoins />
+							<div>
+								<p>4</p> <p>Cancel</p>
+							</div>
+						</DashboardDetails>
+
+						<DashboardDetails>
+							<GiTwoCoins />
+							<div>
+								<p>18</p> <p>Return</p>
+							</div>
+						</DashboardDetails>
 					</DashboardDetailContainer>
 				</LeftContentContainer>
 
 				<RightContentContainer>
-					<p>Inventory Summary</p>
+					<p>Product Summary</p>
 					<DashboardDetailContainer2>
 						<DashboardDetailsRight>
 							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
 							<div>
-								<p>40,000</p> <p>Quantity in hand</p>
+								<p>40,000</p> <p>Number of suppliers</p>
 							</div>
 						</DashboardDetailsRight>
 
 						<DashboardDetailsRight>
 							<GiTwoCoins style={{ color: "purple", fontSize: "2.5rem" }} />
 							<div>
-								<p>40,000</p> <p>To be received</p>
+								<p>40,000</p> <p>Number of categories</p>
 							</div>
 						</DashboardDetailsRight>
 					</DashboardDetailContainer2>
@@ -220,12 +229,8 @@ const DashboardLayout = () => {
 			<DashboardContentContainer>
 				<LeftContentContainer>
 					<LastDayDataContainer>
-						<p>sales Overview</p>
-						<select name="" id="">
-							<option value="last7Days">Last 7 days</option>
-							<option value="last30Days">Last 30 days</option>
-							<option value="last90Days">Last 90 days</option>
-						</select>
+						<p>Sales & Purchase</p>
+						<DashboardFilter />
 					</LastDayDataContainer>
 				</LeftContentContainer>
 				<RightContentContainer>

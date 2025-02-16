@@ -1,9 +1,11 @@
 import React from "react";
 import SignupForm from "../authentication/SignupForm";
 import apppreview from "/apppreview.jpg";
+import apppreviewDark from "/apppreviewDark.png";
 import Heading from "../ui/Heading";
 import Logo from "../ui/Logo";
 import styled from "styled-components";
+import { useDarkMode } from "../context/DarkModeContext";
 
 const LoginLayout = styled.main`
 	display: flex;
@@ -15,7 +17,6 @@ const AppPreview = styled.div`
 	width: 60%;
 	height: inherit;
 	background-color: var(--color-grey-300);
-	background-image: url(${apppreview});
 	background-repeat: no-repeat;
 	background-position: right;
 	background-size: 90%;
@@ -32,9 +33,15 @@ const LoginFormContainer = styled.div`
 	gap: 2rem;
 `;
 const Signup = () => {
+	const { isDarkMode } = useDarkMode();
+
 	return (
 		<LoginLayout>
-			<AppPreview></AppPreview>
+			<AppPreview
+				style={{
+					backgroundImage: `url(${isDarkMode ? apppreviewDark : apppreview})`,
+				}}
+			></AppPreview>
 			<LoginFormContainer>
 				<Logo />
 				<Heading as="h3">Create an account</Heading>
