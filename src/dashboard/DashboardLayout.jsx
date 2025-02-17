@@ -7,6 +7,9 @@ import useOrder from "../orders/useOrder";
 import { formatCurrency } from "../utils/helpers";
 import { HiOutlineBanknotes } from "react-icons/hi2";
 import { TbTruckReturn } from "react-icons/tb";
+import { GoPackageDependents } from "react-icons/go";
+import { BiPurchaseTagAlt } from "react-icons/bi";
+import SalesChart from "./SalesChart";
 
 const StyledDashboardLayout = styled.div`
 	display: flex;
@@ -137,7 +140,10 @@ const DashboardLayout = () => {
 	const totalReturnedOrder = orders
 		?.filter((order) => order.status === "Returned")
 		.reduce((total, order) => total + order.order_value, 0);
-	console.log(totalReturnedOrder);
+
+	const totalPendingOrder = orders
+		?.filter((order) => order.status === "Pending")
+		.reduce((total, order) => total + order.order_value, 0);
 
 	return (
 		<StyledDashboardLayout>
@@ -146,7 +152,9 @@ const DashboardLayout = () => {
 					<p>Purchase Overview</p>
 					<DashboardDetailContainer>
 						<DashboardDetails>
-							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
+							<BiPurchaseTagAlt
+								style={{ color: "green", fontSize: "2.5rem" }}
+							/>
 							<div>
 								<p>{numberOfOrders}</p> <p>Purchase</p>
 							</div>
@@ -162,9 +170,11 @@ const DashboardLayout = () => {
 						</DashboardDetails>
 
 						<DashboardDetails>
-							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
+							<GoPackageDependents
+								style={{ color: "orangeRed", fontSize: "2.5rem" }}
+							/>
 							<div>
-								<p>4</p> <p>Cancel</p>
+								<p>{totalPendingOrder}</p> <p>Pending</p>
 							</div>
 						</DashboardDetails>
 
@@ -257,6 +267,8 @@ const DashboardLayout = () => {
 						<p>Sales & Purchase</p>
 						<DashboardFilter />
 					</LastDayDataContainer>
+
+					<SalesChart orders={orders} numberOfDays={numberOfDays} />
 				</LeftContentContainer>
 				<RightContentContainer>
 					<div>Inventory Summary</div>
