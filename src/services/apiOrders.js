@@ -40,7 +40,7 @@ export async function createOrder(newOrder) {
 export async function getOrdersAfterDate(date) {
 	const { data, error } = await supabase
 		.from("orders")
-		.select("created_at", "order_value")
+		.select("created_at, order_value")
 		.gte("created_at", date)
 		.lte("created_at", getToday({ end: true }));
 

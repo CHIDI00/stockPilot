@@ -8,13 +8,13 @@ export const userCurrentOrder = () => {
 
 	const numDays = !searchParams.get("last")
 		? 7
-		: Number(searchParams.get("Last"));
+		: Number(searchParams.get("last"));
 	const queryDate = subDays(new Date(), numDays).toISOString();
 
-	const { data: orders, isloading } = useQuery({
-		queryFn: getOrdersAfterDate(queryDate),
+	const { data: orders, isLoading } = useQuery({
+		queryFn: () => getOrdersAfterDate(queryDate),
 		queryKey: ["orders", `last-${numDays}`],
 	});
-
+{}
 	return { isLoading, orders };
 };

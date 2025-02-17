@@ -1,6 +1,12 @@
 import { GiTwoCoins } from "react-icons/gi";
 import styled from "styled-components";
 import DashboardFilter from "./DashboardFilter";
+import { userCurrentOrder } from "./useCurrentOrder";
+import Spinner from "../ui/Spinner";
+import useOrder from "../orders/useOrder";
+import { formatCurrency } from "../utils/helpers";
+import { HiOutlineBanknotes } from "react-icons/hi2";
+import { TbTruckReturn } from "react-icons/tb";
 
 const StyledDashboardLayout = styled.div`
 	display: flex;
@@ -117,8 +123,80 @@ const LastDayDataContainer = styled.div`
 `;
 
 const DashboardLayout = () => {
+	const { isLoading, orders } = userCurrentOrder();
+	const { orders: totalOrders } = useOrder();
+
+	if (isLoading) return <Spinner />;
+
+	console.log(orders);
+
+	const numberOfOrders = orders.length;
+
+	const totalOrderValue = orders.reduce((acc, cur) => acc + cur.order_value, 0);
+
+	const totalReturnedOrder = orders
+		?.filter((order) => order.status === "Returned")
+		.reduce((total, order) => total + order.order_value, 0);
+	console.log(totalReturnedOrder);
+
 	return (
 		<StyledDashboardLayout>
+			<DashboardContentContainer>
+				<LeftContentContainer>
+					<p>Purchase Overview</p>
+					<DashboardDetailContainer>
+						<DashboardDetails>
+							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
+							<div>
+								<p>{numberOfOrders}</p> <p>Purchase</p>
+							</div>
+						</DashboardDetails>
+
+						<DashboardDetails>
+							<HiOutlineBanknotes
+								style={{ color: "green", fontSize: "2.5rem" }}
+							/>
+							<div>
+								<p>{formatCurrency(totalOrderValue)}</p> <p>Cost</p>
+							</div>
+						</DashboardDetails>
+
+						<DashboardDetails>
+							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
+							<div>
+								<p>4</p> <p>Cancel</p>
+							</div>
+						</DashboardDetails>
+
+						<DashboardDetails>
+							<TbTruckReturn style={{ color: "red", fontSize: "2.5rem" }} />
+							<div>
+								<p>{totalReturnedOrder}</p> <p>Return</p>
+							</div>
+						</DashboardDetails>
+					</DashboardDetailContainer>
+				</LeftContentContainer>
+
+				<RightContentContainer>
+					<p>Product Summary</p>
+					<DashboardDetailContainer2>
+						<DashboardDetailsRight>
+							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
+							<div>
+								<p>40,000</p> <p>Number of suppliers</p>
+							</div>
+						</DashboardDetailsRight>
+
+						<DashboardDetailsRight>
+							<GiTwoCoins style={{ color: "purple", fontSize: "2.5rem" }} />
+							<div>
+								<p>40,000</p> <p>Number of categories</p>
+							</div>
+						</DashboardDetailsRight>
+					</DashboardDetailContainer2>
+				</RightContentContainer>
+			</DashboardContentContainer>
+
 			<DashboardContentContainer>
 				<LeftContentContainer>
 					<p>sales Overview</p>
@@ -131,21 +209,21 @@ const DashboardLayout = () => {
 						</DashboardDetails>
 
 						<DashboardDetails>
-							<GiTwoCoins />
+							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
 							<div>
 								<p>40,000</p> <p>Revenue</p>
 							</div>
 						</DashboardDetails>
 
 						<DashboardDetails>
-							<GiTwoCoins />
+							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
 							<div>
 								<p>40,000</p> <p>Profit</p>
 							</div>
 						</DashboardDetails>
 
 						<DashboardDetails>
-							<GiTwoCoins />
+							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
 							<div>
 								<p>40,000</p> <p>Cost</p>
 							</div>
@@ -173,59 +251,6 @@ const DashboardLayout = () => {
 				</RightContentContainer>
 			</DashboardContentContainer>
 
-			<DashboardContentContainer>
-				<LeftContentContainer>
-					<p>Purchase Overview</p>
-					<DashboardDetailContainer>
-						<DashboardDetails>
-							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
-							<div>
-								<p>82</p> <p>Purchace</p>
-							</div>
-						</DashboardDetails>
-
-						<DashboardDetails>
-							<GiTwoCoins />
-							<div>
-								<p>40,000</p> <p>Cost</p>
-							</div>
-						</DashboardDetails>
-
-						<DashboardDetails>
-							<GiTwoCoins />
-							<div>
-								<p>4</p> <p>Cancel</p>
-							</div>
-						</DashboardDetails>
-
-						<DashboardDetails>
-							<GiTwoCoins />
-							<div>
-								<p>18</p> <p>Return</p>
-							</div>
-						</DashboardDetails>
-					</DashboardDetailContainer>
-				</LeftContentContainer>
-
-				<RightContentContainer>
-					<p>Product Summary</p>
-					<DashboardDetailContainer2>
-						<DashboardDetailsRight>
-							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
-							<div>
-								<p>40,000</p> <p>Number of suppliers</p>
-							</div>
-						</DashboardDetailsRight>
-
-						<DashboardDetailsRight>
-							<GiTwoCoins style={{ color: "purple", fontSize: "2.5rem" }} />
-							<div>
-								<p>40,000</p> <p>Number of categories</p>
-							</div>
-						</DashboardDetailsRight>
-					</DashboardDetailContainer2>
-				</RightContentContainer>
-			</DashboardContentContainer>
 			<DashboardContentContainer>
 				<LeftContentContainer>
 					<LastDayDataContainer>
