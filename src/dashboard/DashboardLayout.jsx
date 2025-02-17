@@ -126,7 +126,7 @@ const LastDayDataContainer = styled.div`
 `;
 
 const DashboardLayout = () => {
-	const { isLoading, orders } = userCurrentOrder();
+	const { isLoading, orders, numDays } = userCurrentOrder();
 	const { orders: totalOrders } = useOrder();
 
 	if (isLoading) return <Spinner />;
@@ -153,7 +153,13 @@ const DashboardLayout = () => {
 					<DashboardDetailContainer>
 						<DashboardDetails>
 							<BiPurchaseTagAlt
-								style={{ color: "green", fontSize: "2.5rem" }}
+								style={{
+									color: "blue",
+									fontSize: "4rem",
+									padding: "0.7rem",
+									backgroundColor: "lightBlue",
+									borderRadius: "50%",
+								}}
 							/>
 							<div>
 								<p>{numberOfOrders}</p> <p>Purchase</p>
@@ -162,7 +168,13 @@ const DashboardLayout = () => {
 
 						<DashboardDetails>
 							<HiOutlineBanknotes
-								style={{ color: "green", fontSize: "2.5rem" }}
+								style={{
+									color: "green",
+									fontSize: "4rem",
+									padding: "0.7rem",
+									backgroundColor: "lightGreen",
+									borderRadius: "50%",
+								}}
 							/>
 							<div>
 								<p>{formatCurrency(totalOrderValue)}</p> <p>Cost</p>
@@ -171,7 +183,13 @@ const DashboardLayout = () => {
 
 						<DashboardDetails>
 							<GoPackageDependents
-								style={{ color: "orangeRed", fontSize: "2.5rem" }}
+								style={{
+									color: "orangeRed",
+									fontSize: "4rem",
+									padding: "0.7rem",
+									backgroundColor: "orange",
+									borderRadius: "50%",
+								}}
 							/>
 							<div>
 								<p>{totalPendingOrder}</p> <p>Pending</p>
@@ -179,7 +197,15 @@ const DashboardLayout = () => {
 						</DashboardDetails>
 
 						<DashboardDetails>
-							<TbTruckReturn style={{ color: "red", fontSize: "2.5rem" }} />
+							<TbTruckReturn
+								style={{
+									color: "red",
+									fontSize: "4rem",
+									padding: "0.7rem",
+									borderRadius: "50%",
+									backgroundColor: "#f97676",
+								}}
+							/>
 							<div>
 								<p>{totalReturnedOrder}</p> <p>Return</p>
 							</div>
@@ -268,7 +294,7 @@ const DashboardLayout = () => {
 						<DashboardFilter />
 					</LastDayDataContainer>
 
-					<SalesChart orders={orders} numberOfDays={numberOfDays} />
+					<SalesChart orders={orders} numberOfDays={numDays} />
 				</LeftContentContainer>
 				<RightContentContainer>
 					<div>Inventory Summary</div>

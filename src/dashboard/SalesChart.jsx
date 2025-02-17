@@ -10,6 +10,8 @@ import {
 	YAxis,
 } from "recharts";
 import { useDarkMode } from "../context/DarkModeContext";
+import { eachDayOfInterval } from "date-fns/fp";
+import { isSameDay, subDays, format } from "date-fns";
 
 const StyledSalesChart = styled(DashboardBox)`
 	grid-column: 1 / -1;
@@ -53,23 +55,34 @@ const fakeData = [
 	{ label: "Feb 06", order_value: 1450, totalSale: 50 },
 ];
 
-const isDarkMode = true;
-const colors = isDarkMode
-	? {
-			order_value: { stroke: "#4f46e5", fill: "#4f46e5" },
-			totalSale: { stroke: "#22c55e", fill: "#22c55e" },
-			text: "#e5e7eb",
-			background: "#18212f",
-	  }
-	: {
-			order_value: { stroke: "#4f46e5", fill: "#c7d2fe" },
-			totalSale: { stroke: "#16a34a", fill: "#dcfce7" },
-			text: "#374151",
-			background: "#fff",
-	  };
-
 const SalesChart = ({ orders, numberOfDays }) => {
 	const { isDarkMode } = useDarkMode();
+
+	// Compute Data structure for each date
+	const allDates = eachDayOfInterval({
+		start: subDays(new Date(), numberOfDays - 1),
+		end: new Date(),
+	});
+
+	const data = allDates.map((date) => {
+		return {
+			label: format(date, "MMM dd"),
+			order_value: orders
+				.filter((order) => isSameDay(date, new Date(order.created_at)))
+				.reduce((acc, cur) => acc + cur.order_value, 0),
+
+			totalSales: orders
+				.filter(
+					(order) =>
+						order.status === "Confirmed" &&
+						isSameDay(date, new Date(order.created_at))
+				)
+				.reduce((acc, cur) => acc + cur.order_value, 0),
+		};
+	});
+
+	console.log(allDates);
+
 	const colors = isDarkMode
 		? {
 				order_value: { stroke: "#4f46e5", fill: "#4f46e5" },
@@ -86,7 +99,7 @@ const SalesChart = ({ orders, numberOfDays }) => {
 	return (
 		<StyledSalesChart>
 			<ResponsiveContainer height={300} width="100%">
-				<AreaChart data={fakeData}>
+				<AreaChart data={data}>
 					<XAxis
 						dataKey="label"
 						tick={{ fill: colors.text }}
