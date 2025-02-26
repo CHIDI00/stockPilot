@@ -7,6 +7,14 @@ const StyledLogo = styled.div`
 const Img = styled.img`
 	height: 5rem;
 	width: auto;
+
+	animation: l1 0.7s linear infinite alternate;
+
+	@keyframes l1 {
+		to {
+			opacity: 0;
+		}
+	}
 `;
 
 function LogoOnly() {
