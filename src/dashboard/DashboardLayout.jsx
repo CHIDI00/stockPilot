@@ -10,6 +10,7 @@ import { TbTruckReturn } from "react-icons/tb";
 import { GoPackageDependents } from "react-icons/go";
 import { BiPurchaseTagAlt } from "react-icons/bi";
 import SalesChart from "./SalesChart";
+import DurationChart from "./DurationChart";
 
 const StyledDashboardLayout = styled.div`
 	display: flex;
@@ -297,7 +298,7 @@ const DashboardLayout = () => {
 					<SalesChart orders={orders} numberOfDays={numDays} />
 				</LeftContentContainer>
 				<RightContentContainer>
-					<div>Inventory Summary</div>
+					<DurationChart />
 				</RightContentContainer>
 			</DashboardContentContainer>
 			{/* <DashboardContentContainer>

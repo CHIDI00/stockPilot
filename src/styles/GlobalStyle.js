@@ -151,6 +151,8 @@ const GlobalStyle = createGlobalStyle`
 
   /* Creating animations for dark mode */
   transition: background-color 0.3s, border 0.3s;
+  
+  transition: 0.3s ease-in-out all;
 }
 
 html {

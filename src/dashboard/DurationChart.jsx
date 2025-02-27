@@ -1,4 +1,6 @@
+import { Pie, PieChart, ResponsiveContainer } from "recharts";
 import styled from "styled-components";
+import Heading from "../ui/Heading";
 
 const ChartBox = styled.div`
 	/* Box */
@@ -131,5 +133,17 @@ function prepareData(startData, stays) {
 	return data;
 }
 
+const DurationChart = () => {
+	return (
+		<ChartBox>
+			<Heading as="h2">Inventory</Heading>
+			<ResponsiveContainer width="100%" height={240}>
+				<PieChart>
+					<Pie data={startDataLight} nameKey="duration" dataKey="value" />
+				</PieChart>
+			</ResponsiveContainer>
+		</ChartBox>
+	);
+};
 
-raf
+export default DurationChart;
