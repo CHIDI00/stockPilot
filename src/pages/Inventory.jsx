@@ -5,6 +5,7 @@ import OverallInventory from "../inventory/OverallInventory";
 import InventoryProduct from "../inventory/InventoryProduct";
 import styled from "styled-components";
 import AddProduct from "../inventory/AddProduct";
+import useInventory from "../inventory/useInventory";
 
 const AddProductStyle = styled.div`
 	display: flex;
@@ -15,6 +16,7 @@ const AddProductStyle = styled.div`
 `;
 
 const Inventory = () => {
+	const { inventories } = useInventory();
 	return (
 		<>
 			<Row type="horizontal">
@@ -29,7 +31,11 @@ const Inventory = () => {
 			</Row>
 
 			<Row>
-				<InventoryProduct />
+				{inventories.length < 1 ? (
+					"Start by adding product to your store"
+				) : (
+					<InventoryProduct />
+				)}
 			</Row>
 		</>
 	);

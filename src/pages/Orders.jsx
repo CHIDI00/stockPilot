@@ -5,6 +5,7 @@ import Row from "../ui/Row";
 import AddOrder from "../orders/AddOrder";
 
 import { OverallOrder } from "../orders/OverallOrder";
+import useOrder from "../orders/useOrder";
 
 const AddOrderStyle = styled.div`
 	display: flex;
@@ -15,6 +16,8 @@ const AddOrderStyle = styled.div`
 `;
 
 const Orders = () => {
+	const { orders } = useOrder();
+
 	return (
 		<>
 			<Row type="horizontal">
@@ -28,9 +31,7 @@ const Orders = () => {
 				</AddOrderStyle>
 			</Row>
 
-			<Row>
-				<OrderTable />
-			</Row>
+			<Row>{orders.length < 1 ? "Add order" : <OrderTable />}</Row>
 		</>
 	);
 };
