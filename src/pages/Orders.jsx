@@ -31,7 +31,7 @@ const Orders = () => {
 				</AddOrderStyle>
 			</Row>
 
-			<Row>{orders.length < 1 ? "Add order" : <OrderTable />}</Row>
+			<Row>{orders?.length < 1 ? "Add order" : <OrderTable />}</Row>
 		</>
 	);
 };

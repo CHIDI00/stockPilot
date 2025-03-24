@@ -31,7 +31,7 @@ const Inventory = () => {
 			</Row>
 
 			<Row>
-				{inventories.length < 1 ? (
+				{inventories?.length < 1 ? (
 					"Start by adding product to your store"
 				) : (
 					<InventoryProduct />

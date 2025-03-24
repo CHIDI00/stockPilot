@@ -80,12 +80,12 @@ const MainNav = () => {
 						<span>Inventory</span>
 					</StyledNavLink>
 				</li>
-				<li>
+				{/* <li>
 					<StyledNavLink to="/reports">
 						<HiOutlineDocumentText />
 						<span>Reports</span>
 					</StyledNavLink>
-				</li>
+				</li> */}
 				<li>
 					<StyledNavLink to="/suppliers">
 						<HiOutlineUserCircle />
@@ -98,12 +98,12 @@ const MainNav = () => {
 						<span>Orders</span>
 					</StyledNavLink>
 				</li>
-				<li>
+				{/* <li>
 					<StyledNavLink to="/manageStore">
 						<HiOutlineChartBar />
 						<span>Manage Store</span>
 					</StyledNavLink>
-				</li>
+				</li> */}
 				<li>
 					<StyledNavLink to="/settings">
 						<HiOutlineCog6Tooth />
