@@ -64,48 +64,48 @@ const StyledNavLink = styled(NavLink)`
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const MainNav = () => {
+const MainNav = ({ onToggleSidebar }) => {
 	return (
 		<div>
 			<NavList>
 				<li>
-					<StyledNavLink to="/dashboard">
+					<StyledNavLink onClick={onToggleSidebar} to="/dashboard">
 						<HiOutlineHome />
 						<span>Dashboard</span>
 					</StyledNavLink>
 				</li>
 				<li>
-					<StyledNavLink to="/inventories">
+					<StyledNavLink onClick={onToggleSidebar} to="/inventories">
 						<HiMiniQueueList />
 						<span>Inventory</span>
 					</StyledNavLink>
 				</li>
 				{/* <li>
-					<StyledNavLink to="/reports">
+					<StyledNavLink onClick={onToggleSidebar} to="/reports">
 						<HiOutlineDocumentText />
 						<span>Reports</span>
 					</StyledNavLink>
 				</li> */}
 				<li>
-					<StyledNavLink to="/suppliers">
+					<StyledNavLink onClick={onToggleSidebar} to="/suppliers">
 						<HiOutlineUserCircle />
 						<span>Suppliers</span>
 					</StyledNavLink>
 				</li>
 				<li>
-					<StyledNavLink to="/orders">
+					<StyledNavLink onClick={onToggleSidebar} to="/orders">
 						<HiOutlineShoppingCart />
 						<span>Orders</span>
 					</StyledNavLink>
 				</li>
 				{/* <li>
-					<StyledNavLink to="/manageStore">
+					<StyledNavLink onClick={onToggleSidebar} to="/manageStore">
 						<HiOutlineChartBar />
 						<span>Manage Store</span>
 					</StyledNavLink>
 				</li> */}
 				<li>
-					<StyledNavLink to="/settings">
+					<StyledNavLink onClick={onToggleSidebar} to="/settings">
 						<HiOutlineCog6Tooth />
 						<span>Settings</span>
 					</StyledNavLink>

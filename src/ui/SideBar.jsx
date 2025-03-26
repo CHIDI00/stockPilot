@@ -3,8 +3,9 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import MainNav from "./MainNav";
 import ThemeMode from "./ThemeMode";
+import HeaderMenu from "../ui/HeaderMenu";
 import { device } from "../utils/devices";
-import { HiArrowLeft, HiArrowRight, HiXMark } from "react-icons/hi2";
+import { HiArrowLeft } from "react-icons/hi2";
 
 const StyledSidebar = styled.aside`
 	position: relative;
@@ -48,7 +49,15 @@ const CLoseBtn = styled.span`
 	cursor: pointer;
 	background-color: var(--color-brand-90);
 	color: white;
-	opacity: 0.5;
+	/* opacity: 0.5; */
+
+	@media screen and (${device.tablet}) {
+		display: flex;
+	}
+`;
+
+const LogoutMobileView = styled.span`
+	display: none;
 
 	@media screen and (${device.tablet}) {
 		display: flex;
@@ -58,11 +67,16 @@ const CLoseBtn = styled.span`
 const SideBar = ({ isOpen, onToggleSidebar }) => {
 	return (
 		<StyledSidebar isOpen={isOpen}>
-			<CLoseBtn onClick={onToggleSidebar}>
-				{isOpen ? <HiArrowLeft /> : <HiArrowRight />}
-			</CLoseBtn>
+			{isOpen && (
+				<CLoseBtn onClick={onToggleSidebar}>
+					<HiArrowLeft />
+				</CLoseBtn>
+			)}
 			<Logo />
-			<MainNav />
+			<MainNav onToggleSidebar={onToggleSidebar} />
+			<LogoutMobileView>
+				<HeaderMenu />
+			</LogoutMobileView>
 			<ThemeMode />
 		</StyledSidebar>
 	);

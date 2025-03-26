@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Logout from "../authentication/Logout";
+import { device } from "../utils/devices";
 
 const StyleHeaderMenu = styled.ul`
 	display: flex;

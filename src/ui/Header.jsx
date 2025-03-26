@@ -13,6 +13,10 @@ const StyledHeader = styled.header`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	@media ${device.mobileL} {
+		padding: 1.2rem 0;
+	}
 `;
 
 const UserContainer = styled.div`
@@ -29,6 +33,14 @@ const MenuButtonContainer = styled.div`
 	}
 `;
 
+const LogoutMobileView = styled.span`
+	display: flex;
+
+	@media screen and (${device.tablet}) {
+		display: none;
+	}
+`;
+
 const Header = ({ onToggleSidebar }) => {
 	return (
 		<StyledHeader>
@@ -37,7 +49,9 @@ const Header = ({ onToggleSidebar }) => {
 			</MenuButtonContainer>
 			<UserContainer>
 				<UserAvatar />
+				<LogoutMobileView>
 				<HeaderMenu />
+				</LogoutMobileView>
 			</UserContainer>
 		</StyledHeader>
 	);
