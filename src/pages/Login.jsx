@@ -5,6 +5,7 @@ import apppreviewDark from "/apppreviewDark.png";
 import Heading from "../ui/Heading";
 import Logo from "../ui/Logo";
 import { useDarkMode } from "../context/DarkModeContext";
+import { device } from "../utils/devices";
 
 const LoginLayout = styled.main`
 	display: flex;
@@ -20,6 +21,10 @@ const AppPreview = styled.div`
 	background-position: right;
 	background-size: 90%;
 	border-radius: 20px 20px 20px 20px;
+
+	@media screen and (${device.mobileL}) {
+		display: none;
+	}
 `;
 
 const LoginFormContainer = styled.div`
@@ -30,6 +35,11 @@ const LoginFormContainer = styled.div`
 	width: 40%;
 	padding: 7rem 5rem 7rem 7rem;
 	gap: 2rem;
+
+	@media screen and (${device.mobileL}) {
+		width: 100%;
+		padding: 2.5rem;
+	}
 `;
 
 function Login() {

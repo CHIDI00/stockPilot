@@ -28,7 +28,7 @@ const Button = styled.button`
 	font-size: 1.4rem;
 	padding: 1.2rem 2.2rem;
 	font-weight: 500;
-	color: var(--color-grey-50);
+	color: var(--color-grey-800);
 	background-color: var(--color-primary-600);
 	border: none;
 	border-radius: 8px;
