@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import { Outlet } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { device } from "../utils/devices";
 
 const StyledAppLayout = styled.div`
 	display: grid;
@@ -11,6 +12,11 @@ const StyledAppLayout = styled.div`
 	height: 97.5vh;
 
 	gap: 0.8rem;
+
+	@media ${device.tablet} {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto 1fr;
+	}
 `;
 
 const Main = styled.main`
@@ -20,6 +26,15 @@ const Main = styled.main`
 	overflow-y: scroll;
 
 	scrollbar-width: none;
+
+	@media ${device.tablet} {
+		grid-column: 1;
+		grid-row: 3;
+		padding: 3rem;
+	}
+	@media ${device.mobileL} {
+		padding: 0.5rem;
+	}
 `;
 
 const Container = styled.div`
@@ -30,11 +45,26 @@ const Container = styled.div`
 	gap: 3rem;
 `;
 
+const StyledHeader = styled.div`
+	@media ${device.tablet} {
+		grid-column: 1;
+		grid-row: 1;
+	}
+`;
+
 const AppLayout = () => {
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+	const toggleSidebar = () => {
+		setIsSidebarOpen((open) => !open);
+	};
+
 	return (
 		<StyledAppLayout>
-			<Header />
-			<SideBar />
+			<StyledHeader>
+				<Header onToggleSidebar={toggleSidebar} />
+			</StyledHeader>
+			<SideBar isOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
 
 			<Main>
 				<Container>

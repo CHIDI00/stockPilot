@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { device } from "../utils/devices";
 
 // import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&family=Roboto:wght@400;500;700;900&display=swap');
 

@@ -29,8 +29,12 @@ const TableHeader = styled.header`
 	padding: 1.6rem 2.4rem;
 `;
 
-const OrderTable = () => {
-	const { orders, isLoading, count } = useOrder();
+const OrderTable = ({ orders: passedOrders, isLoading: passedIsLoading }) => {
+	const { orders: fetchedOrders, isLoading: fetchedIsLoading, count } = useOrder();
+	
+	// Use passed props if available, otherwise use fetched data
+	const orders = passedOrders || fetchedOrders;
+	const isLoading = passedIsLoading !== undefined ? passedIsLoading : fetchedIsLoading;
 
 	if (isLoading) return <Spinner />;
 

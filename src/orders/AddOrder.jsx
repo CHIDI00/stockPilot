@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../ui/Button";
 import Modal from "../ui/Modal";
 import Row from "../ui/Row";
@@ -7,6 +7,9 @@ import OrderTableOperation from "./OrderTableOperation";
 import styled from "styled-components";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import useOrder from "./useOrder";
+import OrderTable from "./OrderTable";
+import Spinner from "../ui/Spinner";
+import OrderRow from "./OrderRow";
 
 const Span = styled.span`
 	display: flex;
@@ -33,20 +36,27 @@ const SearchBar = styled.div`
 	}
 `;
 
-const AddOrder = () => {
-	const { orders } = useOrder();
+const AddOrder = ({ onSearch }) => {
+	const { orders, isLoading } = useOrder();
 	const [isOpenModal, setIsOpenModal] = useState(false);
 	const [query, setQuery] = useState("");
+	const [filteredOrders, setFilteredOrders] = useState([]);
 
-	const [filteredOrders, setFilteredOrders] = useState(orders);
+	// Initialize filteredOrders with all orders when orders data is loaded
+	useEffect(() => {
+		if (orders) {
+			setFilteredOrders(orders);
+		}
+	}, [orders]);
 
 	const handleSearch = (event) => {
 		const searchValue = event.target.value.toLowerCase();
 		setQuery(searchValue);
-		const filtered = orders.filter((order) =>
-			order.order_id.toLowerCase().includes(searchValue)
-		);
-		setFilteredOrders(filtered);
+
+		// Pass the search query to the parent component
+		if (onSearch) {
+			onSearch(searchValue);
+		}
 	};
 
 	return (
@@ -79,6 +89,17 @@ const AddOrder = () => {
 					</Modal>
 				)}
 			</div>
+
+			{/* Display filtered orders in the table
+			{filteredOrders && filteredOrders.length > 0 ? (
+				<div style={{ marginTop: "2rem" }}>
+					<CustomOrderTable orders={filteredOrders} isLoading={isLoading} />
+				</div>
+			) : query ? (
+				<div style={{ marginTop: "2rem", textAlign: "center" }}>
+					No orders found matching "{query}"
+				</div>
+			) : null} */}
 		</div>
 	);
 };

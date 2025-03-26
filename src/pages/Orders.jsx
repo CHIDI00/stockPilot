@@ -6,6 +6,7 @@ import AddOrder from "../orders/AddOrder";
 
 import { OverallOrder } from "../orders/OverallOrder";
 import useOrder from "../orders/useOrder";
+import { useState, useEffect } from "react";
 
 const AddOrderStyle = styled.div`
 	display: flex;
@@ -16,7 +17,32 @@ const AddOrderStyle = styled.div`
 `;
 
 const Orders = () => {
-	const { orders } = useOrder();
+	const { orders, isLoading } = useOrder();
+
+	// State for filtered orders from search
+	const [filteredOrders, setFilteredOrders] = useState([]);
+	const [query, setQuery] = useState("");
+
+	// Initialize filteredOrders with all orders when orders data is loaded
+	useEffect(() => {
+		if (orders) {
+			setFilteredOrders(orders);
+		}
+	}, [orders]);
+
+	// Function to handle search query updates from AddOrder component
+	const handleSearch = (searchQuery) => {
+		setQuery(searchQuery);
+
+		if (searchQuery.trim() === "") {
+			setFilteredOrders(orders);
+		} else {
+			const filtered = orders.filter((order) =>
+				order.order_id.toLowerCase().includes(searchQuery.toLowerCase())
+			);
+			setFilteredOrders(filtered);
+		}
+	};
 
 	return (
 		<>
@@ -27,11 +53,27 @@ const Orders = () => {
 			<Row type="horizontal">
 				<Heading as="h1">All Orders</Heading>
 				<AddOrderStyle>
-					<AddOrder />
+					<AddOrder onSearch={handleSearch} />
 				</AddOrderStyle>
 			</Row>
 
-			<Row>{orders?.length < 1 ? "Add order" : <OrderTable />}</Row>
+			<Row>
+				{orders?.length < 1 ? (
+					"Add order"
+				) : (
+					<>
+						{filteredOrders && filteredOrders.length > 0 ? (
+							<OrderTable orders={filteredOrders} isLoading={isLoading} />
+						) : query ? (
+							<div style={{ marginTop: "2rem", textAlign: "center" }}>
+								No orders found matching "{query}"
+							</div>
+						) : (
+							<OrderTable />
+						)}
+					</>
+				)}
+			</Row>
 		</>
 	);
 };

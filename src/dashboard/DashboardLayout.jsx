@@ -9,8 +9,9 @@ import { HiOutlineBanknotes } from "react-icons/hi2";
 import { TbTruckReturn } from "react-icons/tb";
 import { GoPackageDependents } from "react-icons/go";
 import { BiPurchaseTagAlt } from "react-icons/bi";
-import SalesChart from "./SalesChart";
+import { device } from "../utils/devices";
 import TopProductsChart from "./TopProductsChart";
+import SalesChart from "./SalesChart";
 
 const StyledDashboardLayout = styled.div`
 	display: flex;
@@ -25,6 +26,22 @@ const DashboardContentContainer = styled.div`
 	align-items: flex-start;
 	width: 100%;
 	gap: 2rem;
+
+	@media screen and (${device.mobileL}) {
+		flex-direction: column;
+	}
+`;
+
+const DashboardChartContentContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	gap: 2rem;
+
+	@media screen and (${device.tablet}) {
+		flex-direction: column;
+	}
 `;
 
 const LeftContentContainer = styled.div`
@@ -35,6 +52,23 @@ const LeftContentContainer = styled.div`
 	border-radius: 8px;
 	background-color: var(--color-grey-50);
 	gap: 2rem;
+
+	@media screen and (${device.mobileL}) {
+		width: 100%;
+	}
+`;
+const LeftChartContentContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	padding: 1rem;
+	border-radius: 8px;
+	background-color: var(--color-grey-50);
+	gap: 2rem;
+
+	@media screen and (${device.tablet}) {
+		width: 100%;
+	}
 `;
 const RightContentContainer = styled.div`
 	display: flex;
@@ -44,6 +78,26 @@ const RightContentContainer = styled.div`
 	border-radius: 8px;
 	background-color: var(--color-grey-50);
 	/* gap: 2rem; */
+
+	@media screen and (${device.mobileL}) {
+		width: 100%;
+	}
+`;
+const RightChartContentContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+	padding: 1rem;
+	border-radius: 8px;
+	background-color: var(--color-grey-50);
+	/* gap: 2rem; */
+
+	@media screen and (${device.tablet}) {
+		width: 80%;
+	}
+	@media screen and (${device.mobileL}) {
+		width: 100%;
+	}
 `;
 
 const DashboardDetailContainer = styled.div`
@@ -288,19 +342,19 @@ const DashboardLayout = () => {
 				</RightContentContainer>
 			</DashboardContentContainer>
 
-			<DashboardContentContainer>
-				<LeftContentContainer>
+			<DashboardChartContentContainer>
+				<LeftChartContentContainer>
 					<LastDayDataContainer>
 						<p>Sales & Purchase</p>
 						<DashboardFilter />
 					</LastDayDataContainer>
 
 					<SalesChart orders={orders} numberOfDays={numDays} />
-				</LeftContentContainer>
-				<RightContentContainer>
+				</LeftChartContentContainer>
+				<RightChartContentContainer>
 					<TopProductsChart orders={orders} />
-				</RightContentContainer>
-			</DashboardContentContainer>
+				</RightChartContentContainer>
+			</DashboardChartContentContainer>
 			{/* <DashboardContentContainer>
 				<div>sales Overview</div>
 				<div>Inventory Summary</div>
