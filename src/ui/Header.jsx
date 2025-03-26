@@ -19,6 +19,17 @@ const StyledHeader = styled.header`
 	}
 `;
 
+const Timer = styled.span`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 5px;
+
+	div {
+		font-weight: 700;
+	}
+`;
+
 const UserContainer = styled.div`
 	display: flex;
 	align-items: center;
@@ -44,13 +55,16 @@ const LogoutMobileView = styled.span`
 const Header = ({ onToggleSidebar }) => {
 	return (
 		<StyledHeader>
-			<MenuButtonContainer>
-				<MenuButton onClick={onToggleSidebar} />
-			</MenuButtonContainer>
+			<Timer>
+				<MenuButtonContainer>
+					<MenuButton onClick={onToggleSidebar} />
+				</MenuButtonContainer>
+				<div>Good Evening</div>
+			</Timer>
 			<UserContainer>
 				<UserAvatar />
 				<LogoutMobileView>
-				<HeaderMenu />
+					<HeaderMenu />
 				</LogoutMobileView>
 			</UserContainer>
 		</StyledHeader>

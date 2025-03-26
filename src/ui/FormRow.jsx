@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { device } from "../utils/devices";
 
 const StyledFormRow = styled.div`
 	display: grid;
@@ -24,6 +25,15 @@ const StyledFormRow = styled.div`
 	&:has(button) {
 		display: flex;
 		justify-content: flex-end;
+		gap: 1rem;
+	}
+
+	@media screen and (${device.mobileL}) {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding: 0.8rem 0;
 		gap: 1rem;
 	}
 `;

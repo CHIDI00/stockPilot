@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { HiXMark } from "react-icons/hi2";
 import { useEffect, useRef } from "react";
+import { device } from "../utils/devices";
 
 const StyledModal = styled.div`
 	position: fixed;
@@ -15,21 +16,9 @@ const StyledModal = styled.div`
 
 	z-index: 1000;
 
-	.slide-fwd-center {
-		-webkit-animation: slide-fwd-center 0.45s
-			cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-		animation: slide-fwd-center 0.95s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-	}
-
-	@keyframes slide-fwd-center {
-		0% {
-			-webkit-transform: translateZ(0);
-			transform: translateZ(0);
-		}
-		100% {
-			-webkit-transform: translateZ(160px);
-			transform: translateZ(160px);
-		}
+	@media screen and (${device.mobileL}) {
+		width: 90%;
+		padding: 2rem;
 	}
 `;
 

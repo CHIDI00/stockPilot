@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { device } from "../utils/devices";
 
 const Form = styled.form`
 	${(props) =>
@@ -21,6 +22,11 @@ const Form = styled.form`
   overflow: hidden;
 	font-size: 1.4rem;
 	width: 60rem;
+
+	@media screen and (${device.mobileL}) {
+		width: 100%;
+		padding: 0;
+	}
 `;
 
 export default Form;

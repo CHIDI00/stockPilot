@@ -1,14 +1,9 @@
 import styled from "styled-components";
-import Heading from "../ui/Heading";
+import Spinner from "../ui/Spinner";
+
+import { useDarkMode } from "../context/DarkModeContext";
 import { useSettings } from "./useSettings";
 import { useUpdateSetting } from "./useUpdateSetting";
-import { useState } from "react";
-// import Form from "../../ui/Form";
-// import FormRow from "../../ui/FormRow";
-// import Input from "../../ui/Input";
-import Spinner from "../ui/Spinner";
-// import { useSettings } from "./useSettings";
-// import { useUpdateSetting } from "./useUpdateSetting";
 
 const SettingContainer = styled.div`
 	display: flex;
@@ -105,6 +100,7 @@ const Switch = styled.label`
 function UpdateSettingsForm() {
 	const { isLoading, settings: { email_notification } = {} } = useSettings();
 	const { isUpdating, updateSetting } = useUpdateSetting();
+	const { isDarkMode, toggleDarkMode } = useDarkMode();
 
 	if (isLoading) return <Spinner />;
 
@@ -115,6 +111,16 @@ function UpdateSettingsForm() {
 		console.log(value);
 	}
 
+	function handleThemeChange(e) {
+		const { value } = e.target;
+		if (
+			(value === "Dark" && !isDarkMode) ||
+			(value === "Light" && isDarkMode)
+		) {
+			toggleDarkMode();
+		}
+	}
+
 	return (
 		<SettingContainer>
 			<Setting>
@@ -122,7 +128,12 @@ function UpdateSettingsForm() {
 					<H1>Appearance</H1>
 					<H1Detail>Customize how your theme looks on your device</H1Detail>
 				</div>
-				<Select name="" id="">
+				<Select
+					name="theme"
+					id="theme"
+					value={isDarkMode ? "Dark" : "Light"}
+					onChange={handleThemeChange}
+				>
 					<Option value="Light">Light</Option>
 					<Option value="Dark">Dark</Option>
 				</Select>
