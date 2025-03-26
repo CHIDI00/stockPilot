@@ -7,6 +7,7 @@ import AddOrder from "../orders/AddOrder";
 import { OverallOrder } from "../orders/OverallOrder";
 import useOrder from "../orders/useOrder";
 import { useState, useEffect } from "react";
+import { device } from "../utils/devices";
 
 const AddOrderStyle = styled.div`
 	display: flex;
@@ -14,6 +15,13 @@ const AddOrderStyle = styled.div`
 	align-items: center;
 	gap: 2rem;
 	margin: 1rem;
+
+	@media screen and (${device.mobileL}) {
+		margin: 0;
+		justify-content: space-between;
+		align-items: flex-start;
+		width: 100%;
+	}
 `;
 
 const Orders = () => {
@@ -50,7 +58,7 @@ const Orders = () => {
 				<OverallOrder />
 			</Row>
 
-			<Row type="horizontal">
+			<Row type="horizontal" screen="mobile">
 				<Heading as="h1">All Orders</Heading>
 				<AddOrderStyle>
 					<AddOrder onSearch={handleSearch} />

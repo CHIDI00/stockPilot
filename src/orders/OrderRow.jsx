@@ -4,6 +4,7 @@ import { useState } from "react";
 import Modal from "../ui/Modal";
 import CreateOrderForm from "./CreateOrderForm";
 import { formatCurrency } from "../utils/helpers";
+import { device } from "../utils/devices";
 
 const TableRow = styled.div`
 	display: grid;
@@ -16,16 +17,22 @@ const TableRow = styled.div`
 	&:not(:last-child) {
 		border-bottom: 1px solid var(--color-grey-100);
 	}
+
+	@media screen and (${device.mobileL}) {
+		grid-template-columns: 0.6fr 2.1fr 2.1fr 2fr 1.8fr 2.1fr 1.5fr;
+		padding: 1.2rem 2rem;
+		width: 100rem;
+	}
 `;
 
 const Image = styled.img`
 	display: block;
 	width: 40px;
 	height: 40px;
-	/* aspect-ratio: 3 / 2; */
 	object-fit: cover;
 	object-position: center;
 	transform: scale(1) translateX(-5px);
+	/* aspect-ratio: 3 / 2; */
 
 	border-radius: 50%;
 `;

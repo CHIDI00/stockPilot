@@ -11,6 +11,10 @@ const StyledFilter = styled.div`
 	align-items: center;
 	gap: 0.4rem;
 	margin-left: 1rem;
+
+	@media screen and (${device.mobileL}) {
+		margin: 0;
+	}
 `;
 
 const FilterButton = styled.button`
@@ -35,26 +39,15 @@ const FilterButton = styled.button`
 		background-color: var(--color-brand-600);
 		color: var(--color-brand-50);
 	}
-`;
 
-const StyleSelect = styled.select`
-	border: 1px solid var(--color-grey-100);
-	background-color: var(--color-grey-0);
-	box-shadow: var(--shadow-sm);
-	border-radius: var(--border-radius-sm);
-	padding: 1rem 0.5rem;
-	display: flex;
-	gap: 0.4rem;
-	margin-left: 1rem;
+	@media screen and (${device.mobileL}) {
+		font-size: 1.2rem;
+	}
 `;
 
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { HiFilter } from "react-icons/hi";
-import Modal from "./Modal";
-import SortBy from "./SortBy";
-import FilterBy from "./FilterBy";
-import Select from "./Select";
+import { device } from "../utils/devices";
 
 const Filter = ({ filterField, options }) => {
 	const [searchParams, setSearchParams] = useSearchParams();

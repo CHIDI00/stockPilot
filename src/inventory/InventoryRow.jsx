@@ -5,6 +5,7 @@ import { HiEye } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
 import AddProductForm from "./AddProductForm";
+import { device } from "../utils/devices";
 
 const TableRow = styled.div`
 	display: grid;
@@ -15,6 +16,12 @@ const TableRow = styled.div`
 
 	&:not(:last-child) {
 		border-bottom: 1px solid var(--color-grey-100);
+	}
+
+	@media screen and (${device.mobileL}) {
+		grid-template-columns: 3fr 3fr 3fr 3fr 3fr 3fr 0.3fr;
+		padding: 1.2rem 2rem;
+		width: 100rem;
 	}
 `;
 

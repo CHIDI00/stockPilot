@@ -188,16 +188,6 @@ const LastDayDataContainer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-
-	select {
-		background-color: transparent;
-		border-radius: 5px;
-		padding: 0.5rem 1rem;
-
-		option {
-			color: var(--color-grey-50);
-		}
-	}
 `;
 
 const DashboardLayout = () => {

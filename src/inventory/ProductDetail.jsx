@@ -7,6 +7,7 @@ import { useMoveBack } from "../hooks/useMoveBack";
 import useProduct from "./useProduct";
 import Spinner from "../ui/Spinner";
 import { formatCurrency } from "../utils/helpers";
+import { device } from "../utils/devices";
 
 const DetailStyle = styled.div`
 	width: 100%;
@@ -52,6 +53,12 @@ const Detail2 = styled.div`
 	justify-content: center;
 	align-items: center;
 	gap: 5rem;
+
+	@media screen and (${device.mobileL}) {
+		justify-content: flex-start;
+		align-items: flex-start;
+		width: 100%;
+	}
 `;
 
 const ImageContainer = styled.div`
@@ -65,12 +72,21 @@ const Detail2Content = styled.div`
 	justify-content: center;
 	align-items: center;
 	gap: 10rem;
+
+	@media screen and (${device.mobileL}) {
+		width: 100%;
+	}
 `;
 
 const JustThere = styled.div`
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+
+	@media screen and (${device.mobileL}) {
+		flex-direction: column;
+		justify-content: flex-start;
+	}
 `;
 
 const ProductDetail = () => {

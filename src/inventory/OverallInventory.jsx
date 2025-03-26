@@ -2,6 +2,7 @@ import React from "react";
 import { formatCurrency } from "../utils/helpers";
 import styled, { css } from "styled-components";
 import useInventory from "./useInventory";
+import { device } from "../utils/devices";
 
 const OverallStyled = styled.div`
 	width: 100%;
@@ -18,11 +19,20 @@ const OverallText = styled.p`
 	font-weight: 600;
 	font-size: 2rem;
 	color: var(--color-grey-600);
+
+	@media screen and (${device.mobileL}) {
+		font-size: 1.5rem;
+	}
 `;
 
 const OverallContent = styled.div`
 	display: grid;
 	grid-template-columns: 0.6fr 1fr 1fr 1fr;
+
+	@media screen and (${device.mobileL}) {
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+	}
 `;
 
 const TotalStyledContainer = styled.div`
@@ -34,6 +44,22 @@ const TotalStyledContainer = styled.div`
 
 	&:not(:first-child) {
 		padding: 0 3.7rem;
+	}
+
+	@media screen and (${device.tablet}) {
+		font-size: 1.5rem;
+
+		&:not(:first-child) {
+			padding: 0 1rem;
+		}
+	}
+
+	@media screen and (${device.mobileL}) {
+		font-size: 1.1rem;
+
+		&:nth-child(2) {
+			border-right: none;
+		}
 	}
 `;
 

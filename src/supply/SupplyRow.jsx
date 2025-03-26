@@ -8,6 +8,7 @@ import { useDeleteSupplier } from "./useDeleteSupplier";
 import user_icon3 from "/user_icon3.png";
 import Modal from "../ui/Modal";
 import ConfirmDelete from "../ui/ConfirmDelete";
+import { device } from "../utils/devices";
 
 const TableRow = styled.div`
 	display: grid;
@@ -19,6 +20,12 @@ const TableRow = styled.div`
 
 	&:not(:last-child) {
 		border-bottom: 1px solid var(--color-grey-100);
+	}
+
+	@media screen and (${device.mobileL}) {
+		grid-template-columns: 0.6fr 2.1fr 2.05fr 2fr 2.8fr 2fr 0.7fr 0.7fr;
+		padding: 1.2rem 2rem;
+		width: 100rem;
 	}
 `;
 

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import InventoryTable from "./InventoryTable";
+import { device } from "../utils/devices";
 
 const InventoryProductContainer = styled.div`
 	display: flex;
@@ -11,6 +12,11 @@ const InventoryProductContainer = styled.div`
 	gap: 2rem;
 	padding: 2rem;
 	border-radius: 8px;
+
+	@media screen and (${device.mobileL}) {
+		max-width: 100%;
+		padding: 1rem;
+	}
 `;
 
 const InventoryProduct = () => {

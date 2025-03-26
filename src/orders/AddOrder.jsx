@@ -76,10 +76,10 @@ const AddOrder = ({ onSearch }) => {
 					Add Order
 				</Button>
 
-				<Span>
+				{/* <Span>
 					Filter by:
 					<OrderTableOperation />
-				</Span>
+				</Span> */}
 			</Row>
 
 			<div className="animate__fadeIn">

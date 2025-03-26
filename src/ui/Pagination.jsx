@@ -9,6 +9,12 @@ const StyledPagination = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	padding: 1rem;
+
+	border: 1px solid var(--color-grey-200);
+
+	font-size: 1.15rem;
+	background-color: var(--color-grey-0);
+	border-radius: 7px;
 `;
 
 const P = styled.p`

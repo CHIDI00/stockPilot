@@ -6,6 +6,7 @@ import SupplierRow from "./SupplyRow";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import Pagination from "../ui/Pagination";
+import { device } from "../utils/devices";
 
 const Table = styled.div`
 	border: 1px solid var(--color-grey-200);
@@ -14,6 +15,10 @@ const Table = styled.div`
 	background-color: var(--color-grey-0);
 	border-radius: 7px;
 	overflow: hidden;
+
+	@media screen and (${device.mobileL}) {
+		overflow: scroll;
+	}
 `;
 
 const TableHeader = styled.header`
@@ -29,6 +34,12 @@ const TableHeader = styled.header`
 	font-weight: 600;
 	color: var(--color-grey-600);
 	padding: 1.6rem 2.4rem;
+
+	@media screen and (${device.mobileL}) {
+		grid-template-columns: 0.5fr 2.1fr 2.05fr 2fr 2.8fr 2fr 0.7fr 0.7fr;
+		padding: 1.2rem 2rem;
+		width: 100rem;
+	}
 `;
 
 const SupplierTable = () => {

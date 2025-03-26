@@ -23,7 +23,7 @@ const Inventory = () => {
 				<OverallInventory />
 			</Row>
 
-			<Row type="horizontal">
+			<Row type="horizontal" screen="mobile">
 				<Heading as="h1">All Inventory</Heading>
 				<AddProductStyle>
 					<AddProduct />

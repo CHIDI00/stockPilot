@@ -8,13 +8,17 @@ import styled from "styled-components";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import useOrder from "../orders/useOrder";
 import AddProductForm from "./AddProductForm";
+import { device } from "../utils/devices";
 
-const Span = styled.span`
+const SearchAndAddProduct = styled.span`
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
-	gap: 1rem;
-	margin: 0 1rem;
+	gap: 1.6rem;
+
+	@media screen and (${device.mobileL}) {
+		width: 100%;
+	}
 `;
 
 const SearchBar = styled.div`
@@ -31,6 +35,10 @@ const SearchBar = styled.div`
 	input {
 		border: none;
 		background-color: transparent;
+	}
+
+	@media screen and (${device.mobileL}) {
+		margin: 0;
 	}
 `;
 
@@ -52,26 +60,28 @@ const AddProduct = () => {
 
 	return (
 		<div>
-			<Row type="horizontal">
+			{/* <Row type="horizontal"> */}
+			<SearchAndAddProduct>
 				<SearchBar>
 					<HiMagnifyingGlass />
 					<input
 						type="text"
 						value={query}
 						onChange={handleSearch}
-						placeholder="Search by product id"
+						placeholder="Search by product name"
 					/>
 				</SearchBar>
 
 				<Button onClick={() => setIsOpenModal((show) => !show)}>
 					Add Product
 				</Button>
+			</SearchAndAddProduct>
 
-				<Span>
+			{/* <Span>
 					Filter by:
 					<OrderTableOperation />
-				</Span>
-			</Row>
+				</Span> */}
+			{/* </Row> */}
 
 			<div className="animate__fadeIn">
 				{isOpenModal && (

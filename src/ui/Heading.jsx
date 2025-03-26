@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { device } from "../utils/devices";
 
 const Heading = styled.h1`
 	${(props) =>
@@ -22,7 +23,16 @@ const Heading = styled.h1`
 			font-weight: 500;
 		`}
 
-	line-height: 1.4
+	line-height: 1.4;
+
+	@media screen and (${device.mobileL}) {
+		${(props) =>
+			props.as === "h1" &&
+			css`
+				font-size: 2rem;
+				font-weight: 600;
+			`}
+	}
 `;
 
 export default Heading;

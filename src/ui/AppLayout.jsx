@@ -43,6 +43,10 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 3rem;
+
+	@media ${device.mobileL} {
+		max-width: 100%;
+	}
 `;
 
 const StyledHeader = styled.div`

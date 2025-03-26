@@ -4,16 +4,26 @@ import Button from "../ui/Button";
 import Modal from "../ui/Modal";
 import Row from "../ui/Row";
 import SupplierTableOperations from "./SupplierTableOperations";
+import styled from "styled-components";
+import { device } from "../utils/devices";
 
-const AddSupplier = () => {
-	const [isOpenModal, setIsOpenModal] = useState(false);
+const SpanBtn = styled.span`
+	display: flex;
 
+	@media screen and (${device.mobileL}) {
+		display: none;
+	}
+`;
+const AddSupplier = ({ isOpenModal, setIsOpenModal }) => {
 	return (
 		<div>
 			<Row type="horizontal">
-				<Button onClick={() => setIsOpenModal((show) => !show)}>
-					Add Supplier
-				</Button>
+				<SpanBtn>
+					<Button onClick={() => setIsOpenModal((show) => !show)}>
+						Add Supplier
+					</Button>
+				</SpanBtn>
+
 				<SupplierTableOperations />
 			</Row>
 
