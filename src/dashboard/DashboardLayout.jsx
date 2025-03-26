@@ -136,6 +136,17 @@ const DashboardDetails = styled.div`
 			font-size: 1.3rem;
 		}
 	}
+
+	@media screen and (${device.mobileL}) {
+		padding: 0.3rem;
+		div {
+			flex-direction: column;
+		}
+
+		p {
+			font-size: 1rem;
+		}
+	}
 `;
 
 const DashboardDetailsRight = styled.div`

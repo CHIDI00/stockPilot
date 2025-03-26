@@ -12,14 +12,22 @@ import {
 import { useDarkMode } from "../context/DarkModeContext";
 import { eachDayOfInterval } from "date-fns/fp";
 import { isSameDay, subDays, format } from "date-fns";
+import { device } from "../utils/devices";
 
 const StyledSalesChart = styled(DashboardBox)`
 	grid-column: 1 / -1;
+	width: 100%;
 
 	/* Hack to change grid line colors */
 	& .recharts-cartesian-grid-horizontal line,
 	& .recharts-cartesian-grid-vertical line {
 		stroke: var(--color-grey-300);
+	}
+
+	@media screen and (${device.mobileL}) {
+		& .recharts-responsive-container {
+			height: 200px !important;
+		}
 	}
 `;
 
