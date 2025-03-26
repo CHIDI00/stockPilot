@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import MainNav from "./MainNav";
 import ThemeMode from "./ThemeMode";
 import { device } from "../utils/devices";
-import { HiXMark } from "react-icons/hi2";
+import { HiArrowLeft, HiArrowRight, HiXMark } from "react-icons/hi2";
 
 const StyledSidebar = styled.aside`
 	position: relative;
@@ -36,24 +36,30 @@ const StyledSidebar = styled.aside`
 const CLoseBtn = styled.span`
 	position: absolute;
 	top: 20%;
-	right: -50px;
+	right: -40px;
 
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
-	width: 50px;
+	width: 40px;
 	height: 50px;
 	font-size: 3rem;
 	border-radius: 0 5px 5px 0;
 	cursor: pointer;
 	background-color: var(--color-brand-90);
+	color: white;
+	opacity: 0.5;
+
+	@media screen and (${device.tablet}) {
+		display: flex;
+	}
 `;
 
 const SideBar = ({ isOpen, onToggleSidebar }) => {
 	return (
 		<StyledSidebar isOpen={isOpen}>
 			<CLoseBtn onClick={onToggleSidebar}>
-				<HiXMark />
+				{isOpen ? <HiArrowLeft /> : <HiArrowRight />}
 			</CLoseBtn>
 			<Logo />
 			<MainNav />

@@ -12,6 +12,7 @@ import { BiPurchaseTagAlt } from "react-icons/bi";
 import { device } from "../utils/devices";
 import TopProductsChart from "./TopProductsChart";
 import SalesChart from "./SalesChart";
+import { useEditSupplier } from "../supply/useEditSupplier";
 
 const StyledDashboardLayout = styled.div`
 	display: flex;
@@ -55,6 +56,7 @@ const LeftContentContainer = styled.div`
 
 	@media screen and (${device.mobileL}) {
 		width: 100%;
+		font-size: 1.5rem;
 	}
 `;
 const LeftChartContentContainer = styled.div`
@@ -66,8 +68,13 @@ const LeftChartContentContainer = styled.div`
 	background-color: var(--color-grey-50);
 	gap: 2rem;
 
+	div {
+		width: 100%;
+	}
+
 	@media screen and (${device.tablet}) {
 		width: 100%;
+		font-size: 1.5rem;
 	}
 `;
 const RightContentContainer = styled.div`
@@ -81,6 +88,7 @@ const RightContentContainer = styled.div`
 
 	@media screen and (${device.mobileL}) {
 		width: 100%;
+		font-size: 1.5rem;
 	}
 `;
 const RightChartContentContainer = styled.div`
@@ -97,6 +105,7 @@ const RightChartContentContainer = styled.div`
 	}
 	@media screen and (${device.mobileL}) {
 		width: 100%;
+		font-size: 1.5rem;
 	}
 `;
 
@@ -194,6 +203,7 @@ const LastDayDataContainer = styled.div`
 const DashboardLayout = () => {
 	const { isLoading, orders, numDays } = userCurrentOrder();
 	const { orders: totalOrders } = useOrder();
+	const { suppliers } = useEditSupplier();
 
 	if (isLoading) return <Spinner />;
 
@@ -285,7 +295,7 @@ const DashboardLayout = () => {
 						<DashboardDetailsRight>
 							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
 							<div>
-								<p>40,000</p> <p>Number of suppliers</p>
+								<p>{suppliers?.length}</p> <p>Number of suppliers</p>
 							</div>
 						</DashboardDetailsRight>
 
@@ -360,7 +370,9 @@ const DashboardLayout = () => {
 						<DashboardFilter />
 					</LastDayDataContainer>
 
-					<SalesChart orders={orders} numberOfDays={numDays} />
+					<div>
+						<SalesChart orders={orders} numberOfDays={numDays} />
+					</div>
 				</LeftChartContentContainer>
 				<RightChartContentContainer>
 					<TopProductsChart orders={orders} />

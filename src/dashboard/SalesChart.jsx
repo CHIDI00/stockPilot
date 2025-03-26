@@ -17,6 +17,8 @@ import { device } from "../utils/devices";
 const StyledSalesChart = styled(DashboardBox)`
 	grid-column: 1 / -1;
 	width: 100%;
+	height: 300px;
+	display: flex;
 
 	/* Hack to change grid line colors */
 	& .recharts-cartesian-grid-horizontal line,
@@ -24,44 +26,19 @@ const StyledSalesChart = styled(DashboardBox)`
 		stroke: var(--color-grey-300);
 	}
 
+	& .recharts-responsive-container {
+		width: 100% !important;
+	}
+
 	@media screen and (${device.mobileL}) {
+		height: 200px !important;
+
 		& .recharts-responsive-container {
-			height: 200px !important;
+			width: 100% !important;
+			font-size: 1.1rem;
 		}
 	}
 `;
-
-const fakeData = [
-	{ label: "Jan 09", order_value: 480, totalSale: 100 },
-	{ label: "Jan 10", order_value: 580, totalSale: 580 },
-	{ label: "Jan 11", order_value: 550, totalSale: 550 },
-	{ label: "Jan 12", order_value: 600, totalSale: 600 },
-	{ label: "Jan 13", order_value: 700, totalSale: 20 },
-	{ label: "Jan 14", order_value: 800, totalSale: 800 },
-	{ label: "Jan 15", order_value: 700, totalSale: 700 },
-	{ label: "Jan 16", order_value: 650, totalSale: 150 },
-	{ label: "Jan 17", order_value: 600, totalSale: 400 },
-	{ label: "Jan 18", order_value: 550, totalSale: 650 },
-	{ label: "Jan 19", order_value: 700, totalSale: 200 },
-	{ label: "Jan 20", order_value: 800, totalSale: 200 },
-	{ label: "Jan 21", order_value: 700, totalSale: 100 },
-	{ label: "Jan 22", order_value: 810, totalSale: 510 },
-	{ label: "Jan 23", order_value: 950, totalSale: 750 },
-	{ label: "Jan 24", order_value: 970, totalSale: 670 },
-	{ label: "Jan 25", order_value: 900, totalSale: 900 },
-	{ label: "Jan 26", order_value: 950, totalSale: 750 },
-	{ label: "Jan 27", order_value: 850, totalSale: 850 },
-	{ label: "Jan 28", order_value: 900, totalSale: 700 },
-	{ label: "Jan 29", order_value: 800, totalSale: 700 },
-	{ label: "Jan 30", order_value: 950, totalSale: 250 },
-	{ label: "Jan 31", order_value: 1100, totalSale: 500 },
-	{ label: "Feb 01", order_value: 1200, totalSale: 100 },
-	{ label: "Feb 02", order_value: 1250, totalSale: 250 },
-	{ label: "Feb 03", order_value: 1400, totalSale: 400 },
-	{ label: "Feb 04", order_value: 1500, totalSale: 120 },
-	{ label: "Feb 05", order_value: 1400, totalSale: 400 },
-	{ label: "Feb 06", order_value: 1450, totalSale: 50 },
-];
 
 const SalesChart = ({ orders, numberOfDays }) => {
 	const { isDarkMode } = useDarkMode();
@@ -106,7 +83,7 @@ const SalesChart = ({ orders, numberOfDays }) => {
 		  };
 	return (
 		<StyledSalesChart>
-			<ResponsiveContainer height={300} width="100%">
+			<ResponsiveContainer height="100%" width="100%">
 				<AreaChart data={data}>
 					<XAxis
 						dataKey="label"

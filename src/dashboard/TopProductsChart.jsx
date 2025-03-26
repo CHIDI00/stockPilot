@@ -106,7 +106,7 @@ const TopProductsChart = ({ orders }) => {
 
 	return (
 		<ChartBox>
-			<Heading as="h2">Top 5 Ordered Products</Heading>
+			<Heading as="h4">Top 5 Ordered Products</Heading>
 			<ResponsiveContainer width="100%" height={240}>
 				<PieChart>
 					<Pie
