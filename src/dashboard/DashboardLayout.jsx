@@ -19,6 +19,7 @@ const StyledDashboardLayout = styled.div`
 	flex-direction: column;
 	width: 100%;
 	gap: 2rem;
+	overflow: hidden;
 `;
 
 const DashboardContentContainer = styled.div`
@@ -58,6 +59,9 @@ const LeftContentContainer = styled.div`
 		width: 100%;
 		font-size: 1.5rem;
 	}
+	@media screen and (${device.mobileM}) {
+		font-size: 1.2rem;
+	}
 `;
 const LeftChartContentContainer = styled.div`
 	display: flex;
@@ -76,6 +80,9 @@ const LeftChartContentContainer = styled.div`
 		width: 100%;
 		font-size: 1.5rem;
 	}
+	@media screen and (${device.mobileM}) {
+		font-size: 1.2rem;
+	}
 `;
 const RightContentContainer = styled.div`
 	display: flex;
@@ -89,6 +96,9 @@ const RightContentContainer = styled.div`
 	@media screen and (${device.mobileL}) {
 		width: 100%;
 		font-size: 1.5rem;
+	}
+	@media screen and (${device.mobileM}) {
+		font-size: 1.2rem;
 	}
 `;
 const RightChartContentContainer = styled.div`
@@ -106,6 +116,9 @@ const RightChartContentContainer = styled.div`
 	@media screen and (${device.mobileL}) {
 		width: 100%;
 		font-size: 1.5rem;
+	}
+	@media screen and (${device.mobileM}) {
+		font-size: 1.2rem;
 	}
 `;
 

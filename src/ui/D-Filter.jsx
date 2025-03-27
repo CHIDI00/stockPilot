@@ -8,6 +8,8 @@ const StyledFilter = styled.div`
 	align-items: center;
 	gap: 0.4rem;
 	margin-left: 1rem;
+	width: auto;
+	border: 2px solid red;
 `;
 
 const FilterButton = styled.button`
@@ -32,17 +34,6 @@ const FilterButton = styled.button`
 		background-color: var(--color-brand-600);
 		color: var(--color-brand-50);
 	}
-`;
-
-const StyleSelect = styled.select`
-	border: 1px solid var(--color-grey-100);
-	background-color: var(--color-grey-0);
-	box-shadow: var(--shadow-sm);
-	border-radius: var(--border-radius-sm);
-	padding: 1rem 0.5rem;
-	display: flex;
-	gap: 0.4rem;
-	margin-left: 1rem;
 `;
 
 import React from "react";

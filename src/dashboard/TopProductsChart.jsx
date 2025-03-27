@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Heading from "../ui/Heading";
 import { useDarkMode } from "../context/DarkModeContext";
 import useOrder from "../orders/useOrder";
+import { device } from "../utils/devices";
 
 const ChartBox = styled.div`
 	/* Box */
@@ -24,6 +25,12 @@ const ChartBox = styled.div`
 	/* Style for legend text */
 	& .recharts-legend-item-text {
 		font-size: 1rem;
+	}
+
+	& .recharts-responsive-container {
+		@media screen and (${device.mobileM}) {
+			height: 200px;
+		}
 	}
 `;
 
@@ -104,6 +111,11 @@ const TopProductsChart = ({ orders }) => {
 		);
 	}
 
+	// Use smaller radius values for mobile screens
+	const isMobile = window.matchMedia(`screen and (${device.mobileM})`).matches;
+	const innerRadius = isMobile ? 60 : 85;
+	const outerRadius = isMobile ? 80 : 110;
+
 	return (
 		<ChartBox>
 			<Heading as="h4">Top 5 Ordered Products</Heading>
@@ -113,8 +125,8 @@ const TopProductsChart = ({ orders }) => {
 						data={data}
 						nameKey="product"
 						dataKey="value"
-						innerRadius={85}
-						outerRadius={110}
+						innerRadius={innerRadius}
+						outerRadius={outerRadius}
 						cx="43%"
 						cy="50%"
 						paddingAngle={3}
@@ -132,7 +144,7 @@ const TopProductsChart = ({ orders }) => {
 						align="right"
 						width="30%"
 						layout="vertical"
-						iconSize={15}
+						iconSize={isMobile ? 10 : 15}
 						iconType="circle"
 					/>
 				</PieChart>
