@@ -5,7 +5,11 @@ import { userCurrentOrder } from "./useCurrentOrder";
 import Spinner from "../ui/Spinner";
 import useOrder from "../orders/useOrder";
 import { formatCurrency } from "../utils/helpers";
-import { HiOutlineBanknotes } from "react-icons/hi2";
+import {
+	HiOutlineBanknotes,
+	HiOutlineArchiveBox,
+	HiOutlineExclamationCircle,
+} from "react-icons/hi2";
 import { TbTruckReturn } from "react-icons/tb";
 import { GoPackageDependents } from "react-icons/go";
 import { BiPurchaseTagAlt } from "react-icons/bi";
@@ -13,6 +17,7 @@ import { device } from "../utils/devices";
 import TopProductsChart from "./TopProductsChart";
 import SalesChart from "./SalesChart";
 import { useEditSupplier } from "../supply/useEditSupplier";
+import useInventory from "../inventory/useInventory";
 
 const StyledDashboardLayout = styled.div`
 	display: flex;
@@ -207,6 +212,7 @@ const DashboardLayout = () => {
 	const { isLoading, orders, numDays } = userCurrentOrder();
 	const { orders: totalOrders } = useOrder();
 	const { suppliers } = useEditSupplier();
+	const { inventories } = useInventory();
 
 	const numberOfOrders = totalOrders?.length;
 
@@ -350,16 +356,43 @@ const DashboardLayout = () => {
 					<p>Inventory Summary</p>
 					<DashboardDetailContainer2>
 						<DashboardDetailsRight>
-							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
+							<HiOutlineArchiveBox
+								style={{ color: "green", fontSize: "2.5rem" }}
+							/>
 							<div>
-								<p>40,000</p> <p>Quantity in hand</p>
+								<p>
+									{formatCurrency(
+										inventories
+											?.filter((inventory) => inventory.quantity > 10)
+											.reduce(
+												(total, inventory) => total + inventory.buyingPrice,
+												0
+											) || 0
+									)}
+								</p>
+								<p>In-stock value</p>
 							</div>
 						</DashboardDetailsRight>
 
 						<DashboardDetailsRight>
-							<GiTwoCoins style={{ color: "purple", fontSize: "2.5rem" }} />
+							<HiOutlineExclamationCircle
+								style={{ color: "orange", fontSize: "2.5rem" }}
+							/>
 							<div>
-								<p>40,000</p> <p>To be received</p>
+								<p>
+									{formatCurrency(
+										inventories
+											?.filter(
+												(inventory) =>
+													inventory.quantity <= 10 && inventory.quantity > 0
+											)
+											.reduce(
+												(total, inventory) => total + inventory.buyingPrice,
+												0
+											) || 0
+									)}
+								</p>
+								<p>Low-stock value</p>
 							</div>
 						</DashboardDetailsRight>
 					</DashboardDetailContainer2>

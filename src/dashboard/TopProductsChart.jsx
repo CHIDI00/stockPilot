@@ -40,22 +40,22 @@ const ChartBox = styled.div`
 // Colors for the pie chart segments
 const colorPalette = {
 	light: [
-		"#ef4444", // Red
-		"#f97316", // Orange
-		"#eab308", // Yellow
-		"#22c55e", // Green
 		"#3b82f6", // Blue
+		"#22c55e", // Green
+		"#eab308", // Yellow
+		"#f97316", // Orange
+		"#ef4444", // Red
 	],
 	dark: [
-		"#b91c1c", // Dark Red
-		"#c2410c", // Dark Orange
-		"#a16207", // Dark Yellow
-		"#15803d", // Dark Green
 		"#1d4ed8", // Dark Blue
+		"#15803d", // Dark Green
+		"#a16207", // Dark Yellow
+		"#c2410c", // Dark Orange
+		"#b91c1c", // Dark Red
 	],
 };
 
-// Function to process orders and find the top 5 most ordered products
+// Function to process orders and find the top 5 products by order value
 function getTopProducts(isDarkMode) {
 	const { orders } = useOrder();
 	// If no orders data is available, return empty array
@@ -63,26 +63,22 @@ function getTopProducts(isDarkMode) {
 		return [];
 	}
 
-	console.log(orders);
-
-	// Count occurrences of each product in orders
-	const productCounts = {};
+	// Aggregate total order value for each product
+	const productValues = {};
 
 	orders.forEach((order) => {
-		// Assuming each order has a product_name field
-		// In a real application, you might need to adjust this based on your data structure
 		const productName = order.product;
-		console.log(productName);
+		const orderValue = order.order_value || 0; // Use 0 if order_value is undefined
 
-		if (productCounts[productName]) {
-			productCounts[productName] += 1;
+		if (productValues[productName]) {
+			productValues[productName] += orderValue;
 		} else {
-			productCounts[productName] = 1;
+			productValues[productName] = orderValue;
 		}
 	});
 
-	// Convert to array and sort by count in descending order
-	const sortedProducts = Object.entries(productCounts)
+	// Convert to array and sort by total value in descending order
+	const sortedProducts = Object.entries(productValues)
 		.map(([product, value]) => ({ product, value }))
 		.sort((a, b) => b.value - a.value)
 		.slice(0, 5); // Take only top 5
@@ -106,7 +102,7 @@ const TopProductsChart = ({ orders }) => {
 	if (data.length === 0) {
 		return (
 			<ChartBox>
-				<Heading as="h2">Top 5 Ordered Products</Heading>
+				<Heading as="h2">Top 5 Products by Order Value</Heading>
 				<p style={{ textAlign: "center", marginTop: "2rem" }}>
 					No product data available
 				</p>
@@ -121,7 +117,7 @@ const TopProductsChart = ({ orders }) => {
 
 	return (
 		<ChartBox>
-			<Heading as="h4">Top 5 Ordered Products</Heading>
+			<Heading as="h4">Top 5 Products by Order Value</Heading>
 			<ResponsiveContainer width="100%" height={240}>
 				<PieChart>
 					<Pie
