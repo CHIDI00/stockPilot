@@ -1,4 +1,3 @@
-import { GiTwoCoins } from "react-icons/gi";
 import styled from "styled-components";
 import DashboardFilter from "./DashboardFilter";
 import { userCurrentOrder } from "./useCurrentOrder";
@@ -18,6 +17,8 @@ import TopProductsChart from "./TopProductsChart";
 import SalesChart from "./SalesChart";
 import { useEditSupplier } from "../supply/useEditSupplier";
 import useInventory from "../inventory/useInventory";
+import { HiOutlineUserGroup } from "react-icons/hi";
+import { HiOutlineTag } from "react-icons/hi";
 
 const StyledDashboardLayout = styled.div`
 	display: flex;
@@ -96,6 +97,7 @@ const RightContentContainer = styled.div`
 	padding: 1rem;
 	border-radius: 8px;
 	background-color: var(--color-grey-50);
+	animation-duration: 0.8s;
 	/* gap: 2rem; */
 
 	@media screen and (${device.mobileL}) {
@@ -228,6 +230,24 @@ const DashboardLayout = () => {
 		?.filter((order) => order.status === "Pending")
 		.reduce((total, order) => total + order.order_value, 0);
 
+	// Calculate total inventory value
+	const totalInventoryValue =
+		inventories?.reduce(
+			(total, inventory) => total + inventory.buyingPrice * inventory.quantity,
+			0
+		) || 0;
+
+	// Calculate profit (inventory value - order value, minimum 0)
+	const profit = Math.max(0, totalInventoryValue - totalOrderValue);
+
+	// Sales is the same as confirmed orders
+	const sales = totalOrderValue;
+
+	// Calculate number of unique products (as a proxy for categories)
+	const uniqueProducts = inventories
+		? new Set(inventories.map((item) => item.products)).size
+		: 0;
+
 	if (isLoading) return <Spinner />;
 
 	return (
@@ -302,16 +322,18 @@ const DashboardLayout = () => {
 					<p>Product Summary</p>
 					<DashboardDetailContainer2>
 						<DashboardDetailsRight>
-							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
+							<HiOutlineUserGroup
+								style={{ color: "green", fontSize: "2.5rem" }}
+							/>
 							<div>
 								<p>{suppliers?.length}</p> <p>Number of suppliers</p>
 							</div>
 						</DashboardDetailsRight>
 
 						<DashboardDetailsRight>
-							<GiTwoCoins style={{ color: "purple", fontSize: "2.5rem" }} />
+							<HiOutlineTag style={{ color: "purple", fontSize: "2.5rem" }} />
 							<div>
-								<p>40,000</p> <p>Number of categories</p>
+								<p>{uniqueProducts}</p> <p>Number of products</p>
 							</div>
 						</DashboardDetailsRight>
 					</DashboardDetailContainer2>
@@ -323,30 +345,62 @@ const DashboardLayout = () => {
 					<p>sales Overview</p>
 					<DashboardDetailContainer>
 						<DashboardDetails>
-							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
+							<HiOutlineBanknotes
+								style={{
+									color: "blue",
+									fontSize: "4rem",
+									padding: "0.7rem",
+									backgroundColor: "lightBlue",
+									borderRadius: "50%",
+								}}
+							/>
 							<div>
-								<p>40,000</p> <p>Sales</p>
+								<p>{formatCurrency(sales)}</p> <p>Sales</p>
 							</div>
 						</DashboardDetails>
 
 						<DashboardDetails>
-							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
+							<BiPurchaseTagAlt
+								style={{
+									color: "green",
+									fontSize: "4rem",
+									padding: "0.7rem",
+									backgroundColor: "lightGreen",
+									borderRadius: "50%",
+								}}
+							/>
 							<div>
-								<p>40,000</p> <p>Revenue</p>
+								<p>{formatCurrency(sales)}</p> <p>Revenue</p>
 							</div>
 						</DashboardDetails>
 
 						<DashboardDetails>
-							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
+							<HiOutlineArchiveBox
+								style={{
+									color: "purple",
+									fontSize: "4rem",
+									padding: "0.7rem",
+									backgroundColor: "#e6d8f0",
+									borderRadius: "50%",
+								}}
+							/>
 							<div>
-								<p>40,000</p> <p>Profit</p>
+								<p>{formatCurrency(profit)}</p> <p>Profit</p>
 							</div>
 						</DashboardDetails>
 
 						<DashboardDetails>
-							<GiTwoCoins style={{ color: "green", fontSize: "2.5rem" }} />
+							<GoPackageDependents
+								style={{
+									color: "orangeRed",
+									fontSize: "4rem",
+									padding: "0.7rem",
+									backgroundColor: "orange",
+									borderRadius: "50%",
+								}}
+							/>
 							<div>
-								<p>40,000</p> <p>Cost</p>
+								<p>{formatCurrency(totalOrderValue)}</p> <p>Cost</p>
 							</div>
 						</DashboardDetails>
 					</DashboardDetailContainer>

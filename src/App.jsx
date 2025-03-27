@@ -23,6 +23,10 @@ import Product from "./pages/Product";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import Signup from "./pages/Signup";
 import ChangePassword from "./settings/ChangePassword";
+import { useEffect } from "react";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -33,6 +37,13 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+	useEffect(() => {
+		AOS.init({
+			duration: 1000,
+			once: true,
+		});
+	}, []);
+
 	return (
 		<DarkModeProvider>
 			<QueryClientProvider client={queryClient}>
