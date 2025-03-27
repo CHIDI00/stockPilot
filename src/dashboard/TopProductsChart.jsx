@@ -28,6 +28,9 @@ const ChartBox = styled.div`
 	}
 
 	& .recharts-responsive-container {
+		@media screen and (${device.mobileL}) {
+			height: 210px;
+		}
 		@media screen and (${device.mobileM}) {
 			height: 200px;
 		}

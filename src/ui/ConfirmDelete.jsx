@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Button from "./Button";
 import Heading from "./Heading";
+import { device } from "../utils/devices";
 
 const StyledConfirmDelete = styled.div`
 	width: 40rem;
@@ -18,6 +19,20 @@ const StyledConfirmDelete = styled.div`
 		display: flex;
 		justify-content: flex-end;
 		gap: 1.2rem;
+	}
+
+	@media screen and (${device.mobileL}) {
+		width: 100%;
+
+		& p {
+			font-size: 1.2rem;
+		}
+
+		& div {
+			width: 100%;
+
+			gap: 1.2rem;
+		}
 	}
 `;
 
