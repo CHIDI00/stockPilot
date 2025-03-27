@@ -5,8 +5,6 @@ import {
 	HiMiniQueueList,
 	HiOutlineUserCircle,
 	HiOutlineShoppingCart,
-	HiOutlineDocumentText,
-	HiOutlineChartBar,
 } from "react-icons/hi2";
 
 const NavList = styled.ul`
@@ -39,11 +37,11 @@ const StyledNavLink = styled(NavLink)`
 	&.active:visited {
 		background-color: var(--color-grey-0);
 
-		box-shadow: var(--color-primary-600) 0px 6px 0px;
+		/* box-shadow: var(--color-primary-600) 0px 6px 0px; */
 
 		color: var(--color-primary-800);
-		border-radius: 6px;
-		border: 2px solid var(--color-primary-600);
+		border-radius: 0 6px 6px 0;
+		border-left: 5px solid var(--color-primary-600);
 	}
 
 	& svg {

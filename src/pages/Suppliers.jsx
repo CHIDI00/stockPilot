@@ -64,7 +64,6 @@ function Suppliers() {
 					</AddProduct>
 				</Span2>
 			</Row>
-
 			{/* Show on mobile screen */}
 			<Span3>
 				<AddProduct>

@@ -9,7 +9,6 @@ const StyledFilter = styled.div`
 	gap: 0.4rem;
 	margin-left: 1rem;
 	width: auto;
-	border: 2px solid red;
 `;
 
 const FilterButton = styled.button`

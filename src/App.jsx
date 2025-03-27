@@ -22,6 +22,7 @@ import AppLayout from "./ui/AppLayout";
 import Product from "./pages/Product";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import Signup from "./pages/Signup";
+import ChangePassword from "./settings/ChangePassword";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -57,6 +58,10 @@ function App() {
 							<Route path="user" element={<Users />} />
 							<Route path="account" element={<Account />} />
 							<Route path="settings" element={<Settings />} />
+							<Route
+								path="settings/update_password"
+								element={<ChangePassword />}
+							/>
 							<Route path="account" element={<Account />} />
 						</Route>
 
@@ -72,15 +77,15 @@ function App() {
 					containerStyle={{ margin: "8px" }}
 					toastOptions={{
 						success: {
-							duration: 3000,
+							duration: 5000,
 						},
 						error: {
 							duration: 5000,
 						},
 						style: {
-							fontSize: "16px",
-							maxWidth: "500px",
-							padding: "16px 24px",
+							fontSize: "14px",
+							maxWidth: "400px",
+							padding: "10px 20px",
 							backgroundColor: "var(--color-grey-200)",
 							color: "var(--color-gray-700)",
 						},

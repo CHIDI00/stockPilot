@@ -12,8 +12,10 @@ export function useSignup() {
 			signupApi({ email, password, fullName }),
 		onSuccess: (user) => {
 			queryClient.setQueryData(["user"], user.user);
-			navigate("/dashboard", { replace: true });
-			toast.success("Account has been successfully created.");
+			navigate("/login", { replace: true });
+			toast.success(
+				"Account has been successfully created. Pleases Check you spam message to confirm your email"
+			);
 		},
 	});
 

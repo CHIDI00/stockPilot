@@ -4,6 +4,7 @@ import Spinner from "../ui/Spinner";
 import { useDarkMode } from "../context/DarkModeContext";
 import { useSettings } from "./useSettings";
 import { useUpdateSetting } from "./useUpdateSetting";
+import { useNavigate } from "react-router-dom";
 
 const SettingContainer = styled.div`
 	display: flex;
@@ -101,6 +102,7 @@ function UpdateSettingsForm() {
 	const { isLoading, settings: { email_notification } = {} } = useSettings();
 	const { isUpdating, updateSetting } = useUpdateSetting();
 	const { isDarkMode, toggleDarkMode } = useDarkMode();
+	const navigate = useNavigate();
 
 	if (isLoading) return <Spinner />;
 
@@ -163,6 +165,13 @@ function UpdateSettingsForm() {
 					<input type="checkbox" />
 					<span className="slider"></span>
 				</Switch>
+			</Setting>
+
+			<Setting onClick={() => navigate("/settings/update_password")}>
+				<div>
+					<H1>Change password</H1>
+					<H1Detail>Do not share your password with anyone</H1Detail>
+				</div>
 			</Setting>
 		</SettingContainer>
 	);

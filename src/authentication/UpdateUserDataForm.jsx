@@ -8,6 +8,7 @@ import Input from "../ui/Input";
 
 import { useUser } from "./useUser";
 import { useUpdateUser } from "./useUpdateUser";
+import Row from "../ui/Row";
 
 function UpdateUserDataForm() {
 	// We don't need the loading state, and can immediately use the user data, because we know that it has already been loaded at this point
@@ -68,12 +69,15 @@ function UpdateUserDataForm() {
 				/>
 			</FormRow>
 
-			<FormRow>
+			<Row
+				type="horizontal"
+				style={{ margin: "15px 0", justifyContent: "flex-end", gap: "8px" }}
+			>
 				<Button type="reset" variation="secondary" onClick={handleCancel}>
 					Cancel
 				</Button>
 				<Button>Update account</Button>
-			</FormRow>
+			</Row>
 		</Form>
 	);
 }

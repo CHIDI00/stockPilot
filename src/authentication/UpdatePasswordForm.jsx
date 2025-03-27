@@ -5,6 +5,7 @@ import FormRow from "../ui/FormRow";
 import Input from "../ui/Input";
 
 import { useUpdateUser } from "./useUpdateUser";
+import Row from "../ui/Row";
 
 function UpdatePasswordForm() {
 	const { register, handleSubmit, formState, getValues, reset } = useForm();
@@ -53,12 +54,15 @@ function UpdatePasswordForm() {
 					})}
 				/>
 			</FormRow>
-			<FormRow>
+			<Row
+				type="horizontal"
+				style={{ margin: "15px 0", justifyContent: "flex-end", gap: "8px" }}
+			>
 				<Button onClick={reset} type="reset" variation="secondary">
 					Cancel
 				</Button>
 				<Button disabled={isUpdating}>Update password</Button>
-			</FormRow>
+			</Row>
 		</Form>
 	);
 }

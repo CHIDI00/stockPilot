@@ -10,6 +10,12 @@ import { device } from "../utils/devices";
 const LoginLayout = styled.main`
 	display: flex;
 	min-height: 97vh;
+
+	@media screen and (${device.tablet}) {
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+	}
 `;
 
 const AppPreview = styled.div`
@@ -22,7 +28,7 @@ const AppPreview = styled.div`
 	background-size: 90%;
 	border-radius: 20px 20px 20px 20px;
 
-	@media screen and (${device.mobileL}) {
+	@media screen and (${device.tablet}) {
 		display: none;
 	}
 `;
@@ -36,6 +42,10 @@ const LoginFormContainer = styled.div`
 	padding: 7rem 5rem 7rem 7rem;
 	gap: 2rem;
 
+	@media screen and (${device.tablet}) {
+		width: 50%;
+		padding: 2.5rem;
+	}
 	@media screen and (${device.mobileL}) {
 		width: 100%;
 		padding: 2.5rem;

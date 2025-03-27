@@ -208,21 +208,21 @@ const DashboardLayout = () => {
 	const { orders: totalOrders } = useOrder();
 	const { suppliers } = useEditSupplier();
 
-	if (isLoading) return <Spinner />;
+	const numberOfOrders = totalOrders?.length;
 
-	console.log(orders);
+	const totalOrderValue = totalOrders
+		?.filter((order) => order.status === "Confirmed")
+		.reduce((total, order) => total + order.order_value, 0);
 
-	const numberOfOrders = orders.length;
-
-	const totalOrderValue = orders.reduce((acc, cur) => acc + cur.order_value, 0);
-
-	const totalReturnedOrder = orders
+	const totalReturnedOrder = totalOrders
 		?.filter((order) => order.status === "Returned")
 		.reduce((total, order) => total + order.order_value, 0);
 
-	const totalPendingOrder = orders
+	const totalPendingOrder = totalOrders
 		?.filter((order) => order.status === "Pending")
 		.reduce((total, order) => total + order.order_value, 0);
+
+	if (isLoading) return <Spinner />;
 
 	return (
 		<StyledDashboardLayout>

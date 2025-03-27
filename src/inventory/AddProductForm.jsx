@@ -129,7 +129,7 @@ function AddProductForm({ onCloseModal }) {
 				<Button variation="secondary" type="reset">
 					Discard
 				</Button>
-				<Button disabled={isCreating}>Add Order</Button>
+				<Button disabled={isCreating}>Add Product</Button>
 			</FormButton>
 		</Form>
 	);
