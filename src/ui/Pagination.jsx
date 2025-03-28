@@ -2,6 +2,7 @@ import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import { PAGE_SIZE } from "../utils/constants";
+import { device } from "../utils/devices";
 
 const StyledPagination = styled.div`
 	width: 100%;
@@ -15,6 +16,13 @@ const StyledPagination = styled.div`
 	font-size: 1.15rem;
 	background-color: var(--color-grey-0);
 	border-radius: 7px;
+
+	@media screen and (${device.mobileM}) {
+		font-size: 1rem;
+		/* p {
+			font-size: 1rem;
+		} */
+	}
 `;
 
 const P = styled.p`
@@ -63,6 +71,13 @@ const PaginationButton = styled.button`
 	&:hover:not(:disabled) {
 		background-color: var(--color-brand-60);
 		color: var(--color-grey-50);
+	}
+
+	@media screen and (${device.mobileM}) {
+		font-size: 1rem;
+		/* p {
+			font-size: 1rem;
+		} */
 	}
 `;
 

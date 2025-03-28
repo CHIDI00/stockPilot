@@ -52,6 +52,13 @@ const LogoutMobileView = styled.span`
 	}
 `;
 
+const getGreeting = () => {
+	const hour = new Date().getHours();
+	if (hour >= 5 && hour < 12) return "Good Morning";
+	if (hour >= 12 && hour < 17) return "Good Afternoon";
+	return "Good Evening";
+};
+
 const Header = ({ onToggleSidebar }) => {
 	return (
 		<StyledHeader>
@@ -59,7 +66,7 @@ const Header = ({ onToggleSidebar }) => {
 				<MenuButtonContainer>
 					<MenuButton onClick={onToggleSidebar} />
 				</MenuButtonContainer>
-				<div>Good Evening</div>
+				<div>{getGreeting()}</div>
 			</Timer>
 			<UserContainer>
 				<UserAvatar />

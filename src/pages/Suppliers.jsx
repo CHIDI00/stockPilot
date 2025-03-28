@@ -6,6 +6,8 @@ import AddSupplier from "../supply/AddSupplier";
 import Button from "../ui/Button";
 import { useState } from "react";
 import { device } from "../utils/devices";
+import Modal from "../ui/Modal";
+import CreateSupplierForm from "../supply/CreateSupplierForm";
 // import CreateSupplierForm from "../supply/CreateSupplierForm";
 
 const AddProduct = styled.div`
@@ -28,9 +30,9 @@ const SpanSpan = styled.span`
 const Span2 = styled.span`
 	display: flex;
 
-	@media screen and (${device.mobileL}) {
+	/* @media screen and (${device.mobileL}) {
 		display: none;
-	}
+	} */
 `;
 const Span3 = styled.span`
 	display: none;
@@ -46,33 +48,13 @@ function Suppliers() {
 	return (
 		<>
 			<Row type="horizontal">
-				<SpanSpan>
-					<Heading as="h1">Suppliers</Heading>
-					<SpanBtn>
-						<Button onClick={() => setIsOpenModal((show) => !show)}>
-							Add Supplier
-						</Button>
-					</SpanBtn>
-				</SpanSpan>
-
-				<Span2>
-					<AddProduct>
-						<AddSupplier
-							isOpenModal={isOpenModal}
-							setIsOpenModal={setIsOpenModal}
-						/>
-					</AddProduct>
-				</Span2>
-			</Row>
-			{/* Show on mobile screen */}
-			<Span3>
 				<AddProduct>
 					<AddSupplier
 						isOpenModal={isOpenModal}
 						setIsOpenModal={setIsOpenModal}
 					/>
 				</AddProduct>
-			</Span3>
+			</Row>
 
 			<Row>
 				<SupplierTable />

@@ -18,6 +18,12 @@ const Table = styled.div`
 
 	@media screen and (${device.mobileL}) {
 		overflow: scroll;
+
+		::-webkit-scrollbar {
+			display: flex;
+			height: 10px;
+			background: red;
+		}
 	}
 `;
 
