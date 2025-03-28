@@ -40,8 +40,16 @@ const TableHeader = styled.header`
 	}
 `;
 
-const InventoryTable = () => {
-	const { inventories, isLoading, count } = useInventory();
+const InventoryTable = ({ products: passedProducts, isLoading: passedIsLoading }) => {
+	const {
+		inventories: fetchedInventories,
+		isLoading: fetchedIsLoading,
+		count,
+	} = useInventory();
+
+	// Use passed props if available, otherwise use fetched data
+	const products = passedProducts || fetchedInventories;
+	const isLoading = passedIsLoading !== undefined ? passedIsLoading : fetchedIsLoading;
 
 	if (isLoading) return <Spinner />;
 
@@ -57,7 +65,7 @@ const InventoryTable = () => {
 					<div>Availbility</div>
 				</TableHeader>
 
-				{inventories?.map((inventory) => (
+				{products?.map((inventory) => (
 					<InventoryRow inventory={inventory} key={inventory.id} />
 				))}
 			</Table>

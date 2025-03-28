@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../ui/Button";
 import Modal from "../ui/Modal";
 import Row from "../ui/Row";
-import CreateOrderForm from "../orders/CreateOrderForm";
-import OrderTableOperation from "../orders/OrderTableOperation";
 import styled from "styled-components";
 import { HiMagnifyingGlass } from "react-icons/hi2";
-import useOrder from "../orders/useOrder";
+import useInventory from "./useInventory";
 import AddProductForm from "./AddProductForm";
 import { device } from "../utils/devices";
 
@@ -18,6 +16,7 @@ const SearchAndAddProduct = styled.span`
 
 	@media screen and (${device.mobileL}) {
 		width: 100%;
+		/* Removing the red border that might be causing visual issues */
 	}
 `;
 
@@ -35,32 +34,55 @@ const SearchBar = styled.div`
 	input {
 		border: none;
 		background-color: transparent;
+		outline: none; /* Add outline: none to improve input field appearance */
+		width: 100%; /* Ensure input takes full width */
 	}
 
 	@media screen and (${device.mobileL}) {
 		margin: 0;
+		width: 100%; /* Ensure search bar takes full width on mobile */
 	}
 `;
 
-const AddProduct = () => {
-	const { orders } = useOrder();
+const AddProduct = ({ onSearch }) => {
+	const { inventories, isLoading } = useInventory();
 	const [isOpenModal, setIsOpenModal] = useState(false);
 	const [query, setQuery] = useState("");
+	const [filteredProducts, setFilteredProducts] = useState([]);
 
-	const [filteredOrders, setFilteredOrders] = useState(orders);
+	// Initialize filteredProducts with all inventories when data is loaded
+	useEffect(() => {
+		if (inventories) {
+			setFilteredProducts(inventories);
+		}
+	}, [inventories]);
 
 	const handleSearch = (event) => {
 		const searchValue = event.target.value.toLowerCase();
 		setQuery(searchValue);
-		const filtered = orders.filter((order) =>
-			order.order_id.toLowerCase().includes(searchValue)
-		);
-		setFilteredOrders(filtered);
+
+		if (searchValue.trim() === "") {
+			setFilteredProducts(inventories);
+			// Pass empty search and all inventories when search is cleared
+			if (onSearch) onSearch("", inventories);
+		} else {
+			// Make sure inventories exists before filtering
+			const filtered = inventories
+				? inventories.filter((product) =>
+						product.products?.toLowerCase().includes(searchValue)
+				  )
+				: [];
+			setFilteredProducts(filtered);
+
+			// Pass the search results to parent component if onSearch prop exists
+			if (onSearch) {
+				onSearch(searchValue, filtered);
+			}
+		}
 	};
 
 	return (
 		<div>
-			{/* <Row type="horizontal"> */}
 			<SearchAndAddProduct>
 				<SearchBar>
 					<HiMagnifyingGlass />
@@ -73,15 +95,9 @@ const AddProduct = () => {
 				</SearchBar>
 
 				<Button onClick={() => setIsOpenModal((show) => !show)}>
-					Add Product
+					{window.innerWidth <= 375 ? "Add" : "Add Product"}
 				</Button>
 			</SearchAndAddProduct>
-
-			{/* <Span>
-					Filter by:
-					<OrderTableOperation />
-				</Span> */}
-			{/* </Row> */}
 
 			<div className="animate__fadeIn">
 				{isOpenModal && (

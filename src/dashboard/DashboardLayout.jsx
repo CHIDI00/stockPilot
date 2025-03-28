@@ -19,6 +19,7 @@ import { useEditSupplier } from "../supply/useEditSupplier";
 import useInventory from "../inventory/useInventory";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { HiOutlineTag } from "react-icons/hi";
+import RecentOrderRow from "./RecentOrderRow";
 
 const StyledDashboardLayout = styled.div`
 	display: flex;
@@ -29,6 +30,17 @@ const StyledDashboardLayout = styled.div`
 `;
 
 const DashboardContentContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	gap: 2rem;
+
+	@media screen and (${device.mobileL}) {
+		flex-direction: column;
+	}
+`;
+const DashboardContentContainerRecentOrde = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
@@ -56,6 +68,23 @@ const LeftContentContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 60%;
+	padding: 1rem;
+	border-radius: 8px;
+	background-color: var(--color-grey-50);
+	gap: 2rem;
+
+	@media screen and (${device.mobileL}) {
+		width: 100%;
+		font-size: 1.5rem;
+	}
+	@media screen and (${device.mobileM}) {
+		font-size: 1.2rem;
+	}
+`;
+const RecentOrderContentContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 	padding: 1rem;
 	border-radius: 8px;
 	background-color: var(--color-grey-50);
@@ -468,12 +497,68 @@ const DashboardLayout = () => {
 					<TopProductsChart orders={orders} />
 				</RightChartContentContainer>
 			</DashboardChartContentContainer>
-			{/* <DashboardContentContainer>
-				<div>sales Overview</div>
-				<div>Inventory Summary</div>
-			</DashboardContentContainer> */}
+
+			<DashboardContentContainerRecentOrde>
+				<RecentOrderContentContainer>
+					<p>Recent Orders</p>
+					{totalOrders && totalOrders.length > 0 ? (
+						<Table role="table">
+							<TableHeader role="row">
+								<div>Product</div>
+								<div>Order Value</div>
+								<div>Order ID</div>
+								<div>Created Date</div>
+								<div>Status</div>
+							</TableHeader>
+
+							{/* Sort orders by created_at and display only the 5 most recent ones */}
+							{[...totalOrders]
+								.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+								.slice(0, 5)
+								.map((order) => (
+									<RecentOrderRow key={order.id} order={order} />
+								))}
+						</Table>
+					) : (
+						<p>No recent orders found</p>
+					)}
+				</RecentOrderContentContainer>
+			</DashboardContentContainerRecentOrde>
 		</StyledDashboardLayout>
 	);
 };
 
 export default DashboardLayout;
+
+const Table = styled.div`
+	border: 1px solid var(--color-grey-200);
+	font-size: 1.15rem;
+	background-color: var(--color-grey-0);
+	border-radius: 7px;
+	overflow: hidden;
+
+	@media screen and (${device.mobileL}) {
+		overflow: scroll;
+	}
+`;
+
+const TableHeader = styled.header`
+	display: grid;
+	grid-template-columns: 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr;
+	column-gap: 2.4rem;
+	align-items: center;
+
+	background-color: var(--color-grey-50);
+	border-bottom: 1px solid var(--color-grey-100);
+	text-transform: capitalize;
+	letter-spacing: 0.4px;
+	font-weight: 600;
+	color: var(--color-grey-600);
+	padding: 1.6rem 2.4rem;
+
+	@media screen and (${device.mobileL}) {
+		grid-template-columns: 1.5fr 1.5fr 1.5fr 1.5fr 1.5fr;
+		padding: 1.2rem 2rem;
+		width: 100rem;
+	}
+`;

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import InventoryTable from "./InventoryTable";
 import { device } from "../utils/devices";
+import useInventory from "./useInventory";
 
 const InventoryProductContainer = styled.div`
 	display: flex;
@@ -19,11 +20,15 @@ const InventoryProductContainer = styled.div`
 	}
 `;
 
-const InventoryProduct = () => {
+const InventoryProduct = ({ products }) => {
+	// If products prop is not provided, use the hook to get all products
+	const { inventories, isLoading } = useInventory();
+	const displayProducts = products || inventories;
+	
 	return (
 		<InventoryProductContainer>
 			<div>Products</div>
-			<InventoryTable />
+			<InventoryTable products={displayProducts} isLoading={isLoading} />
 		</InventoryProductContainer>
 	);
 };

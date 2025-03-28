@@ -4,11 +4,11 @@ const StyledFilter = styled.div`
 	box-shadow: var(--shadow-sm);
 	border-radius: var(--border-radius-sm);
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
 	gap: 0.4rem;
 	margin-left: 1rem;
-	width: auto;
+	/* width: 20%; */
 `;
 
 const FilterButton = styled.button`

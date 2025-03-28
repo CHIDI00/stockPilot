@@ -3,20 +3,20 @@ import Button from "../ui/Button";
 import Modal from "../ui/Modal";
 import Row from "../ui/Row";
 import CreateOrderForm from "./CreateOrderForm";
-import OrderTableOperation from "./OrderTableOperation";
 import styled from "styled-components";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import useOrder from "./useOrder";
-import OrderTable from "./OrderTable";
-import Spinner from "../ui/Spinner";
-import OrderRow from "./OrderRow";
 
 const Span = styled.span`
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-start;
+	align-items: flex-start;
 	gap: 1rem;
 	margin: 0 1rem;
+
+	@media screen and (${device.mobileL}) {
+		width: 100%;
+	}
 `;
 
 const SearchBar = styled.div`
@@ -61,7 +61,14 @@ const AddOrder = ({ onSearch }) => {
 
 	return (
 		<div>
-			<Row type="horizontal">
+			<Row
+				type="horizontal"
+				style={{
+					justifyContent: "flex-start",
+					fontSize: "1rem",
+					padding: "1.25rem .5rem",
+				}}
+			>
 				<SearchBar>
 					<HiMagnifyingGlass />
 					<input
