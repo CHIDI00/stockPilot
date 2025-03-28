@@ -8,7 +8,6 @@ const StyledFilter = styled.div`
 	align-items: center;
 	gap: 0.4rem;
 	margin-left: 1rem;
-	/* width: 20%; */
 `;
 
 const FilterButton = styled.button`

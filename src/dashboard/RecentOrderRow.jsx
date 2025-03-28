@@ -75,8 +75,14 @@ const Status = styled.div`
 `;
 
 const RecentOrderRow = ({ order }) => {
-	const { created_at, product, order_value, order_id, delivery_date, status } =
-		order;
+	const {
+		created_at,
+		product = "N/A",
+		order_value = 0,
+		order_id = "N/A",
+		delivery_date = "N/A",
+		status = "N/A",
+	} = order || {};
 
 	return (
 		<TableRow role="row">

@@ -15,6 +15,7 @@ const Input = styled.input`
 	border-radius: 8px;
 	margin-bottom: 1rem;
 	border: 1px solid var(--color-grey-300);
+	color: #000;
 `;
 
 const Form = styled.form`

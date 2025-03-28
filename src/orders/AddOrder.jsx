@@ -6,6 +6,7 @@ import CreateOrderForm from "./CreateOrderForm";
 import styled from "styled-components";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import useOrder from "./useOrder";
+import { device } from "../utils/devices";
 
 const Span = styled.span`
 	display: flex;

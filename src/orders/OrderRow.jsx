@@ -139,7 +139,6 @@ const OrderRow = ({ order }) => {
 
 	const {
 		id: orderId,
-		created_at,
 		product,
 		order_value,
 		quantity,
