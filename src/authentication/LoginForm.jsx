@@ -58,8 +58,8 @@ const ForgottenPassword = styled.p`
 `;
 
 function LoginForm() {
-	const [email, setEmail] = useState("chidi@example.com");
-	const [password, setPassword] = useState("1122334455");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
 	const navigate = useNavigate();
 
@@ -88,6 +88,7 @@ function LoginForm() {
 					id="email"
 					// This makes this form better for password managers
 					autoComplete="username"
+					placeholder="Enter your email address"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 					disabled={isLoading}
@@ -98,6 +99,7 @@ function LoginForm() {
 					type="password"
 					id="password"
 					autoComplete="current-password"
+					placeholder="Enter password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					disabled={isLoading}
