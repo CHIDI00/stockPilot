@@ -62,14 +62,7 @@ const AddOrder = ({ onSearch }) => {
 
 	return (
 		<div>
-			<Row
-				type="horizontal"
-				style={{
-					justifyContent: "flex-start",
-					fontSize: "1rem",
-					padding: "1.25rem .5rem",
-				}}
-			>
+			<Row type="horizontal">
 				<SearchBar>
 					<HiMagnifyingGlass />
 					<input

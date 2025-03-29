@@ -40,6 +40,7 @@ const Select = styled.select`
 	border: none;
 	font-size: 1.2rem;
 	border-radius: 10px;
+	cursor: pointer;
 `;
 
 const Option = styled.option`
@@ -167,7 +168,10 @@ function UpdateSettingsForm() {
 				</Switch>
 			</Setting>
 
-			<Setting onClick={() => navigate("/settings/update_password")}>
+			<Setting
+				style={{ cursor: "pointer" }}
+				onClick={() => navigate("/settings/update_password")}
+			>
 				<div>
 					<H1>Change password</H1>
 					<H1Detail>Do not share your password with anyone</H1Detail>

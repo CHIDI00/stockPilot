@@ -123,7 +123,7 @@ const RightContentContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 40%;
-	padding: 1rem;
+	padding: 1.7rem 1rem;
 	border-radius: 8px;
 	background-color: var(--color-grey-50);
 	animation-duration: 0.8s;
@@ -141,6 +141,7 @@ const RightChartContentContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 40%;
+	height: inherit;
 	padding: 1rem;
 	border-radius: 8px;
 	background-color: var(--color-grey-50);
@@ -192,6 +193,7 @@ const DashboardDetails = styled.div`
 
 		p {
 			font-size: 1.3rem;
+			text-align: center;
 		}
 	}
 
